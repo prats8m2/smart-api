@@ -1,0 +1,18 @@
+version: "3.4"
+
+services:
+  uan-api-v2:
+    image: uan-api-v2
+    env_file:
+      - .env
+    build: .
+    ports:
+      - "3000"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - uan-api-v2
+    ports:
+      - "4000:4000"
