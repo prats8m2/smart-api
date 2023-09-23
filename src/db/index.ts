@@ -20,6 +20,7 @@ class Database {
       synchronize: DB_CONFIG.sync === "true",
     })
       .then(async (connection: any) => {
+        console.log("connection:", connection)
         //Check if data is empty create super admin
         
         Logger.http(`${DB_CONFIG.database} Database Connected!`);
@@ -28,3 +29,6 @@ class Database {
       .catch((error) => console.log(error));
   };
 }
+
+
+export default Database;
