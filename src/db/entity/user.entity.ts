@@ -1,30 +1,41 @@
 import {
   Entity,
   Column,
-  ManyToMany,
-  JoinTable,
-  OneToMany,
   VersionColumn,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
   PrimaryGeneratedColumn,
+  BaseEntity,
+  ManyToMany,
+  JoinTable,
+  OneToOne,
+  JoinColumn,
 } from "typeorm";
-import { Category } from "./category.entity";
-import { Product } from "./product.entity";
-import { Site } from "./site.entity";
-import { Theme } from "./theme.entity";
+import { Role } from "./role.entity";
+import { Account } from "./account.entity";
 // Table: User
 @Entity()
-export class User {
+export class User  extends BaseEntity{
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column({ nullable: true })
-  fullName!: string;
+  firstName!: string;
+
+  @Column({ nullable: true })
+  lastName!: string;
+
+  // Add a getter-only property for the "fullname"
+  get fullname(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
 
   @Column()
-  email!: string;
+  email: string;
+
+  @Column()
+  username: string;
 
   @Column()
   password!: string;
@@ -42,27 +53,13 @@ export class User {
   })
   status!: number;
 
-  @Column()
-  permission!: string;
+  @OneToOne(() => Role)
+  @JoinColumn()
+  role: Role;
 
-  @Column()
-  privilege!: string;
-
-  @OneToMany(() => Site, (site) => site.user)
-  @JoinTable()
-  sites: Site[];
-
-  @ManyToMany(() => Theme, (theme) => theme.users)
-  @JoinTable()
-  themes: Theme[];
-
-  @OneToMany(() => Product, (product) => product.user)
-  @JoinTable()
-  products: Product[];
-
-  @OneToMany(() => Category, (category) => category.user)
-  @JoinTable()
-  categories: Category[];
+  @OneToOne(() => Account)
+  @JoinColumn()
+  account: Account;
 
   @VersionColumn({ select: false })
   version: number;

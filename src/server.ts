@@ -7,7 +7,7 @@ import cors from "cors";
 // File imports
 import userRoutes from "./routes/user.routes";
 
-import "./db";
+import Database from "./db";
 //import swaggerDocument from "../swagger/swagger.json";
 
 class Server {
@@ -17,7 +17,7 @@ class Server {
     this.app = express();
     this.config();
     this.routerConfig();
-    // this.databaseConfig();
+    this.databaseConfig();
     //  this.swaggerConfig();
   }
 
@@ -39,10 +39,10 @@ class Server {
   }
 
   //database
-  // private databaseConfig() {
-  //   const db = new Database();
-  //   db.connect();
-  // }
+  private databaseConfig() {
+    const db = new Database();
+    db.connect();
+  }
 
   // Swagger
   // private swaggerConfig() {
