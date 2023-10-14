@@ -4,6 +4,8 @@ import { Permission } from '../../db/entity/permission.entity';
 import Logger from '../../utility/logger';
 import ALL_PERMISSION from '../../constants/permissions';
 import SUPER_ADMIN_PERMISSIONS from '../../constants/permissions/superAdmin';
+import USER_PERMISSION from '../../constants/permissions/user';
+import { In } from 'typeorm';
 
 //Create a Super Admin for app
 const onboardDB = async (
@@ -27,11 +29,11 @@ const onboardDB = async (
 	});
 
 	//Add Role
-	const role: Role = new Role();
-	role.name = 'SUPER-ADMIN';
-	role.type = 1;
-	role.permissions = superAdminPermission;
-	const newRole = await role.save();
+	const SARole: Role = new Role();
+	SARole.name = 'SUPER-ADMIN';
+	SARole.type = 1;
+	SARole.permissions = superAdminPermission;
+	const newRole = await SARole.save();
 
 	//Create an User
 	const user: User = new User();

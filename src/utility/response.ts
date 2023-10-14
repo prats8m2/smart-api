@@ -7,10 +7,9 @@ export default function sendResponse(
   message: string,
   data?: any
 ) {
-  res.send({
-    status,
-    code,
-    message,
-    data,
-  });
+  res.status(code).send({
+		status,
+		message,
+		data,
+	});
 }

@@ -16,69 +16,72 @@ import { Role } from "./role.entity";
 import { Account } from "./account.entity";
 // Table: User
 @Entity()
-export class User  extends BaseEntity{
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+export class User extends BaseEntity {
+	@PrimaryGeneratedColumn('uuid')
+	id: string;
 
-  @Column({ nullable: true })
-  firstName!: string;
+	@Column({ nullable: true })
+	firstName!: string;
 
-  @Column({ nullable: true })
-  lastName!: string;
+	@Column({ nullable: true })
+	lastName!: string;
 
-  // Add a getter-only property for the "fullname"
-  get fullname(): string {
-    return `${this.firstName} ${this.lastName}`;
-  }
+	// Add a getter-only property for the "fullname"
+	get fullname(): string {
+		return `${this.firstName} ${this.lastName}`;
+	}
 
-  @Column()
-  email: string;
+	@Column()
+	email: string;
 
-  @Column()
-  username: string;
+	@Column()
+	username: string;
 
-  @Column()
-  password!: string;
+	@Column({ select: false })
+	password!: string;
 
-  @Column({ nullable: true })
-  mobile?: string;
+	@Column({ nullable: true })
+	mobile?: string;
 
-  @Column({ nullable: false, default: false })
-  isFirstLogin: boolean;
+	@Column({ nullable: false, default: false })
+	isFirstLogin: boolean;
 
-  @Column({
-    type: "enum",
-    enum: [0, 1],
-    default: 1,
-  })
-  status!: number;
+	@Column({ type: 'timestamptz', nullable: true }) // Recommended
+	lastLogin: Date;
 
-  @OneToOne(() => Role)
-  @JoinColumn()
-  role: Role;
+	@Column({
+		type: 'enum',
+		enum: [0, 1],
+		default: 1,
+	})
+	status!: number;
 
-  @OneToOne(() => Account)
-  @JoinColumn()
-  account: Account;
+	@OneToOne(() => Role)
+	@JoinColumn()
+	role: Role;
 
-  @VersionColumn({ select: false })
-  version: number;
+	@OneToOne(() => Account)
+	@JoinColumn()
+	account: Account;
 
-  @CreateDateColumn({ nullable: true })
-  createdOn?: Date;
+	@VersionColumn({ select: false })
+	version: number;
 
-  @Column({ nullable: true, select: false })
-  createdBy?: string;
+	@CreateDateColumn({ nullable: true })
+	createdOn?: Date;
 
-  @UpdateDateColumn({ nullable: true, select: false })
-  updatedOn?: Date;
+	@Column({ nullable: true, select: false })
+	createdBy?: string;
 
-  @Column({ nullable: true, select: false })
-  updatedBy?: string;
+	@UpdateDateColumn({ nullable: true, select: false })
+	updatedOn?: Date;
 
-  @DeleteDateColumn({ nullable: true, select: false })
-  deletedOn?: Date;
+	@Column({ nullable: true, select: false })
+	updatedBy?: string;
 
-  @Column({ nullable: true, select: false })
-  deletedBy?: string;
+	@DeleteDateColumn({ nullable: true, select: false })
+	deletedOn?: Date;
+
+	@Column({ nullable: true, select: false })
+	deletedBy?: string;
 }

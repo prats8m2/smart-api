@@ -9,28 +9,24 @@ const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
     try {
       const data: any = verify(token, JWT_SECRET_KEY);
       const { role, id } = data;
-      res.locals.loggedInId = id;
-      res.locals.loggedInRole = role[0]?.name;
+			res.locals.loggedInId = id;
+			res.locals.loggedInRole = role;
+      
       next();
     } catch (_e) {
       const e: Error = _e;
 
-      if (e.message === "invalid signature") {
-        sendResponse(
-          res,
-          false,
-          CODE.INVALID_TOKEN,
-          "Invalid reset password token!"
-        );
-        return false;
-      }
+      if (e.message === 'invalid signature') {
+				sendResponse(res, false, CODE.UNAUTHORIZED, 'Invalid reset password token!');
+				return false;
+			}
 
-      if (e.message === "jwt expired") {
-        sendResponse(res, false, CODE.JWT_EXPIRE, "Session expired!");
-        return false;
-      }
+			if (e.message === 'jwt expired') {
+				sendResponse(res, false, CODE.UNAUTHORIZED, 'Session expired!');
+				return false;
+			}
 
-      sendResponse(res, false, CODE.INVALID_TOKEN, e.message);
+			sendResponse(res, false, CODE.UNAUTHORIZED, e.message);
     }
   } else {
     sendResponse(res, false, CODE.UNAUTHORIZED, "Not Authorized");

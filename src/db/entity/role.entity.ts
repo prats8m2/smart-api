@@ -1,52 +1,59 @@
 import {
-  Entity,
-  Column,
-  VersionColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-  PrimaryGeneratedColumn,
-  BaseEntity,
-  ManyToMany,
-  JoinColumn,
-  JoinTable,
-} from "typeorm";
-import { User } from "./user.entity";
-import { Permission } from "./permission.entity";
+	Entity,
+	Column,
+	VersionColumn,
+	CreateDateColumn,
+	UpdateDateColumn,
+	DeleteDateColumn,
+	PrimaryGeneratedColumn,
+	BaseEntity,
+	ManyToMany,
+	JoinColumn,
+	JoinTable,
+	OneToOne,
+	ManyToOne,
+} from 'typeorm';
+import { User } from './user.entity';
+import { Permission } from './permission.entity';
+import { Account } from './account.entity';
 // Table: Role
 @Entity()
-export class Role  extends BaseEntity{
-  @PrimaryGeneratedColumn("increment")
-  id: string;
+export class Role extends BaseEntity {
+	@PrimaryGeneratedColumn('increment')
+	id: string;
 
-  @Column()
-  name: string;
+	@Column()
+	name: string;
 
-  @Column()
-  type: number;
-  
-@ManyToMany(() => Permission)
-  @JoinTable()
-  permissions: Permission[];
+	@Column()
+	type: number;
 
-  @VersionColumn({ select: false })
-  version: number;
+	@ManyToMany(() => Permission)
+	@JoinTable()
+	permissions: Permission[];
 
-  @CreateDateColumn({ nullable: true })
-  createdOn?: Date;
+	@ManyToOne(() => Account)
+	@JoinColumn()
+	account: Account;
 
-  @Column({ nullable: true, select: false })
-  createdBy?: string;
+	@VersionColumn({ select: false })
+	version: number;
 
-  @UpdateDateColumn({ nullable: true, select: false })
-  updatedOn?: Date;
+	@CreateDateColumn({ nullable: true })
+	createdOn?: Date;
 
-  @Column({ nullable: true, select: false })
-  updatedBy?: string;
+	@Column({ nullable: true, select: false })
+	createdBy?: string;
 
-  @DeleteDateColumn({ nullable: true, select: false })
-  deletedOn?: Date;
+	@UpdateDateColumn({ nullable: true, select: false })
+	updatedOn?: Date;
 
-  @Column({ nullable: true, select: false })
-  deletedBy?: string;
+	@Column({ nullable: true, select: false })
+	updatedBy?: string;
+
+	@DeleteDateColumn({ nullable: true, select: false })
+	deletedOn?: Date;
+
+	@Column({ nullable: true, select: false })
+	deletedBy?: string;
 }
