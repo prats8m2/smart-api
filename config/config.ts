@@ -34,8 +34,8 @@ export const VALIDATION = {
 };
 
 export const ROLES = {
-  SUPER_ADMIN: "Super Admin",
-  ADMIN: "Client Admin",
+  SUPER_ADMIN: "Super-Admin",
+  USER: "USER",
   ORG_ACCESS: "Organization access",
   MANAGED_ACCESS: "Managed Report Access",
   OOB_ACCESS: "OOB Report Access",

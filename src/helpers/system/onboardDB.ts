@@ -6,6 +6,7 @@ import ALL_PERMISSION from '../../constants/permissions';
 import SUPER_ADMIN_PERMISSIONS from '../../constants/permissions/superAdmin';
 import USER_PERMISSION from '../../constants/permissions/user';
 import { In } from 'typeorm';
+import { ROLES } from '../../../config/config';
 
 //Create a Super Admin for app
 const onboardDB = async (
@@ -25,12 +26,13 @@ const onboardDB = async (
 	}
 
 	const superAdminPermission: Permission[] = await Permission.find({
-		name: SUPER_ADMIN_PERMISSIONS[0],
+		name: In(SUPER_ADMIN_PERMISSIONS),
 	});
+	console.log("superAdminPermission:", superAdminPermission)
 
 	//Add Role
 	const SARole: Role = new Role();
-	SARole.name = 'SUPER-ADMIN';
+	SARole.name = ROLES.SUPER_ADMIN;
 	SARole.type = 1;
 	SARole.permissions = superAdminPermission;
 	const newRole = await SARole.save();

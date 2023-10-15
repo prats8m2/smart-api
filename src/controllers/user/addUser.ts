@@ -2,12 +2,13 @@ import { Request, Response } from 'express';
 import sendResponse from '../../utility/response';
 import Logger from '../../utility/logger';
 import { User } from '../../db/entity/user.entity';
-import { CODE } from '../../../config/config';
+import { CODE, ROLES } from '../../../config/config';
 import { Account } from '../../db/entity/account.entity';
 import { Permission } from '../../db/entity/permission.entity';
 import USER_PERMISSION from '../../constants/permissions/user';
 import { In } from 'typeorm';
 import { Role } from '../../db/entity/role.entity';
+import { MD5 } from 'crypto-js';
 
 const addUser = async (req: Request, res: Response) => {
 	//fetch data from body
@@ -26,7 +27,7 @@ const addUser = async (req: Request, res: Response) => {
 
 	//create a new role
 	const role = new Role();
-	role.name = 'USER';
+	role.name = ROLES.USER;
 	role.type = 2;
 	role.account = newAccount;
 	role.permissions = userPermissions;
@@ -38,7 +39,7 @@ const addUser = async (req: Request, res: Response) => {
 	user.lastName = lastName;
 	user.email = email;
 	user.username = username;
-	user.password = password;
+	user.password = MD5(password).toString();
 	user.account = newAccount;
 	user.role = newRole;
 	const result = await user.save();

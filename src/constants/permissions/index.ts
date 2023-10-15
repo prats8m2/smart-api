@@ -1,5 +1,4 @@
 const ALL_PERMISSION = [
-	'ALL',
 	'ADD-USER',
 	'UPDATE-USER',
 	'DELETE-USER',

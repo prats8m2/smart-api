@@ -6,6 +6,7 @@ import { Role } from './entity/role.entity';
 import { Account } from './entity/account.entity';
 import { Permission } from './entity/permission.entity';
 import onboardDB from '../helpers/system/onboardDB';
+import { CLEAR_DB } from '../constants/queries';
 
 class Database {
 	public connect = () => {
@@ -29,7 +30,7 @@ class Database {
 				const user: any[] = await connection.manager.query(`Select * from "user"`);
 				console.log('user:', user);
 				if (DB_CONFIG.clear === 'true') {
-					await connection.manager.query(`DELETE from "user" where 1=1`);
+					await connection.manager.query(CLEAR_DB);
 				}
 				if (!user.length) {
 					onboardDB(
