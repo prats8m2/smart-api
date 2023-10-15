@@ -60,7 +60,9 @@ export class User extends BaseEntity {
 	@JoinColumn()
 	role: Role;
 
-	@OneToOne(() => Account)
+	@OneToOne(() => Account, {
+		eager: true,
+	})
 	@JoinColumn()
 	account: Account;
 
