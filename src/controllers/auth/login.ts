@@ -17,17 +17,16 @@ const login = async (req: Request, res: Response) => {
 			{ email, password: MD5(password) },
 		],
 		relations: ['role', 'role.permissions'],
-	});
-	console.log('user:', user);
+	})
 
 	if (!user) {
-		sendResponse(res, false, CODE.UNAUTHORIZED, 'Invalid credentials');
-		return;
+		sendResponse(res, false, CODE.UNAUTHORIZED, 'Invalid credentials')
+		return
 	}
 
 	if (!user.status) {
-		sendResponse(res, false, CODE.UNAUTHORIZED, 'User account deactivated');
-		return;
+		sendResponse(res, false, CODE.UNAUTHORIZED, 'User account deactivated')
+		return
 	}
 
 	const tokenObject = {
@@ -37,7 +36,7 @@ const login = async (req: Request, res: Response) => {
 		email: user.email,
 		username: user.username,
 		isFirstLogin: user.isFirstLogin,
-	};
+	}
 
 	user.lastLogin = new Date();
 	user.isFirstLogin = false;

@@ -12,15 +12,13 @@ const PermissionMiddleware = (req: Request, res: Response, next: NextFunction) =
 	const loggedInUserPermissions = [];
 
 	for (let index = 0; index < permissions.length; index++) {
-		const permission = permissions[index];
-		loggedInUserPermissions.push(permission.name);
+		const permission = permissions[index]
+		loggedInUserPermissions.push(permission.name)
 	}
 
-	if (
-		loggedInUserPermissions.indexOf('ALL') === -1 &&
-		loggedInUserPermissions.indexOf(action) === -1
-	) {
-		sendResponse(res, false, CODE.FORBIDDEN, 'Permission Denied');
+	if (loggedInUserPermissions.indexOf(action) === -1) {
+		sendResponse(res, false, CODE.FORBIDDEN, 'Permission Denied')
+		return
 	}
 	next();
 };

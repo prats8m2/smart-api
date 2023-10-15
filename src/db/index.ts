@@ -27,8 +27,9 @@ class Database {
 				//Check if data is empty create super admin
 				if (connection.isConnected) Logger.http(`${DB_CONFIG.database} Database Connected!`);
 				console.log(`DB URL: ${DB_CONFIG.host}`);
-				const user: any[] = await connection.manager.query(`Select * from "user"`);
-				console.log('user:', user);
+				const user: any[] = await connection.manager.query(
+					`Select * from "user"`
+				)
 				if (DB_CONFIG.clear === 'true') {
 					await connection.manager.query(CLEAR_DB);
 				}

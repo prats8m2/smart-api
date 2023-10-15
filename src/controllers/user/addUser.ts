@@ -7,8 +7,8 @@ import { Account } from '../../db/entity/account.entity';
 import { Permission } from '../../db/entity/permission.entity';
 import USER_PERMISSION from '../../constants/permissions/user';
 import { In } from 'typeorm';
-import { Role } from '../../db/entity/role.entity';
-import { MD5 } from 'crypto-js';
+import { MD5 } from 'crypto-js'
+import { Role } from '../../db/entity/role.entity'
 
 const addUser = async (req: Request, res: Response) => {
 	//fetch data from body

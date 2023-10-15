@@ -9,7 +9,7 @@ const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
     try {
       const data: any = verify(token, JWT_SECRET_KEY);
       const { role, id } = data;
-			res.locals.loggedInId = id;
+      res.locals.loggedInId = id
 			res.locals.loggedInRole = role;
       
       next();
