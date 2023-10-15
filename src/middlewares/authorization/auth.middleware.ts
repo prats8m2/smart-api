@@ -8,9 +8,10 @@ const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
   if (typeof token !== "undefined") {
     try {
       const data: any = verify(token, JWT_SECRET_KEY);
-      const { role, id } = data;
-      res.locals.loggedInId = id
+      const { role, id, account } = data;
+			res.locals.loggedInId = id;
 			res.locals.loggedInRole = role;
+			res.locals.account = account;
       
       next();
     } catch (_e) {

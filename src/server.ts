@@ -7,6 +7,7 @@ import cors from "cors";
 // File imports
 import userRoutes from "./routes/user.routes";
 import authRoutes from './routes/auth.routes';
+import siteRoutes from './routes/site.routes';
 
 import Database from './db';
 //import swaggerDocument from "../swagger/swagger.json";
@@ -38,6 +39,7 @@ class Server {
 	private routerConfig() {
 		this.app.use('/api/v1/user', userRoutes);
 		this.app.use('/api/v1/auth', authRoutes);
+		this.app.use('/api/v1/site', siteRoutes);
 	}
 
 	//database

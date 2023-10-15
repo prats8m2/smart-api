@@ -43,9 +43,9 @@ export const ROLES = {
   SUPPORT: "Support Access",
 };
 
-export const USER_TYPE = {
-  ADMIN: "ADMIN",
-  USER: "USER",
+export const SITE_TYPE = {
+	HOTEL: 1,
+	RESTRAUNT: 2,
 };
 
 export const FOLDERS = {

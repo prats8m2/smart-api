@@ -1,16 +1,18 @@
 import {
-  Entity,
-  Column,
-  VersionColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-  PrimaryGeneratedColumn,
-  BaseEntity,
-  ManyToMany,
-  OneToOne,
-} from "typeorm";
-import { User } from "./user.entity";
+	Entity,
+	Column,
+	VersionColumn,
+	CreateDateColumn,
+	UpdateDateColumn,
+	DeleteDateColumn,
+	PrimaryGeneratedColumn,
+	BaseEntity,
+	ManyToMany,
+	OneToOne,
+	OneToMany,
+} from 'typeorm';
+import { User } from './user.entity';
+import { Site } from './site.entity';
 // Table: Account
 @Entity()
 export class Account extends BaseEntity {
@@ -20,8 +22,11 @@ export class Account extends BaseEntity {
 	@Column()
 	name: string;
 
-	@OneToOne(() => User, (user) => user.account)
+	@OneToMany(() => User, (user) => user.account)
 	user: User[];
+
+	@OneToMany(() => Site, (site) => site.account)
+	sites: Site[];
 
 	@VersionColumn({ select: false })
 	version: number;

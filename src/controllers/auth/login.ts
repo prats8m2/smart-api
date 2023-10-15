@@ -36,7 +36,8 @@ const login = async (req: Request, res: Response) => {
 		email: user.email,
 		username: user.username,
 		isFirstLogin: user.isFirstLogin,
-	}
+		account: user.account,
+	};
 
 	user.lastLogin = new Date();
 	user.isFirstLogin = false;

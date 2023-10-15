@@ -4,15 +4,17 @@ import random from "random";
 
 export const createToken = (data: any) => {
   return jwt.sign(
-    {
-      id: data.id,
-      name: data.name,
-      email: data.email,
-      role: data.role,
-      exp: Math.floor(Date.now() / 1000) + 60 * SESSION_EXPIRE_TIME,
-    },
-    JWT_SECRET_KEY
-  );
+		{
+			id: data.id,
+			name: data.name,
+			email: data.email,
+			role: data.role,
+			exp: Math.floor(Date.now() / 1000) + 60 * SESSION_EXPIRE_TIME,
+			account: data.account,
+			username: data.username,
+		},
+		JWT_SECRET_KEY
+	);
 };
 
 export const generateResetPassLink = (): string => {

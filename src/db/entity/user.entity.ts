@@ -1,19 +1,20 @@
 import {
-  Entity,
-  Column,
-  VersionColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-  PrimaryGeneratedColumn,
-  BaseEntity,
-  ManyToMany,
-  JoinTable,
-  OneToOne,
-  JoinColumn,
-} from "typeorm";
-import { Role } from "./role.entity";
-import { Account } from "./account.entity";
+	Entity,
+	Column,
+	VersionColumn,
+	CreateDateColumn,
+	UpdateDateColumn,
+	DeleteDateColumn,
+	PrimaryGeneratedColumn,
+	BaseEntity,
+	ManyToMany,
+	JoinTable,
+	OneToOne,
+	JoinColumn,
+	ManyToOne,
+} from 'typeorm';
+import { Role } from './role.entity';
+import { Account } from './account.entity';
 // Table: User
 @Entity()
 export class User extends BaseEntity {
@@ -60,7 +61,7 @@ export class User extends BaseEntity {
 	@JoinColumn()
 	role: Role;
 
-	@OneToOne(() => Account, {
+	@ManyToOne(() => Account, {
 		eager: true,
 		onDelete: 'CASCADE',
 	})
