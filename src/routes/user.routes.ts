@@ -5,6 +5,7 @@ import PermissionMiddleware from '../middlewares/authorization/permission.middle
 import UserController from '../controllers/user/user.controller';
 import updateUserValidation from "../middlewares/validations/user/updateUser.validation";
 import getUserValidation from '../middlewares/validations/user/getUser.validation';
+import listUsersValidation from '../middlewares/validations/user/listUsers.validation';
 
 const router = Router();
 
@@ -29,6 +30,14 @@ router.get(
 	getUserValidation,
 	PermissionMiddleware,
 	userController.get
+);
+
+router.get(
+	'/list/:page/:limit',
+	AuthMiddleware,
+	listUsersValidation,
+	PermissionMiddleware,
+	userController.list
 );
 
 export default router;
