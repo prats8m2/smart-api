@@ -10,7 +10,7 @@ const addSiteValidation = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const { name, type, accountId } = req.body;
+	const { name, type } = req.body;
 	const { account } = res.locals;
 
 	if (!name || !type) {
@@ -34,18 +34,17 @@ const addSiteValidation = async (
 		return;
 	}
 
-	if (!account && !accountId) {
+	if (!account) {
 		sendResponse(
 			res,
 			false,
 			CODE.BAD_REQUEST,
 			'Account is required to add site',
-			{ account, accountId }
+			{ account }
 		);
 		return;
 	}
-	const accountValue = account ? account : accountId;
-	const isNameExist = await Site.findOne({ name, account: accountValue });
+	const isNameExist = await Site.findOne({ name, account });
 	if (isNameExist) {
 		sendResponse(res, false, CODE.CONFLICT, 'Site name already exist ', name);
 		return;
