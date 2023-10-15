@@ -62,6 +62,7 @@ export class User extends BaseEntity {
 
 	@OneToOne(() => Account, {
 		eager: true,
+		onDelete: 'CASCADE',
 	})
 	@JoinColumn()
 	account: Account;

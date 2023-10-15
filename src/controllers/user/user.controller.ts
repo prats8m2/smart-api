@@ -3,6 +3,7 @@ import addUser from './addUser';
 import updateUser from './updateUser';
 import getUser from './getUser'
 import listUsers from './listUsers';
+import deleteUser from './deleteUser';
 
 class UserController {
 	public add = async (req: Request, res: Response) => {
@@ -19,6 +20,10 @@ class UserController {
 
 	public list = async (req: Request, res: Response) => {
 		listUsers(req, res);
+	};
+
+	public delete = async (req: Request, res: Response) => {
+		deleteUser(req, res);
 	};
 }
 

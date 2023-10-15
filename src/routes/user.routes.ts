@@ -6,6 +6,7 @@ import UserController from '../controllers/user/user.controller';
 import updateUserValidation from "../middlewares/validations/user/updateUser.validation";
 import getUserValidation from '../middlewares/validations/user/getUser.validation';
 import listUsersValidation from '../middlewares/validations/user/listUsers.validation';
+import deleteUserValidation from '../middlewares/validations/user/deleteUser.validation';
 
 const router = Router();
 
@@ -38,6 +39,14 @@ router.get(
 	listUsersValidation,
 	PermissionMiddleware,
 	userController.list
+);
+
+router.delete(
+	'/delete/:id',
+	AuthMiddleware,
+	deleteUserValidation,
+	PermissionMiddleware,
+	userController.delete
 );
 
 export default router;
