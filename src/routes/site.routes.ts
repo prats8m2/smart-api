@@ -8,6 +8,7 @@ import listUsersValidation from '../middlewares/validations/user/listUsers.valid
 import deleteUserValidation from '../middlewares/validations/user/deleteUser.validation';
 import SiteController from '../controllers/site/site.controller';
 import addSiteValidation from '../middlewares/validations/site/addSite.validation';
+import updateSiteValidation from '../middlewares/validations/site/updateUser.validation';
 
 const router = Router();
 
@@ -22,7 +23,7 @@ router.post(
 router.put(
 	'/update',
 	AuthMiddleware,
-	updateUserValidation,
+	updateSiteValidation,
 	PermissionMiddleware,
 	siteController.update
 );

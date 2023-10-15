@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
-import addUser from './addSite';
-import updateUser from './updateUser';
 import getUser from './getUser';
 import listUsers from './listUsers';
 import deleteUser from './deleteUser';
 import addSite from './addSite';
+import updateSite from './updateSite';
 
 class SiteController {
 	public add = async (req: Request, res: Response) => {
@@ -12,7 +11,7 @@ class SiteController {
 	};
 
 	public update = async (req: Request, res: Response) => {
-		updateUser(req, res);
+		updateSite(req, res);
 	};
 
 	public get = async (req: Request, res: Response) => {
