@@ -4,6 +4,7 @@ import updateUser from './updateUser';
 import getUser from './getUser'
 import listUsers from './listUsers';
 import deleteUser from './deleteUser';
+import listAccounts from './listAccounts';
 
 class UserController {
 	public add = async (req: Request, res: Response) => {
@@ -24,6 +25,10 @@ class UserController {
 
 	public delete = async (req: Request, res: Response) => {
 		deleteUser(req, res);
+	};
+
+	public listAccounts = async (req: Request, res: Response) => {
+		listAccounts(req, res);
 	};
 }
 

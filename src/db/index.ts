@@ -27,7 +27,7 @@ class Database {
 			.then(async (connection: Connection) => {
 				//Check if data is empty create super admin
 				if (connection.isConnected)
-					Logger.http(`${DB_CONFIG.database} Database Connected!`);
+				Logger.http(`${DB_CONFIG.database} Database Connected!`);
 				console.log(`DB URL: ${DB_CONFIG.host}`);
 				const user: any[] = await connection.manager.query(
 					`Select * from "user"`

@@ -7,6 +7,7 @@ import updateUserValidation from "../middlewares/validations/user/updateUser.val
 import getUserValidation from '../middlewares/validations/user/getUser.validation';
 import listUsersValidation from '../middlewares/validations/user/listUsers.validation';
 import deleteUserValidation from '../middlewares/validations/user/deleteUser.validation';
+import listAccountValidation from '../middlewares/validations/user/listAccount.validation';
 
 const router = Router();
 
@@ -47,6 +48,14 @@ router.delete(
 	deleteUserValidation,
 	PermissionMiddleware,
 	userController.delete
+);
+
+router.get(
+	'/accounts/list/:page/:limit',
+	AuthMiddleware,
+	listAccountValidation,
+	PermissionMiddleware,
+	userController.listAccounts
 );
 
 export default router;
