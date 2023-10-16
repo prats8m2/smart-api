@@ -1,14 +1,13 @@
 import { Router } from 'express';
 import AuthMiddleware from '../middlewares/authorization/auth.middleware';
-import addUserValidation from '../middlewares/validations/user/addUser.validation';
 import PermissionMiddleware from '../middlewares/authorization/permission.middleware';
-import updateUserValidation from '../middlewares/validations/user/updateUser.validation';
-import getUserValidation from '../middlewares/validations/user/getUser.validation';
 import listUsersValidation from '../middlewares/validations/user/listUsers.validation';
 import deleteUserValidation from '../middlewares/validations/user/deleteUser.validation';
 import SiteController from '../controllers/site/site.controller';
 import addSiteValidation from '../middlewares/validations/site/addSite.validation';
 import updateSiteValidation from '../middlewares/validations/site/updateUser.validation';
+import getSiteValidation from '../middlewares/validations/site/getSite.validation';
+import listSitesValidation from '../middlewares/validations/site/listSites.validation';
 
 const router = Router();
 
@@ -30,15 +29,15 @@ router.put(
 router.get(
 	'/get/:id',
 	AuthMiddleware,
-	getUserValidation,
+	getSiteValidation,
 	PermissionMiddleware,
 	siteController.get
 );
 
 router.get(
-	'/list/:page/:limit',
+	'/list/:accountId/:page/:limit',
 	AuthMiddleware,
-	listUsersValidation,
+	listSitesValidation,
 	PermissionMiddleware,
 	siteController.list
 );

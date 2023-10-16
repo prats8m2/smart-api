@@ -4,7 +4,7 @@ import { CODE } from '../../../../config/config';
 import { User } from '../../../db/entity/user.entity';
 import { Not } from 'typeorm';
 
-const getUserValidation = async (
+const getSiteValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
@@ -22,9 +22,9 @@ const getUserValidation = async (
 		return;
 	}
 
-	res.locals.action = 'VIEW-USER';
+	res.locals.action = 'VIEW-SITE';
 
 	next();
 };
 
-export default getUserValidation;
+export default getSiteValidation;

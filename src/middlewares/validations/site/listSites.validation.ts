@@ -4,14 +4,14 @@ import { CODE } from '../../../../config/config';
 import { User } from '../../../db/entity/user.entity';
 import { Not } from 'typeorm';
 
-const listUsersValidation = async (
+const listSitesValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
-	res.locals.action = 'LIST-USER';
+	res.locals.action = 'LIST-SITE';
 
 	next();
 };
 
-export default listUsersValidation;
+export default listSitesValidation;
