@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
-import deleteUser from './deleteUser';
+import deleteUser from './deleteSite';
 import addSite from './addSite';
 import updateSite from './updateSite';
 import getSite from './getSite';
 import listSites from './listSites';
+import deleteSite from './deleteSite';
 
 class SiteController {
 	public add = async (req: Request, res: Response) => {
@@ -23,7 +24,7 @@ class SiteController {
 	};
 
 	public delete = async (req: Request, res: Response) => {
-		deleteUser(req, res);
+		deleteSite(req, res);
 	};
 }
 

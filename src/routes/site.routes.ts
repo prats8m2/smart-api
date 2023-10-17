@@ -8,6 +8,7 @@ import addSiteValidation from '../middlewares/validations/site/addSite.validatio
 import updateSiteValidation from '../middlewares/validations/site/updateUser.validation';
 import getSiteValidation from '../middlewares/validations/site/getSite.validation';
 import listSitesValidation from '../middlewares/validations/site/listSites.validation';
+import deleteSiteValidation from '../middlewares/validations/site/deleteSite.validation';
 
 const router = Router();
 
@@ -45,7 +46,7 @@ router.get(
 router.delete(
 	'/delete/:id',
 	AuthMiddleware,
-	deleteUserValidation,
+	deleteSiteValidation,
 	PermissionMiddleware,
 	siteController.delete
 );
