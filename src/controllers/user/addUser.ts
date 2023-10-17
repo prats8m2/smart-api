@@ -4,15 +4,13 @@ import Logger from '../../utility/logger';
 import { User } from '../../db/entity/user.entity';
 import { CODE, ROLES } from '../../../config/config';
 import { Account } from '../../db/entity/account.entity';
-import { Permission } from '../../db/entity/permission.entity';
-import USER_PERMISSION from '../../constants/permissions/user';
-import { In } from 'typeorm';
-import { MD5 } from 'crypto-js'
-import { Role } from '../../db/entity/role.entity'
+import { MD5 } from 'crypto-js';
+import addDefaultRoles from '../../helpers/user/addDefaultRoles';
 
 const addUser = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { email, username, password, accountName, firstName, lastName } = req.body;
+	const { email, username, password, accountName, firstName, lastName } =
+		req.body;
 	Logger.info(`Add user request`);
 
 	//create an account
@@ -20,18 +18,8 @@ const addUser = async (req: Request, res: Response) => {
 	account.name = accountName;
 	const newAccount = await account.save();
 
-	//Fetch user sepcific permission to create role
-	const userPermissions: Permission[] = await Permission.find({
-		name: In(USER_PERMISSION),
-	});
-
-	//create a new role
-	const role = new Role();
-	role.name = ROLES.USER;
-	role.type = 2;
-	role.account = newAccount;
-	role.permissions = userPermissions;
-	const newRole = await role.save();
+	//add all deafult roles for account for eg: user/manager/staff
+	const { newRole } = await addDefaultRoles(newAccount);
 
 	//create a user
 	const user = new User();
