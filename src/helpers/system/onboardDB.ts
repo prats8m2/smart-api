@@ -2,7 +2,7 @@ import { User } from '../../db/entity/user.entity';
 import { Role } from '../../db/entity/role.entity';
 import { Permission } from '../../db/entity/permission.entity';
 import Logger from '../../utility/logger';
-import ALL_PERMISSION from '../../constants/permissions';
+import ALL_PERMISSION from '../../constants/permissions/default';
 import SUPER_ADMIN_PERMISSIONS from '../../constants/permissions/superAdmin';
 import USER_PERMISSION from '../../constants/permissions/user';
 import { In } from 'typeorm';

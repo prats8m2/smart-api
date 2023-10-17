@@ -1,0 +1,3 @@
+const STAFF_PERMISSION = ['LIST-ORDER', 'VIEW-ORDER'];
+
+export default STAFF_PERMISSION;
