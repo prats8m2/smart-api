@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 
-const listAccountValidation = async (
+const listRolesValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
-	res.locals.action = 'LIST-ACCOUNT';
+	res.locals.action = 'LIST-ROLE';
 
 	next();
 };
 
-export default listAccountValidation;
+export default listRolesValidation;

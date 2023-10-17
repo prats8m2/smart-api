@@ -28,6 +28,9 @@ export class Role extends BaseEntity {
 	@Column()
 	type: number;
 
+	@Column({ default: true })
+	default: boolean;
+
 	@ManyToMany(() => Permission)
 	@JoinTable()
 	permissions: Permission[];

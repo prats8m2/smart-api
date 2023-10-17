@@ -41,7 +41,7 @@ const addDefaultRoles = async (account: Account) => {
 
 	//Create a new staff role
 	const staffRole = new Role();
-	staffRole.name = ROLES.MANAGER;
+	staffRole.name = ROLES.STAFF;
 	staffRole.type = 4;
 	staffRole.account = account;
 	staffRole.permissions = staffPermission;

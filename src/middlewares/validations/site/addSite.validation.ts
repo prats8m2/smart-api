@@ -1,9 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import sendResponse from '../../../utility/response';
 import { CODE, SITE_TYPE } from '../../../../config/config';
-import { User } from '../../../db/entity/user.entity';
 import { Site } from '../../../db/entity/site.entity';
-import { Account } from '../../../db/entity/account.entity';
 
 const addSiteValidation = async (
 	req: Request,

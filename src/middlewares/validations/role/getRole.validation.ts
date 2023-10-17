@@ -1,10 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import sendResponse from '../../../utility/response';
 import { CODE } from '../../../../config/config';
-import { User } from '../../../db/entity/user.entity';
-import { Not } from 'typeorm';
 
-const getSiteValidation = async (
+const getRoleValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
@@ -22,9 +20,9 @@ const getSiteValidation = async (
 		return;
 	}
 
-	res.locals.action = 'VIEW-SITE';
+	res.locals.action = 'VIEW-ROLE';
 
 	next();
 };
 
-export default getSiteValidation;
+export default getRoleValidation;

@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import deleteUser from './deleteSite';
 import addSite from './addSite';
 import updateSite from './updateSite';
 import getSite from './getSite';
