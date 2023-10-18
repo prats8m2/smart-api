@@ -37,7 +37,7 @@ export const ROLES = {
 	SUPER_ADMIN: 'Super-Admin',
 	USER: 'USER',
 	MANAGER: 'MANAGER',
-	STAFF: 'STAFF',
+	ATTENDANT: 'ATTENDANT',
 	ORG_ACCESS: 'Organization access',
 	MANAGED_ACCESS: 'Managed Report Access',
 	OOB_ACCESS: 'OOB Report Access',

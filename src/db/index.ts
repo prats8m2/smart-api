@@ -29,12 +29,12 @@ class Database {
 				if (connection.isConnected)
 				Logger.http(`${DB_CONFIG.database} Database Connected!`);
 				console.log(`DB URL: ${DB_CONFIG.host}`);
-				const user: any[] = await connection.manager.query(
-					`Select * from "user"`
-				);
 				if (DB_CONFIG.clear === 'true') {
 					await connection.manager.query(CLEAR_DB);
 				}
+				const user: any[] = await connection.manager.query(
+					`Select * from "user"`
+				);
 				if (!user.length) {
 					onboardDB(
 						DEFAULT_SUPER_ADMIN_CREDS.USER_NAME,
