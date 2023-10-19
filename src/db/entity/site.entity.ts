@@ -9,8 +9,11 @@ import {
 	PrimaryGeneratedColumn,
 	ManyToOne,
 	BaseEntity,
+	OneToMany,
+	ManyToMany,
 } from 'typeorm';
 import { Account } from './account.entity';
+import { User } from './user.entity';
 // Table: Site
 @Entity()
 export class Site extends BaseEntity {
@@ -29,6 +32,10 @@ export class Site extends BaseEntity {
 	@ManyToOne(() => Account, (account) => account.sites)
 	@JoinTable()
 	account: Account;
+
+	@ManyToMany(() => User, (user) => user.sites)
+	@JoinTable()
+	users: User[];
 
 	// @OneToMany(() => Menu, (menu) => menu.site)
 	// @JoinTable()

@@ -12,9 +12,11 @@ import {
 	OneToOne,
 	JoinColumn,
 	ManyToOne,
+	OneToMany,
 } from 'typeorm';
 import { Role } from './role.entity';
 import { Account } from './account.entity';
+import { Site } from './site.entity';
 // Table: User
 @Entity()
 export class User extends BaseEntity {
@@ -67,6 +69,9 @@ export class User extends BaseEntity {
 	})
 	@JoinColumn()
 	account: Account;
+
+	@ManyToMany(() => Site, (site) => site.users)
+	sites: Site[];
 
 	@VersionColumn({ select: false })
 	version: number;
