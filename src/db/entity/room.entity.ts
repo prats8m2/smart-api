@@ -4,6 +4,7 @@ import {
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	JoinColumn,
 	JoinTable,
 	ManyToOne,
 	OneToOne,
@@ -37,7 +38,7 @@ export class Room extends BaseEntity {
 	site: Site;
 
 	@OneToOne(() => Device)
-	@JoinTable()
+	@JoinColumn()
 	device: Device;
 
 	@Column({
