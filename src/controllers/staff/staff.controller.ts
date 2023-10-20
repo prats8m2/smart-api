@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
-import updateUser from './updateUser';
-import getUser from './getUser';
-import listUsers from './listUsers';
-import deleteUser from './deleteUser';
-import listAccounts from './listAccounts';
 import addStaff from './addStaff';
+import updateStaff from './updateStaff';
+import getSatff from './getStaff';
+import listStaff from './listStaff';
+import deleteStaff from './deleteStaff';
 
 class StaffController {
 	public add = async (req: Request, res: Response) => {
@@ -12,23 +11,19 @@ class StaffController {
 	};
 
 	public update = async (req: Request, res: Response) => {
-		updateUser(req, res);
+		updateStaff(req, res);
 	};
 
 	public get = async (req: Request, res: Response) => {
-		getUser(req, res);
+		getSatff(req, res);
 	};
 
 	public list = async (req: Request, res: Response) => {
-		listUsers(req, res);
+		listStaff(req, res);
 	};
 
 	public delete = async (req: Request, res: Response) => {
-		deleteUser(req, res);
-	};
-
-	public listAccounts = async (req: Request, res: Response) => {
-		listAccounts(req, res);
+		deleteStaff(req, res);
 	};
 }
 

@@ -27,9 +27,10 @@ class Database {
 			.then(async (connection: Connection) => {
 				//Check if data is empty create super admin
 				if (connection.isConnected)
-				Logger.http(`${DB_CONFIG.database} Database Connected!`);
-				console.log(`DB URL: ${DB_CONFIG.host}`);
+					Logger.http(`${DB_CONFIG.database} Database Connected!`);
+				Logger.info(`DB URL: ${DB_CONFIG.host}`);
 				if (DB_CONFIG.clear === 'true') {
+					Logger.error('Clearing Database!');
 					await connection.manager.query(CLEAR_DB);
 				}
 				const user: any[] = await connection.manager.query(
@@ -45,7 +46,7 @@ class Database {
 					);
 				}
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => Logger.error(error));
 	};
 }
 

@@ -10,8 +10,8 @@ import {
 	ManyToMany,
 	JoinColumn,
 	JoinTable,
-	OneToOne,
 	ManyToOne,
+	OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
 import { Permission } from './permission.entity';
@@ -38,6 +38,9 @@ export class Role extends BaseEntity {
 	@ManyToOne(() => Account)
 	@JoinColumn()
 	account: Account;
+
+	@OneToMany(() => User, (user) => user.role)
+	user: User[];
 
 	@VersionColumn({ select: false })
 	version: number;

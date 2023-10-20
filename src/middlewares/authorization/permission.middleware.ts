@@ -1,12 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 import sendResponse from '../../utility/response';
-import { verify } from 'jsonwebtoken';
-import { JWT_SECRET_KEY, CODE } from '../../../config/config';
-import { Role } from '../../db/entity/role.entity';
+import { CODE } from '../../../config/config';
 import { Permission } from '../../db/entity/permission.entity';
 
 // Define a middleware function for permission checking.
-const PermissionMiddleware = (req: Request, res: Response, next: NextFunction) => {
+const PermissionMiddleware = (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
 	const { loggedInRole, action } = res.locals; // Extract the user's role and requested action from the response locals.
 
 	const permissions: Permission[] = loggedInRole.permissions; // Get the user's permissions from their role.

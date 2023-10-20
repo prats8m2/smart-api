@@ -5,20 +5,19 @@ import Logger from "../logger";
 const sendEmail = async (emailTo: string, subject: string, content: string) => {
   const connection = createEmailConnection();
   await connection
-    .sendMail({
-      from: UG_EMAIL,
-      to: emailTo,
-      subject: subject,
-      html: content,
-    })
-    .then((res) => {
-      console.log("~ res", res);
-      return true;
-    })
-    .catch((err) => {
-      Logger.error(err);
-      return false;
-    });
+		.sendMail({
+			from: UG_EMAIL,
+			to: emailTo,
+			subject: subject,
+			html: content,
+		})
+		.then((res) => {
+			return true;
+		})
+		.catch((err) => {
+			Logger.error(err);
+			return false;
+		});
 };
 
 // Responsible for mail connection

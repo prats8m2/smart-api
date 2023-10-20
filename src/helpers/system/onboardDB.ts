@@ -28,7 +28,6 @@ const onboardDB = async (
 	const superAdminPermission: Permission[] = await Permission.find({
 		name: In(SUPER_ADMIN_PERMISSIONS),
 	});
-	console.log("superAdminPermission:", superAdminPermission)
 
 	//Add Role
 	const SARole: Role = new Role();

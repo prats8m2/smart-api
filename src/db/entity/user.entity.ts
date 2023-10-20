@@ -59,7 +59,7 @@ export class User extends BaseEntity {
 	})
 	status!: number;
 
-	@OneToOne(() => Role)
+	@ManyToOne(() => Role)
 	@JoinColumn()
 	role: Role;
 
