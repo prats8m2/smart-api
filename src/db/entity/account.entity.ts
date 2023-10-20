@@ -16,7 +16,7 @@ import { Site } from './site.entity';
 // Table: Account
 @Entity()
 export class Account extends BaseEntity {
-	@PrimaryGeneratedColumn('uuid')
+	@PrimaryGeneratedColumn('increment')
 	id: string;
 
 	@Column()

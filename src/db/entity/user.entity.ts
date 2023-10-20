@@ -20,7 +20,7 @@ import { Site } from './site.entity';
 // Table: User
 @Entity()
 export class User extends BaseEntity {
-	@PrimaryGeneratedColumn('uuid')
+	@PrimaryGeneratedColumn('increment')
 	id: string;
 
 	@Column({ nullable: true })
