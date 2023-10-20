@@ -1,21 +1,18 @@
 import {
-	Entity,
-	Column,
-	VersionColumn,
-	CreateDateColumn,
-	UpdateDateColumn,
-	DeleteDateColumn,
-	PrimaryGeneratedColumn,
 	BaseEntity,
-	ManyToMany,
-	JoinTable,
-	OneToOne,
+	Column,
+	CreateDateColumn,
+	DeleteDateColumn,
+	Entity,
 	JoinColumn,
+	ManyToMany,
 	ManyToOne,
-	OneToMany,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+	VersionColumn,
 } from 'typeorm';
-import { Role } from './role.entity';
 import { Account } from './account.entity';
+import { Role } from './role.entity';
 import { Site } from './site.entity';
 // Table: User
 @Entity()

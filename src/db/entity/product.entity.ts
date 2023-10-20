@@ -1,15 +1,15 @@
 import {
-  Entity,
-  Column,
-  JoinTable,
-  VersionColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-} from "typeorm";
-import { User } from "./user.entity";
+	Column,
+	CreateDateColumn,
+	DeleteDateColumn,
+	Entity,
+	JoinTable,
+	ManyToOne,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+	VersionColumn,
+} from 'typeorm';
+import { User } from './user.entity';
 // Table: User
 @Entity()
 export class Product {

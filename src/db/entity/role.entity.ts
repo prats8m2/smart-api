@@ -1,21 +1,21 @@
 import {
-	Entity,
-	Column,
-	VersionColumn,
-	CreateDateColumn,
-	UpdateDateColumn,
-	DeleteDateColumn,
-	PrimaryGeneratedColumn,
 	BaseEntity,
-	ManyToMany,
+	Column,
+	CreateDateColumn,
+	DeleteDateColumn,
+	Entity,
 	JoinColumn,
 	JoinTable,
+	ManyToMany,
 	ManyToOne,
 	OneToMany,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+	VersionColumn,
 } from 'typeorm';
-import { User } from './user.entity';
-import { Permission } from './permission.entity';
 import { Account } from './account.entity';
+import { Permission } from './permission.entity';
+import { User } from './user.entity';
 // Table: Role
 @Entity()
 export class Role extends BaseEntity {

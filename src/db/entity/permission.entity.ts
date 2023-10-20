@@ -1,16 +1,13 @@
 import {
-	Entity,
-	Column,
-	VersionColumn,
-	CreateDateColumn,
-	UpdateDateColumn,
-	DeleteDateColumn,
-	PrimaryGeneratedColumn,
 	BaseEntity,
-	ManyToMany,
-	JoinColumn,
+	Column,
+	CreateDateColumn,
+	DeleteDateColumn,
+	Entity,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+	VersionColumn,
 } from 'typeorm';
-import { Role } from './role.entity';
 // Table: Permission
 @Entity()
 export class Permission extends BaseEntity {

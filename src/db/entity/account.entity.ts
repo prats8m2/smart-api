@@ -1,18 +1,16 @@
 import {
-	Entity,
-	Column,
-	VersionColumn,
-	CreateDateColumn,
-	UpdateDateColumn,
-	DeleteDateColumn,
-	PrimaryGeneratedColumn,
 	BaseEntity,
-	ManyToMany,
-	OneToOne,
+	Column,
+	CreateDateColumn,
+	DeleteDateColumn,
+	Entity,
 	OneToMany,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+	VersionColumn,
 } from 'typeorm';
-import { User } from './user.entity';
 import { Site } from './site.entity';
+import { User } from './user.entity';
 // Table: Account
 @Entity()
 export class Account extends BaseEntity {

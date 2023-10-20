@@ -5,45 +5,47 @@ import {
 	DeleteDateColumn,
 	Entity,
 	JoinTable,
-	ManyToMany,
 	ManyToOne,
-	OneToMany,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
 } from 'typeorm';
-import { Account } from './account.entity';
-import { Room } from './room.entity';
-import { User } from './user.entity';
-// Table: Site
+import { Device } from './device.entity';
+import { Site } from './site.entity';
+// Table: Room
 @Entity()
-export class Site extends BaseEntity {
+export class Room extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
 	id: string;
 
-	@Column({ nullable: true })
-	name!: string;
-
 	@Column()
-	type!: number;
+	name: string;
 
-	@Column()
-	address!: string;
+	@Column({ default: null })
+	floor?: string;
 
-	@ManyToOne(() => Account, (account) => account.sites)
+	@Column({
+		type: 'enum',
+		enum: [0, 1],
+		default: 0,
+	})
+	occupied!: number;
+
+	@ManyToOne(() => Site, (site) => site.rooms)
 	@JoinTable()
-	account: Account;
+	site: Site;
 
-	@ManyToMany(() => User, (user) => user.sites)
+	@OneToOne(() => Device)
 	@JoinTable()
-	users: User[];
+	device: Device;
 
-	@OneToMany(() => Room, (room) => room.site)
-	rooms: Room[];
-
-	// @OneToMany(() => Menu, (menu) => menu.site)
-	// @JoinTable()
-	// menus: Menu[];
+	@Column({
+		type: 'enum',
+		enum: [0, 1],
+		default: 1,
+	})
+	status!: number;
 
 	@VersionColumn({ select: false })
 	version: number;
