@@ -10,6 +10,7 @@ import { CLEAR_DB } from '../constants/queries';
 import { Site } from './entity/site.entity';
 import { Room } from './entity/room.entity';
 import { Device } from './entity/device.entity';
+import { Wifi } from './entity/wifi.entity';
 
 class Database {
 	public connect = () => {
@@ -21,7 +22,7 @@ class Database {
 			database: DB_CONFIG.database,
 			username: DB_CONFIG.username,
 			password: DB_CONFIG.password,
-			entities: [User, Role, Account, Permission, Site, Room, Device],
+			entities: [User, Role, Account, Permission, Site, Room, Device, Wifi],
 			subscribers: [],
 			logging: DB_CONFIG.logging === 'true',
 			synchronize: DB_CONFIG.sync === 'true',

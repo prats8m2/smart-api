@@ -11,7 +11,7 @@ const getSite = async (req: Request, res: Response) => {
 
 	//create a user
 	const site = await Site.findOne(id, {
-		relations: ['account'],
+		relations: ['account', 'wifi'],
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Site Data`, site);

@@ -4,50 +4,42 @@ import {
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	JoinColumn,
 	JoinTable,
-	ManyToMany,
 	ManyToOne,
-	OneToMany,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
 } from 'typeorm';
-import { Account } from './account.entity';
-import { Room } from './room.entity';
-import { User } from './user.entity';
-import { Wifi } from './wifi.entity';
-// Table: Site
+import { Device } from './device.entity';
+import { Site } from './site.entity';
+// Table: Wifi
 @Entity()
-export class Site extends BaseEntity {
+export class Wifi extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
 	id: string;
 
-	@Column({ nullable: true })
-	name!: string;
+	@Column()
+	username: string;
 
 	@Column()
-	type!: number;
+	password?: string;
 
-	@Column()
-	address!: string;
-
-	@ManyToOne(() => Account, (account) => account.sites)
+	@ManyToOne(() => Site, (site) => site.wifi)
 	@JoinTable()
-	account: Account;
+	site: Site;
 
-	@ManyToMany(() => User, (user) => user.sites)
-	@JoinTable()
-	users: User[];
+	@OneToOne(() => Device)
+	@JoinColumn()
+	device: Device;
 
-	@OneToMany(() => Room, (room) => room.site)
-	rooms: Room[];
-
-	@OneToMany(() => Wifi, (wifi) => wifi.site)
-	wifi: Wifi[];
-
-	// @OneToMany(() => Menu, (menu) => menu.site)
-	// @JoinTable()
-	// menus: Menu[];
+	@Column({
+		type: 'enum',
+		enum: [0, 1],
+		default: 1,
+	})
+	status!: number;
 
 	@VersionColumn({ select: false })
 	version: number;

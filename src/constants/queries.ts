@@ -6,5 +6,6 @@ export const CLEAR_DB = `Truncate Table
       "site_users_user",
       "room",
       "device",
+      "wifi",
       "site",
       "account" `;
