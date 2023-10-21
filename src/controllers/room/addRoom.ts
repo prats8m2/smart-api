@@ -3,8 +3,8 @@ import { CODE } from '../../../config/config';
 import { Device } from '../../db/entity/device.entity';
 import { Room } from '../../db/entity/room.entity';
 import Logger from '../../utility/logger';
-import sendResponse from '../../utility/response';
 import RANDOM_NUMBER from '../../utility/randomNumber';
+import sendResponse from '../../utility/response';
 
 const addRoom = async (req: Request, res: Response) => {
 	//fetch data from body
@@ -15,6 +15,7 @@ const addRoom = async (req: Request, res: Response) => {
 	//Create a device
 	const device: Device = new Device();
 	device.code = `DV_${siteId}_${RANDOM_NUMBER(4)}`;
+	device.site = siteId;
 	const newDevice: Device = await device.save();
 
 	//create a room

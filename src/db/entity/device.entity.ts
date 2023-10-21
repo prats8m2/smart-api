@@ -4,13 +4,13 @@ import {
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
-	JoinColumn,
-	OneToOne,
+	JoinTable,
+	ManyToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
 } from 'typeorm';
-import { Room } from './room.entity';
+import { Site } from './site.entity';
 // Table: Device
 @Entity()
 export class Device extends BaseEntity {
@@ -19,6 +19,10 @@ export class Device extends BaseEntity {
 
 	@Column()
 	code: string;
+
+	@ManyToOne(() => Site, (site) => site.devices)
+	@JoinTable()
+	site: Site;
 
 	@Column({
 		type: 'enum',

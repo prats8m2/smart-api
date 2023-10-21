@@ -13,6 +13,7 @@ import {
 	VersionColumn,
 } from 'typeorm';
 import { Account } from './account.entity';
+import { Device } from './device.entity';
 import { Room } from './room.entity';
 import { User } from './user.entity';
 import { Wifi } from './wifi.entity';
@@ -44,6 +45,9 @@ export class Site extends BaseEntity {
 
 	@OneToMany(() => Wifi, (wifi) => wifi.site)
 	wifi: Wifi[];
+
+	@OneToMany(() => Device, (device) => device.site)
+	devices: Device[];
 
 	// @OneToMany(() => Menu, (menu) => menu.site)
 	// @JoinTable()
