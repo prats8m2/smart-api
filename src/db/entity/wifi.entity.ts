@@ -14,6 +14,7 @@ import {
 } from 'typeorm';
 import { Device } from './device.entity';
 import { Site } from './site.entity';
+import { Room } from './room.entity';
 // Table: Wifi
 @Entity()
 export class Wifi extends BaseEntity {
@@ -29,6 +30,10 @@ export class Wifi extends BaseEntity {
 	@ManyToOne(() => Site, (site) => site.wifi)
 	@JoinTable()
 	site: Site;
+
+	@ManyToOne(() => Room, (room) => room.wifi)
+	@JoinTable()
+	room: Room;
 
 	@OneToOne(() => Device)
 	@JoinColumn()

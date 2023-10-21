@@ -7,6 +7,7 @@ import {
 	JoinColumn,
 	JoinTable,
 	ManyToOne,
+	OneToMany,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
@@ -14,6 +15,7 @@ import {
 } from 'typeorm';
 import { Device } from './device.entity';
 import { Site } from './site.entity';
+import { Wifi } from './wifi.entity';
 // Table: Room
 @Entity()
 export class Room extends BaseEntity {
@@ -37,7 +39,10 @@ export class Room extends BaseEntity {
 	@JoinTable()
 	site: Site;
 
-	@OneToOne(() => Device)
+	@OneToMany(() => Wifi, (wifi) => wifi.room)
+	wifi: Wifi[];
+
+	@OneToOne(() => Room)
 	@JoinColumn()
 	device: Device;
 

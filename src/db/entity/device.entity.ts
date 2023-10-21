@@ -4,10 +4,13 @@ import {
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	JoinColumn,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
 } from 'typeorm';
+import { Room } from './room.entity';
 // Table: Device
 @Entity()
 export class Device extends BaseEntity {
