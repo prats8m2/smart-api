@@ -25,7 +25,7 @@ const addSiteValidation = async (
 		return;
 	}
 
-	if (type !== SITE_TYPE.RESTRAUNT && type !== SITE_TYPE.HOTEL) {
+	if (type !== SITE_TYPE.RESTAURANT && type !== SITE_TYPE.HOTEL) {
 		sendResponse(res, false, CODE.BAD_REQUEST, 'Invalid site type', {
 			type,
 		});
