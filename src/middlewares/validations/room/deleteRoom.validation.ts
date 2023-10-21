@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import sendResponse from '../../../utility/response';
 import { CODE } from '../../../../config/config';
 
-const deleteSiteValidation = async (
+const deleteRoomValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
@@ -20,9 +20,9 @@ const deleteSiteValidation = async (
 		return;
 	}
 
-	res.locals.action = 'DELETE-SITE';
+	res.locals.action = 'DELETE-ROOM';
 
 	next();
 };
 
-export default deleteSiteValidation;
+export default deleteRoomValidation;

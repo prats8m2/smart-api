@@ -1,15 +1,12 @@
 import { Router } from 'express';
+import RoomController from '../controllers/room/room.controller';
 import AuthMiddleware from '../middlewares/authorization/auth.middleware';
 import PermissionMiddleware from '../middlewares/authorization/permission.middleware';
-import addSiteValidation from '../middlewares/validations/site/addSite.validation';
-import updateSiteValidation from '../middlewares/validations/site/updateSite.validation';
-import getSiteValidation from '../middlewares/validations/site/getRole.validation';
-import listSitesValidation from '../middlewares/validations/site/listSites.validation';
-import deleteSiteValidation from '../middlewares/validations/site/deleteSite.validation';
-import RoomController from '../controllers/room/room.controller';
-import addRoleValidation from '../middlewares/validations/role/addRole.validation';
 import addRoomValidation from '../middlewares/validations/room/addRoom.validation';
-import getRoomValidation from '../middlewares/validations/room/getRooom.validation';
+import deleteRoomValidation from '../middlewares/validations/room/deleteRoom.validation';
+import getRoomValidation from '../middlewares/validations/room/getRoom.validation';
+import listRoomsValidation from '../middlewares/validations/room/listRooms.validation';
+import updateRoomValidation from '../middlewares/validations/room/updateRoom.validation';
 
 const router = Router();
 
@@ -24,7 +21,7 @@ router.post(
 router.put(
 	'/update',
 	AuthMiddleware,
-	updateSiteValidation,
+	updateRoomValidation,
 	PermissionMiddleware,
 	roomController.update
 );
@@ -37,9 +34,9 @@ router.get(
 );
 
 router.get(
-	'/list/:accountId/:page/:limit',
+	'/list/:siteId/:page/:limit',
 	AuthMiddleware,
-	listSitesValidation,
+	listRoomsValidation,
 	PermissionMiddleware,
 	roomController.list
 );
@@ -47,7 +44,7 @@ router.get(
 router.delete(
 	'/delete/:id',
 	AuthMiddleware,
-	deleteSiteValidation,
+	deleteRoomValidation,
 	PermissionMiddleware,
 	roomController.delete
 );
