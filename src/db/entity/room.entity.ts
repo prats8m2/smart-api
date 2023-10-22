@@ -42,7 +42,7 @@ export class Room extends BaseEntity {
 	@OneToMany(() => Wifi, (wifi) => wifi.room)
 	wifi: Wifi[];
 
-	@OneToOne(() => Room)
+	@OneToOne(() => Device)
 	@JoinColumn()
 	device: Device;
 

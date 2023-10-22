@@ -10,15 +10,15 @@ const updateRoomValidation = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const { id, name, siteId } = req.body;
+	const { id, name, siteId, deviceId } = req.body;
 
-	if (!id || !siteId) {
+	if (!id || !siteId || !deviceId) {
 		sendResponse(
 			res,
 			false,
 			CODE.BAD_REQUEST,
 			'Please enter all mandatory fields',
-			{ id, siteId }
+			{ id, siteId, deviceId }
 		);
 		return;
 	}
@@ -31,6 +31,15 @@ const updateRoomValidation = async (
 		}
 	}
 
+	const isDeviceAssigned = await Room.findOne({
+		device: deviceId,
+		id: Not(id),
+	});
+	if (isDeviceAssigned) {
+		res.locals.deviceOldRoom = isDeviceAssigned;
+	}
+	
+	
 	res.locals.action = 'UPDATE-ROOM';
 
 	next();
