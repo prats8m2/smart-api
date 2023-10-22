@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { CODE } from '../../../config/config';
+import { Device } from '../../db/entity/device.entity';
 import { Room } from '../../db/entity/room.entity';
 import { Wifi } from '../../db/entity/wifi.entity';
 import Logger from '../../utility/logger';
 import sendResponse from '../../utility/response';
-import { Device } from '../../db/entity/device.entity';
 
 const updateRoom = async (req: Request, res: Response) => {
 	//fetch data from body

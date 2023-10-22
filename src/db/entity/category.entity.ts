@@ -4,31 +4,45 @@ import {
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
-	OneToMany,
+	JoinColumn,
+	JoinTable,
+	ManyToOne,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
 } from 'typeorm';
-import { Site } from './site.entity';
-import { User } from './user.entity';
-import { Category } from './category.entity';
-// Table: Account
+import { Account } from './account.entity';
+import { Schedule } from './schedule.entity';
+// Table: Category
 @Entity()
-export class Account extends BaseEntity {
+export class Category extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
 	id: string;
 
 	@Column()
 	name: string;
 
-	@OneToMany(() => User, (user) => user.account)
-	user: User[];
+	@Column({ nullable: true })
+	description: string;
 
-	@OneToMany(() => Site, (site) => site.account)
-	sites: Site[];
+	@Column()
+	sequence: number;
 
-	@OneToMany(() => Category, (category) => category.account)
-	categories: Category[];
+	@ManyToOne(() => Account, (account) => account.categories)
+	@JoinTable()
+	account: Account;
+
+	@OneToOne(() => Schedule)
+	@JoinColumn()
+	schedule: Schedule;
+
+	@Column({
+		type: 'enum',
+		enum: [0, 1],
+		default: 1,
+	})
+	status!: number;
 
 	@VersionColumn({ select: false })
 	version: number;
