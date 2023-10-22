@@ -12,7 +12,7 @@ import {
 @Entity()
 export class Schedule extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
-	id: string;
+	id?: number;
 
 	@Column({ nullable: true })
 	startDate: string;
@@ -63,7 +63,7 @@ export class Schedule extends BaseEntity {
 	saturday_endTime: string;
 
 	@VersionColumn({ select: false })
-	version: number;
+	version?: number;
 
 	@CreateDateColumn({ nullable: true })
 	createdOn?: Date;

@@ -12,6 +12,7 @@ import roleRoutes from './routes/role.routes';
 import staffRoutes from './routes/staff.routes';
 import roomRoutes from './routes/room.routes';
 import deviceRoutes from './routes/device.routes';
+import categoryRoutes from './routes/category.routes';
 
 import Database from './db';
 //import swaggerDocument from "../swagger/swagger.json";
@@ -48,6 +49,7 @@ class Server {
 		this.app.use('/api/v1/staff', staffRoutes);
 		this.app.use('/api/v1/room', roomRoutes);
 		this.app.use('/api/v1/device', deviceRoutes);
+		this.app.use('/api/v1/category', categoryRoutes);
 	}
 
 	//database

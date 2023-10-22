@@ -29,6 +29,9 @@ export class Category extends BaseEntity {
 	@Column()
 	sequence: number;
 
+	@Column()
+	type: number;
+
 	@ManyToOne(() => Account, (account) => account.categories)
 	@JoinTable()
 	account: Account;

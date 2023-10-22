@@ -102,3 +102,8 @@ export const STATUS = {
 	INACTIVE: 0,
 };
 
+export const TYPE = {
+	FOOD: 1,
+	AMENITIES: 2,
+};
+
