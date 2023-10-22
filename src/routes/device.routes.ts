@@ -49,4 +49,12 @@ router.delete(
 	deviceController.delete
 );
 
+router.get(
+	'/list/available/:siteId',
+	AuthMiddleware,
+	listDevicesValidation,
+	PermissionMiddleware,
+	deviceController.listAvailableDevices
+);
+
 export default router;
