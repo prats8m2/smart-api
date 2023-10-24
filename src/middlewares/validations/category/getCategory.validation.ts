@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import sendResponse from '../../../utility/response';
 import { CODE } from '../../../../config/config';
 
-const getRoleValidation = async (
+const getCategoryValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
@@ -20,9 +20,9 @@ const getRoleValidation = async (
 		return;
 	}
 
-	res.locals.action = 'VIEW-ROLE';
+	res.locals.action = 'VIEW-CATEGORY';
 
 	next();
 };
 
-export default getRoleValidation;
+export default getCategoryValidation;

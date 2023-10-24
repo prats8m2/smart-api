@@ -4,17 +4,17 @@ import Logger from '../../utility/logger';
 import { User } from '../../db/entity/user.entity';
 import { CODE } from '../../../config/config';
 
-const getSatff = async (req: Request, res: Response) => {
+const getStaff = async (req: Request, res: Response) => {
 	//fetch data from body
 	const { id } = req.params;
 	Logger.info(`Get staff request`);
 
 	//create a user
 	const user = await User.findOne(id, {
-		relations: ['role', 'role.permissions'],
+		relations: ['role', 'role.permissions', 'sites'],
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Staff Data`, user);
 };
 
-export default getSatff;
+export default getStaff;

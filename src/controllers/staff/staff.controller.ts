@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import addStaff from './addStaff';
 import updateStaff from './updateStaff';
-import getSatff from './getStaff';
+import getStaff from './getStaff';
 import listStaff from './listStaff';
 import deleteStaff from './deleteStaff';
 
@@ -15,7 +15,7 @@ class StaffController {
 	};
 
 	public get = async (req: Request, res: Response) => {
-		getSatff(req, res);
+		getStaff(req, res);
 	};
 
 	public list = async (req: Request, res: Response) => {

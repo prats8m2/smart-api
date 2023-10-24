@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 
-const listSitesValidation = async (
+const listCategoriesValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
-	res.locals.action = 'LIST-SITE';
+	res.locals.action = 'LIST-CATEGORY';
 
 	next();
 };
 
-export default listSitesValidation;
+export default listCategoriesValidation;

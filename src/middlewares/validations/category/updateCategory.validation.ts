@@ -2,22 +2,23 @@ import { NextFunction, Request, Response } from 'express';
 import { CODE, TYPE } from '../../../../config/config';
 import { Category } from '../../../db/entity/category.entity';
 import sendResponse from '../../../utility/response';
+import { Not } from 'typeorm';
 
-const addCategoryValidation = async (
+const updateCategoryValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
-	const { name, type, sequence, scheduleData, site } = req.body;
-	const { account } = res.locals;
+	const { id, name, type, sequence, scheduleData, site } = req.body;
 
-	if (!name || !type || !sequence || !scheduleData || !site) {
+	if (!id || !name || !type || !sequence || !scheduleData || !site) {
 		sendResponse(
 			res,
 			false,
 			CODE.BAD_REQUEST,
 			'Please enter all mandatory fields',
 			{
+				id,
 				name,
 				type,
 				sequence,
@@ -35,7 +36,7 @@ const addCategoryValidation = async (
 		return;
 	}
 
-	const isCategoryExist = await Category.findOne({ name, site });
+	const isCategoryExist = await Category.findOne({ name, site, id: Not(id) });
 	if (isCategoryExist) {
 		sendResponse(
 			res,
@@ -47,9 +48,9 @@ const addCategoryValidation = async (
 		return;
 	}
 
-	res.locals.action = 'ADD-CATEGORY';
+	res.locals.action = 'UPDATE-CATEGORY';
 
 	next();
 };
 
-export default addCategoryValidation;
+export default updateCategoryValidation;

@@ -3,9 +3,9 @@ import DeviceController from '../controllers/device/device.controller';
 import AuthMiddleware from '../middlewares/authorization/auth.middleware';
 import PermissionMiddleware from '../middlewares/authorization/permission.middleware';
 import addDeviceValidation from '../middlewares/validations/device/addDevice.validation';
-import deleteDeviceValidation from '../middlewares/validations/device/deleteDEvice.validation';
-import getDeviceValidation from '../middlewares/validations/device/getDevice.validation';
-import listDevicesValidation from '../middlewares/validations/device/listRooms.validation';
+import deleteDeviceValidation from '../middlewares/validations/device/deleteCategory.validation';
+import getDeviceValidation from '../middlewares/validations/device/getCategory.validation';
+import listDevicesValidation from '../middlewares/validations/device/listCategories.validation';
 import updateDeviceValidation from '../middlewares/validations/device/updateDevice.validation';
 
 const router = Router();
