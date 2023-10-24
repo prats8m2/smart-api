@@ -27,9 +27,6 @@ export class Account extends BaseEntity {
 	@OneToMany(() => Site, (site) => site.account)
 	sites: Site[];
 
-	@OneToMany(() => Category, (category) => category.account)
-	categories: Category[];
-
 	@VersionColumn({ select: false })
 	version: number;
 

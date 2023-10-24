@@ -8,7 +8,7 @@ import sendResponse from '../../utility/response';
 
 const addCategory = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { name, description, type, sequence, scheduleData } = req.body;
+	const { name, description, type, sequence, scheduleData, site } = req.body;
 	const { account } = res.locals;
 	Logger.info(`Add category request`);
 
@@ -22,7 +22,7 @@ const addCategory = async (req: Request, res: Response) => {
 	category.name = name;
 	category.type = type;
 	category.description = description;
-	category.account = account;
+	category.site = site;
 	category.sequence = sequence;
 	category.schedule = scheduleResult;
 

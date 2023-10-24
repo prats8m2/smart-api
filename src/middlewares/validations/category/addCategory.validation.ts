@@ -8,10 +8,10 @@ const addCategoryValidation = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const { name, description, type, sequence, scheduleData } = req.body;
+	const { name, type, sequence, scheduleData, site } = req.body;
 	const { account } = res.locals;
 
-	if (!name || !type || !sequence || !scheduleData) {
+	if (!name || !type || !sequence || !scheduleData || !site) {
 		sendResponse(
 			res,
 			false,
@@ -22,6 +22,7 @@ const addCategoryValidation = async (
 				type,
 				sequence,
 				scheduleData,
+				site,
 			}
 		);
 		return;
@@ -34,17 +35,7 @@ const addCategoryValidation = async (
 		return;
 	}
 
-	if (!account) {
-		sendResponse(
-			res,
-			false,
-			CODE.BAD_REQUEST,
-			'Account is required to add site',
-			{ account }
-		);
-		return;
-	}
-	const isCategoryExist = await Category.findOne({ name, account });
+	const isCategoryExist = await Category.findOne({ name, site });
 	if (isCategoryExist) {
 		sendResponse(
 			res,

@@ -23,7 +23,6 @@ const addStaffValidation = async (
 		!email ||
 		!username ||
 		!password ||
-		!accountName ||
 		!firstName ||
 		!lastName ||
 		!role ||
@@ -38,7 +37,6 @@ const addStaffValidation = async (
 				email,
 				username,
 				password,
-				accountName,
 				firstName,
 				lastName,
 			}

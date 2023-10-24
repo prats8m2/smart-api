@@ -14,6 +14,7 @@ import {
 } from 'typeorm';
 import { Account } from './account.entity';
 import { Schedule } from './schedule.entity';
+import { Site } from './site.entity';
 // Table: Category
 @Entity()
 export class Category extends BaseEntity {
@@ -32,9 +33,9 @@ export class Category extends BaseEntity {
 	@Column()
 	type: number;
 
-	@ManyToOne(() => Account, (account) => account.categories)
+	@ManyToOne(() => Site, (site) => site.categories)
 	@JoinTable()
-	account: Account;
+	site: Site;
 
 	@OneToOne(() => Schedule)
 	@JoinColumn()
