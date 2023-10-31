@@ -3,7 +3,7 @@ import { CODE } from '../../../config/config';
 import { Device } from '../../db/entity/device.entity';
 import { Room } from '../../db/entity/room.entity';
 import { Wifi } from '../../db/entity/wifi.entity';
-import Logger from '../../utility/logger';
+import Logger from '../../utility/logger/logger';
 import sendResponse from '../../utility/response';
 
 const updateDevice = async (req: Request, res: Response) => {

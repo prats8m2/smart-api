@@ -3,7 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import sendEmail from ".";
 import { PORTAL_URL } from "../../../config/config";
-import Logger from '../logger';
+import Logger from '../logger/logger';
 
 // Responsible for sending mail
 const welcomeEmailToClientAdmin = async (

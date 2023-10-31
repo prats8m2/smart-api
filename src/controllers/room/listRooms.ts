@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CODE, MAX_ROW } from '../../../config/config';
 import { Room } from '../../db/entity/room.entity';
-import Logger from '../../utility/logger';
+import Logger from '../../utility/logger/logger';
 import sendResponse from '../../utility/response';
 const listRooms = async (req: Request, res: Response) => {
 	//fetch data from body

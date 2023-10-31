@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { CODE } from '../../../config/config';
 // import { Device } from '../../db/entity/device.entity';
 import { Room } from '../../db/entity/room.entity';
-import Logger from '../../utility/logger';
+import Logger from '../../utility/logger/logger';
 // import RANDOM_NUMBER from '../../utility/randomNumber';
 import sendResponse from '../../utility/response';
 import { Device } from '../../db/entity/device.entity';

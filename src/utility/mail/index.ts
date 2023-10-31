@@ -1,6 +1,6 @@
 import { EMAIL_CONFIG, UG_EMAIL } from "../../../config/config";
 import nodemailer from "nodemailer";
-import Logger from "../logger";
+import Logger from '../logger/logger';
 // Responsible for sending mail
 const sendEmail = async (emailTo: string, subject: string, content: string) => {
   const connection = createEmailConnection();

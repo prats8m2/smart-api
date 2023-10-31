@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import sendResponse from '../../utility/response'
-import Logger from '../../utility/logger'
+import Logger from '../../utility/logger/logger';
 import { User } from '../../db/entity/user.entity'
 import { CODE } from '../../../config/config'
 import { MD5 } from 'crypto-js'

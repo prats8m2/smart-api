@@ -1,11 +1,10 @@
 // Library imports
 import express from "express";
 import bodyParser from "body-parser";
-import cors from "cors";
-// import swaggerUi from "swagger-ui-express";
-
+import cors from 'cors';
+import morgan from 'morgan';
 // File imports
-import userRoutes from "./routes/user.routes";
+import userRoutes from './routes/user.routes';
 import authRoutes from './routes/auth.routes';
 import siteRoutes from './routes/site.routes';
 import roleRoutes from './routes/role.routes';
@@ -15,7 +14,6 @@ import deviceRoutes from './routes/device.routes';
 import categoryRoutes from './routes/category.routes';
 
 import Database from './db';
-//import swaggerDocument from "../swagger/swagger.json";
 
 class Server {
 	private app;
@@ -25,11 +23,11 @@ class Server {
 		this.config();
 		this.routerConfig();
 		this.databaseConfig();
-		//  this.swaggerConfig();
 	}
 
 	// Configuration
 	private config() {
+		this.app.use(morgan('dev'));
 		this.app.use(bodyParser.urlencoded({ extended: true }));
 		this.app.use(bodyParser.json({ limit: '1mb' })); // 100kb default
 		this.app.use(
@@ -58,31 +56,6 @@ class Server {
 		db.connect();
 	}
 
-	// Swagger
-	// private swaggerConfig() {
-	//   const options = {
-	//     customCssUrl: "../swagger/swagger.css",
-	//     authAction: {
-	//       JWT: {
-	//         name: "JWT",
-	//         schema: {
-	//           type: "apiKey",
-	//           in: "header",
-	//           name: "Authorization",
-	//           description: "",
-	//         },
-	//         value: "Bearer <JWT>",
-	//       },
-	//     },
-	//   };
-	//   this.app.use(
-	//     "/swagger/api/docs",
-	//     swaggerUi.serve,
-	//     swaggerUi.setup(swaggerDocument, options)
-	//   );
-	// }
-
-	// Server
 	public start = (port: number) => {
 		return new Promise((resolve, reject) => {
 			this.app

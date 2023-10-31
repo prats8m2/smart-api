@@ -1,6 +1,6 @@
 import { Connection, createConnection } from 'typeorm';
 import { DB_CONFIG, DEFAULT_SUPER_ADMIN_CREDS } from '../../config/config';
-import Logger from '../utility/logger';
+import Logger from '../utility/logger/logger';
 import { User } from './entity/user.entity';
 import { Role } from './entity/role.entity';
 import { Account } from './entity/account.entity';
@@ -13,6 +13,7 @@ import { Device } from './entity/device.entity';
 import { Wifi } from './entity/wifi.entity';
 import { Category } from './entity/category.entity';
 import { Schedule } from './entity/schedule.entity';
+import CustomLogger from '../utility/logger/typeORMLogger';
 
 class Database {
 	public connect = () => {
@@ -39,6 +40,7 @@ class Database {
 			subscribers: [],
 			logging: DB_CONFIG.logging === 'true',
 			synchronize: DB_CONFIG.sync === 'true',
+			logger: new CustomLogger(), // Set your custom logger here
 		})
 			.then(async (connection: Connection) => {
 				//Check if data is empty create super admin

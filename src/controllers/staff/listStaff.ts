@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import sendResponse from '../../utility/response';
-import Logger from '../../utility/logger';
+import Logger from '../../utility/logger/logger';
 import { User } from '../../db/entity/user.entity';
 import { CODE, MAX_ROW, ROLES } from '../../../config/config';
 import { Role } from '../../db/entity/role.entity';

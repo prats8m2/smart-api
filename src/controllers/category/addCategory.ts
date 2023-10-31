@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { CODE } from '../../../config/config';
 import { Category } from '../../db/entity/category.entity';
 import { Schedule } from '../../db/entity/schedule.entity';
-import Logger from '../../utility/logger';
+import Logger from '../../utility/logger/logger';
 import CREATE_SCHEDULE from '../../utility/parseSchedule';
 import sendResponse from '../../utility/response';
 

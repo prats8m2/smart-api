@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import sendResponse from '../../utility/response';
 import { createToken } from '../../utility/jwt';
 import MD5 from 'md5'; // Importing the MD5 hashing library.
-import Logger from '../../utility/logger';
+import Logger from '../../utility/logger/logger';
 import { User } from '../../db/entity/user.entity'; // Importing the User entity from a database.
 import { CODE } from '../../../config/config'; // Importing a CODE constant from a configuration file.
 

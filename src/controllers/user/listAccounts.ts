@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import sendResponse from '../../utility/response';
-import Logger from '../../utility/logger';
+import Logger from '../../utility/logger/logger';
 import { CODE, MAX_ROW } from '../../../config/config';
 import { Account } from '../../db/entity/account.entity';
 const listAccounts = async (req: Request, res: Response) => {

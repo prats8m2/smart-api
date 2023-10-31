@@ -1,6 +1,6 @@
 import server from "./server";
 import { SERVER_PORT } from "../config/config";
-import Logger from "./utility/logger";
+import Logger from './utility/logger/logger';
 
 // Server starter
 const starter = new server()

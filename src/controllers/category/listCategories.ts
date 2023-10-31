@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CODE, MAX_ROW } from '../../../config/config';
 import { Category } from '../../db/entity/category.entity';
-import Logger from '../../utility/logger';
+import Logger from '../../utility/logger/logger';
 import sendResponse from '../../utility/response';
 const listCategories = async (req: Request, res: Response) => {
 	//fetch data from body
