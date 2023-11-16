@@ -18,6 +18,7 @@ const addUserValidation = async (
 		accountName: Joi.string().min(3).required(),
 		firstName: Joi.string().required(),
 		lastName: Joi.string().required(),
+		status: Joi.number().required(),
 	});
 
 	const { error } = validationSchema.validate(req.body);
@@ -34,7 +35,7 @@ const addUserValidation = async (
 	const isEmailExist = await User.findOne({ email });
 	if (isEmailExist) {
 		sendResponse(res, false, CODE.CONFLICT, 'Email already exist ', email);
-		return;
+		return false;
 	}
 
 	const isUserNameExist = await User.findOne({ username });
@@ -46,7 +47,7 @@ const addUserValidation = async (
 			'Username already exist ',
 			username
 		);
-		return;
+		return false;
 	}
 
 	res.locals.action = 'ADD-USER';

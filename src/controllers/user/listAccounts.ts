@@ -15,6 +15,10 @@ const listAccounts = async (req: Request, res: Response) => {
 	const [accounts, count] = await Account.findAndCount({
 		take: limit,
 		skip: (page - 1) * limit,
+		relations: ['user', 'user.role'],
+		order: {
+			id: 'DESC',
+		},
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Account List Data`, {

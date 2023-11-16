@@ -22,6 +22,9 @@ const listUsers = async (req: Request, res: Response) => {
 			},
 		},
 		relations: ['role'],
+		order: {
+			id: 'DESC',
+		},
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `User List Data`, { count, users });

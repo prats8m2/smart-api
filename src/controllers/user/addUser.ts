@@ -9,13 +9,21 @@ import addDefaultRoles from '../../helpers/user/addDefaultRoles';
 
 const addUser = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { email, username, password, accountName, firstName, lastName } =
-		req.body;
+	const {
+		email,
+		username,
+		password,
+		accountName,
+		firstName,
+		lastName,
+		status,
+	} = req.body;
 	Logger.info(`Add user request`);
 
 	//create an account
 	const account = new Account();
 	account.name = accountName;
+	account.status = status;
 	const newAccount = await account.save();
 
 	//add all deafult roles for account for eg: user/manager/staff

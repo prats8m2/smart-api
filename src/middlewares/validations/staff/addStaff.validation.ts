@@ -8,16 +8,8 @@ const addStaffValidation = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const {
-		email,
-		username,
-		password,
-		accountName,
-		firstName,
-		lastName,
-		role,
-		sites,
-	} = req.body;
+	const { email, username, password, firstName, lastName, role, sites } =
+		req.body;
 
 	if (
 		!email ||

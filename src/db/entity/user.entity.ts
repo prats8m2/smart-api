@@ -49,13 +49,6 @@ export class User extends BaseEntity {
 	@Column({ type: 'timestamptz', nullable: true }) // Recommended
 	lastLogin: Date;
 
-	@Column({
-		type: 'enum',
-		enum: [0, 1],
-		default: 1,
-	})
-	status!: number;
-
 	@ManyToOne(() => Role)
 	@JoinColumn()
 	role: Role;

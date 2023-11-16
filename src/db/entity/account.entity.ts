@@ -27,6 +27,13 @@ export class Account extends BaseEntity {
 	@OneToMany(() => Site, (site) => site.account)
 	sites: Site[];
 
+	@Column({
+		type: 'enum',
+		enum: [0, 1],
+		default: 1,
+	})
+	status!: number;
+
 	@VersionColumn({ select: false })
 	version: number;
 

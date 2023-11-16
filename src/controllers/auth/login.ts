@@ -27,7 +27,7 @@ const login = async (req: Request, res: Response) => {
 	}
 
 	// If the user's account is deactivated, respond with an error and exit.
-	if (!user.status) {
+	if (!user?.account?.status) {
 		sendResponse(res, false, CODE.UNAUTHORIZED, 'User account deactivated');
 		return;
 	}
