@@ -19,10 +19,15 @@ const onboardDB = async (
 	//Add permission
 	const allPermissions = ALL_PERMISSION;
 	for (let index = 0; index < allPermissions.length; index++) {
-		const permissionItem = allPermissions[index];
-		const permission: Permission = new Permission();
-		permission.name = permissionItem;
-		await permission.save();
+		const permissionObj = allPermissions[index];
+		const category = permissionObj.category;
+		for (let index = 0; index < permissionObj.permissions.length; index++) {
+			const permissionItem = permissionObj.permissions[index];
+			const permission: Permission = new Permission();
+			permission.name = permissionItem;
+			permission.category = category;
+			await permission.save();
+		}
 	}
 
 	const superAdminPermission: Permission[] = await Permission.find({

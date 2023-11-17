@@ -27,10 +27,10 @@ const login = async (req: Request, res: Response) => {
 	}
 
 	// If the user's account is deactivated, respond with an error and exit.
-	if (!user?.account?.status) {
-		sendResponse(res, false, CODE.UNAUTHORIZED, 'User account deactivated');
-		return;
-	}
+	// if (!user?.account?.status) {
+	// 	sendResponse(res, false, CODE.UNAUTHORIZED, 'User account deactivated');
+	// 	return;
+	// }
 
 	// Prepare a token object containing user information to generate a JSON Web Token (JWT).
 	const tokenObject = {
