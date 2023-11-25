@@ -21,7 +21,7 @@ const getUserValidation = async (
 		return;
 	}
 
-	res.locals.action = 'VIEW-USER';
+	res.locals.action = 'VIEW-ACCOUNT';
 
 	next();
 };

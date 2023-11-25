@@ -20,7 +20,7 @@ const deleteUserValidation = async (
 		return;
 	}
 
-	res.locals.action = 'DELETE-USER';
+	res.locals.action = 'DELETE-ACCOUNT';
 
 	next();
 };

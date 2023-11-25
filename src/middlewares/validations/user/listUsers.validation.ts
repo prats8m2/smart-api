@@ -5,7 +5,7 @@ const listUsersValidation = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	res.locals.action = 'LIST-USER';
+	res.locals.action = 'LIST-ACCOUNT';
 
 	next();
 };

@@ -29,7 +29,7 @@ const updateUserValidation = async (req: Request, res: Response, next: NextFunct
 		}
 	}
 
-	res.locals.action = 'UPDATE-USER';
+	res.locals.action = 'UPDATE-ACCOUNT';
 
 	next();
 };

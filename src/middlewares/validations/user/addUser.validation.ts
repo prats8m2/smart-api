@@ -50,7 +50,7 @@ const addUserValidation = async (
 		return false;
 	}
 
-	res.locals.action = 'ADD-USER';
+	res.locals.action = 'ADD-ACCOUNT';
 
 	next();
 };

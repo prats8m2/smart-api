@@ -50,7 +50,7 @@ router.delete(
 );
 
 router.get(
-	'/list/:siteId',
+	'/list/available/:siteId',
 	AuthMiddleware,
 	listDevicesValidation,
 	PermissionMiddleware,
