@@ -8,14 +8,14 @@ import { CODE } from '../../../config/config'; // Importing a CODE constant from
 
 const login = async (req: Request, res: Response) => {
 	// Fetch data from the request body.
-	const { email, username, password } = req.body;
+	const { email, password } = req.body;
 	Logger.info(`Login request`); // Logging a login request.
 
 	// Attempt to find a user in the database using the provided username and password or email and password.
 	const user: User = await User.findOne({
 		where: [
-			{ username, password: MD5(password) }, // Search by username and hashed password.
-			{ email, password: MD5(password) }, // Search by email and hashed password.
+			{ username: email, password: MD5(password) }, // Search by username and hashed password.
+			{ email: email, password: MD5(password) }, // Search by email and hashed password.
 		],
 		relations: ['role', 'role.permissions'], // Include related data like the user's role and permissions.
 	});
