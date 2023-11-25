@@ -11,7 +11,7 @@ const getStaff = async (req: Request, res: Response) => {
 
 	//create a user
 	const user = await User.findOne(id, {
-		relations: ['role', 'role.permissions', 'sites'],
+		relations: ['role', 'role.permissions', 'sites', 'account'],
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Staff Data`, user);
