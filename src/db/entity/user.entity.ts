@@ -63,6 +63,13 @@ export class User extends BaseEntity {
 	@ManyToMany(() => Site, (site) => site.users)
 	sites: Site[];
 
+	@Column({
+		type: 'enum',
+		enum: [0, 1],
+		default: 1,
+	})
+	status!: number;
+
 	@VersionColumn({ select: false })
 	version: number;
 

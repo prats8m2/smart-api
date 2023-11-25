@@ -17,6 +17,7 @@ const updateStaff = async (req: Request, res: Response) => {
 		mobile,
 		role,
 		sites,
+		status,
 	} = req.body;
 	Logger.info(`Update staff request`);
 
@@ -31,6 +32,7 @@ const updateStaff = async (req: Request, res: Response) => {
 	user.role = role || user.role;
 	user.mobile = mobile || user.mobile;
 	user.sites = sites || user.sites;
+	user.status = status || user.status;
 	//update user
 	const result = await user.save();
 	sendResponse(res, true, CODE.SUCCESS, `staff updated Successful`, result);
