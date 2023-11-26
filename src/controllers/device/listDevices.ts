@@ -22,6 +22,7 @@ const listDevices = async (req: Request, res: Response) => {
 		skip: (page - 1) * limit,
 		where: {
 			site: siteId,
+			status: 1,
 		},
 		relations: ['site', 'room'],
 	});

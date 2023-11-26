@@ -7,7 +7,7 @@ import sendResponse from '../../utility/response';
 
 const addDevice = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { code, roomId, siteId } = req.body;
+	const { code, roomId, siteId, status } = req.body;
 
 	Logger.info(`Add device request`);
 
@@ -16,6 +16,7 @@ const addDevice = async (req: Request, res: Response) => {
 	device.code = code || `DV_${siteId}_${RANDOM_NUMBER(4)}`;
 	device.site = siteId;
 	device.room = roomId || null;
+	device.status = status;
 	const newDevice: Device = await device.save();
 
 	sendResponse(res, true, CODE.SUCCESS, `Device added Successful`, newDevice);

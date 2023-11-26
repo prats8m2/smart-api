@@ -8,7 +8,7 @@ import sendResponse from '../../utility/response';
 
 const updateDevice = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { id, code, siteId, roomId } = req.body;
+	const { id, code, siteId, roomId, status } = req.body;
 	const { oldRoomDevice } = res.locals;
 	console.log('oldRoomDevice:', oldRoomDevice);
 	const allWifi: Wifi[] = [];
@@ -32,6 +32,7 @@ const updateDevice = async (req: Request, res: Response) => {
 	device.code = code || device.code;
 	device.site = siteId;
 	device.room = roomId || device.room;
+	device.status = status;
 
 	//update user
 	const result = await device.save();

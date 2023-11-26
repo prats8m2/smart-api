@@ -15,6 +15,7 @@ const listAvailableDevices = async (req: Request, res: Response) => {
 		where: {
 			site: siteId,
 			room: null,
+			status: 1,
 		},
 		relations: ['site', 'room'],
 	});
