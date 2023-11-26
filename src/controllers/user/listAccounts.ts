@@ -19,6 +19,9 @@ const listAccounts = async (req: Request, res: Response) => {
 		order: {
 			id: 'DESC',
 		},
+		where: {
+			status: 1,
+		},
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Account List Data`, {

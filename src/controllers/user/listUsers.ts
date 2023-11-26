@@ -20,6 +20,7 @@ const listUsers = async (req: Request, res: Response) => {
 			role: {
 				name: ROLES.USER,
 			},
+			status: 1,
 		},
 		relations: ['role'],
 		order: {
