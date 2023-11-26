@@ -12,7 +12,7 @@ const getRoom = async (req: Request, res: Response) => {
 
 	//create a user
 	const room = await Room.findOne(id, {
-		relations: ['device', 'site'],
+		relations: ['device', 'site', 'site.account'],
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Room Data`, room);

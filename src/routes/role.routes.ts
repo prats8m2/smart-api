@@ -6,7 +6,7 @@ import addRoleValidation from '../middlewares/validations/role/addRole.validatio
 import listPermissionsValidation from '../middlewares/validations/role/listPermissions.validation';
 import updateRoleValidation from '../middlewares/validations/role/updateRole.validation';
 import listRolesValidation from '../middlewares/validations/role/listRoles.validation';
-import getRoleValidation from '../middlewares/validations/site/getRole.validation';
+import getRoleValidation from '../middlewares/validations/site/getSite.validation';
 import deleteRoleValidation from '../middlewares/validations/role/deleteRole.validation';
 
 const router = Router();

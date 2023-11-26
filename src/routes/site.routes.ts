@@ -4,7 +4,7 @@ import PermissionMiddleware from '../middlewares/authorization/permission.middle
 import SiteController from '../controllers/site/site.controller';
 import addSiteValidation from '../middlewares/validations/site/addSite.validation';
 import updateSiteValidation from '../middlewares/validations/site/updateSite.validation';
-import getSiteValidation from '../middlewares/validations/site/getRole.validation';
+import getSiteValidation from '../middlewares/validations/site/getSite.validation';
 import listSitesValidation from '../middlewares/validations/site/listSites.validation';
 import deleteSiteValidation from '../middlewares/validations/site/deleteSite.validation';
 
