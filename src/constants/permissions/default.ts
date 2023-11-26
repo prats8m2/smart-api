@@ -41,16 +41,6 @@ const ALL_PERMISSION = [
 		],
 	},
 	{
-		category: 'ROOM',
-		permissions: [
-			'ADD-ROOM',
-			'UPDATE-ROOM',
-			'DELETE-ROOM',
-			'LIST-ROOM',
-			'VIEW-ROOM',
-		],
-	},
-	{
 		category: 'DEVICE',
 		permissions: [
 			'ADD-DEVICE',
