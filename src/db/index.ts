@@ -14,6 +14,7 @@ import { Wifi } from './entity/wifi.entity';
 import { Category } from './entity/category.entity';
 import { Schedule } from './entity/schedule.entity';
 import CustomLogger from '../utility/logger/typeORMLogger';
+import { Table } from './entity/table.entity';
 
 class Database {
 	public connect = () => {
@@ -36,6 +37,7 @@ class Database {
 				Wifi,
 				Category,
 				Schedule,
+				Table,
 			],
 			subscribers: [],
 			logging: DB_CONFIG.logging === 'true',
