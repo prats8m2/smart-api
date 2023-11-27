@@ -14,6 +14,7 @@ import {
 } from 'typeorm';
 import { Site } from './site.entity';
 import { Room } from './room.entity';
+import { Table } from './table.entity';
 // Table: Device
 @Entity()
 export class Device extends BaseEntity {
@@ -30,6 +31,10 @@ export class Device extends BaseEntity {
 	@OneToOne(() => Room)
 	@JoinColumn()
 	room: Room;
+
+	@OneToOne(() => Table)
+	@JoinColumn()
+	table: Table;
 
 	@Column({
 		type: 'enum',

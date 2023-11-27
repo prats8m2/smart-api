@@ -10,6 +10,7 @@ import siteRoutes from './routes/site.routes';
 import roleRoutes from './routes/role.routes';
 import staffRoutes from './routes/staff.routes';
 import roomRoutes from './routes/room.routes';
+import tableRoutes from './routes/table.routes';
 import deviceRoutes from './routes/device.routes';
 import categoryRoutes from './routes/category.routes';
 
@@ -48,6 +49,7 @@ class Server {
 		this.app.use('/api/v1/room', roomRoutes);
 		this.app.use('/api/v1/device', deviceRoutes);
 		this.app.use('/api/v1/category', categoryRoutes);
+		this.app.use('/api/v1/table', tableRoutes);
 	}
 
 	//database

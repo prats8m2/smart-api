@@ -7,38 +7,38 @@ import {
 	JoinColumn,
 	JoinTable,
 	ManyToOne,
+	OneToMany,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
 } from 'typeorm';
-import { Schedule } from './schedule.entity';
+import { Device } from './device.entity';
 import { Site } from './site.entity';
-// Table: Category
+import { Wifi } from './wifi.entity';
+// Table: Table
 @Entity()
-export class Category extends BaseEntity {
+export class Table extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
 	id: string;
 
 	@Column()
 	name: string;
 
-	@Column({ nullable: true })
-	description: string;
+	@Column({
+		type: 'enum',
+		enum: [0, 1],
+		default: 0,
+	})
+	occupied!: number;
 
-	@Column()
-	sequence: number;
-
-	@Column()
-	type: number;
-
-	@ManyToOne(() => Site, (site) => site.categories)
+	@ManyToOne(() => Site, (site) => site.rooms)
 	@JoinTable()
 	site: Site;
 
-	@OneToOne(() => Schedule)
+	@OneToOne(() => Device)
 	@JoinColumn()
-	schedule: Schedule;
+	device: Device;
 
 	@Column({
 		type: 'enum',
