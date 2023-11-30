@@ -34,7 +34,7 @@ export const VALIDATION = {
 
 export const ROLES = {
 	SUPER_ADMIN: 'Super-Admin',
-	USER: 'USER',
+	OWNER: 'OWNER',
 	MANAGER: 'MANAGER',
 	ATTENDANT: 'ATTENDANT',
 };

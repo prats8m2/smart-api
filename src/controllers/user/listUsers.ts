@@ -18,7 +18,7 @@ const listUsers = async (req: Request, res: Response) => {
 		skip: (page - 1) * limit,
 		where: {
 			role: {
-				name: ROLES.USER,
+				name: ROLES.OWNER,
 			},
 			status: 1,
 		},

@@ -15,7 +15,7 @@ const addDefaultRoles = async (account: Account) => {
 
 	//create a new role
 	const role = new Role();
-	role.name = ROLES.USER;
+	role.name = ROLES.OWNER;
 	role.type = 2;
 	role.account = account;
 	role.permissions = userPermissions;
