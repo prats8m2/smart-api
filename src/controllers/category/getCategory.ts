@@ -12,7 +12,7 @@ const getCategory = async (req: Request, res: Response) => {
 
 	//create a user
 	const category = await Category.findOne(id, {
-		relations: ['site'],
+		relations: ['site', 'site.account', 'schedule'],
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Category Data`, category);
