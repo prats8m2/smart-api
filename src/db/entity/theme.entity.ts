@@ -34,13 +34,13 @@ export class Theme {
 	})
 	status!: number;
 
-	@OneToMany(() => Menu, (menu) => menu.theme)
-	@JoinTable()
-	menus: Menu[];
+	// @OneToMany(() => Menu, (menu) => menu.theme)
+	// @JoinTable()
+	// menus: Menu[];
 
-	@ManyToMany(() => User, (user) => user.themes)
-	@JoinTable()
-	users: User[];
+	// @ManyToMany(() => User, (user) => user.themes)
+	// @JoinTable()
+	// users: User[];
 
 	@VersionColumn({ select: false })
 	version: number;

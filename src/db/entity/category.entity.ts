@@ -6,6 +6,7 @@ import {
 	Entity,
 	JoinColumn,
 	JoinTable,
+	ManyToMany,
 	ManyToOne,
 	OneToOne,
 	PrimaryGeneratedColumn,
@@ -14,11 +15,12 @@ import {
 } from 'typeorm';
 import { Schedule } from './schedule.entity';
 import { Site } from './site.entity';
+import { Product } from './product.entity';
 // Table: Category
 @Entity()
 export class Category extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
-	id: string;
+	id?: string;
 
 	@Column()
 	name: string;
@@ -40,15 +42,19 @@ export class Category extends BaseEntity {
 	@JoinColumn()
 	schedule: Schedule;
 
+	@ManyToMany(() => Product, (product) => product.categories)
+	@JoinTable()
+	products: Product[];
+
 	@Column({
 		type: 'enum',
 		enum: [0, 1],
 		default: 1,
 	})
-	status!: number;
+	status?: number;
 
 	@VersionColumn({ select: false })
-	version: number;
+	version?: number;
 
 	@CreateDateColumn({ nullable: true })
 	createdOn?: Date;

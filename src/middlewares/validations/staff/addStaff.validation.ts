@@ -8,16 +8,8 @@ const addStaffValidation = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const {
-		email,
-		username,
-		password,
-		firstName,
-		lastName,
-		role,
-		sites,
-		status,
-	} = req.body;
+	const { email, username, password, firstName, lastName, role, sites } =
+		req.body;
 
 	if (
 		!email ||
@@ -26,7 +18,6 @@ const addStaffValidation = async (
 		!firstName ||
 		!lastName ||
 		!role ||
-		!status ||
 		!sites.length
 	) {
 		sendResponse(
@@ -40,7 +31,8 @@ const addStaffValidation = async (
 				password,
 				firstName,
 				lastName,
-				status,
+				role,
+				sites,
 			}
 		);
 		return;

@@ -2,15 +2,17 @@ import { NextFunction, Request, Response } from 'express';
 import { CODE, TYPE } from '../../../../config/config';
 import { Category } from '../../../db/entity/category.entity';
 import sendResponse from '../../../utility/response';
+import { Not } from 'typeorm';
+import { Product } from '../../../db/entity/product.entity';
 
-const addCategoryValidation = async (
+const updateProductValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
-	const { name, type, sequence, scheduleData, site } = req.body;
+	const { id, name, price, categories, site, type } = req.body;
 
-	if (!name || !type || !sequence || !scheduleData || !site) {
+	if (!id || !name || !price || !categories.length || !site || !type) {
 		sendResponse(
 			res,
 			false,
@@ -18,15 +20,14 @@ const addCategoryValidation = async (
 			'Please enter all mandatory fields',
 			{
 				name,
-				type,
-				sequence,
-				scheduleData,
+				price,
+				categories,
 				site,
+				type,
 			}
 		);
 		return;
 	}
-
 	if (type !== TYPE.AMENITIES && type !== TYPE.FOOD) {
 		sendResponse(res, false, CODE.BAD_REQUEST, 'Invalid type', {
 			type,
@@ -34,21 +35,21 @@ const addCategoryValidation = async (
 		return;
 	}
 
-	const isCategoryExist = await Category.findOne({ name, site });
-	if (isCategoryExist) {
+	const isProductExist = await Product.findOne({ name, site, id: Not(id) });
+	if (isProductExist) {
 		sendResponse(
 			res,
 			false,
 			CODE.CONFLICT,
-			'Category name already exist ',
+			'Product name already exist ',
 			name
 		);
 		return;
 	}
 
-	res.locals.action = 'ADD-CATEGORY';
+	res.locals.action = 'UPDATE-PRODUCT';
 
 	next();
 };
 
-export default addCategoryValidation;
+export default updateProductValidation;

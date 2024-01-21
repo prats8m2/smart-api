@@ -16,7 +16,6 @@ const addStaff = async (req: Request, res: Response) => {
 		mobile,
 		role,
 		sites,
-		status,
 	} = req.body;
 	const { account } = res.locals;
 	Logger.info(`Add staff request`);
@@ -32,7 +31,6 @@ const addStaff = async (req: Request, res: Response) => {
 	user.account = account;
 	user.role = role;
 	user.sites = sites;
-	user.status = status;
 	const result = await user.save();
 
 	sendResponse(res, true, CODE.SUCCESS, `User staff Successful`, result);

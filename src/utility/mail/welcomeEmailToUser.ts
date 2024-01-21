@@ -1,8 +1,7 @@
 import * as handlebars from "handlebars";
 import * as fs from "fs";
 import * as path from "path";
-import sendEmail from ".";
-import { PORTAL_URL } from "../../../config/config";
+import sendEmail from '.';
 
 // Responsible for sending mail
 const welcomeEmailToUser = async (
@@ -21,12 +20,11 @@ const welcomeEmailToUser = async (
   const PATH = `https://d2qcfls7p39rv.cloudfront.net`;
 
   const replacements = {
-    PATH,
-    userFullName,
-    PORTAL_URL,
-    username,
-    password,
-  };
+		PATH,
+		userFullName,
+		username,
+		password,
+	};
   const htmlToSend = template(replacements);
   return await sendEmail(emailTo, "Welcome to UltraAnalytics", htmlToSend);
 };

@@ -2,15 +2,16 @@ import { NextFunction, Request, Response } from 'express';
 import { CODE, TYPE } from '../../../../config/config';
 import { Category } from '../../../db/entity/category.entity';
 import sendResponse from '../../../utility/response';
+import { Product } from '../../../db/entity/product.entity';
 
-const addCategoryValidation = async (
+const addProductValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
-	const { name, type, sequence, scheduleData, site } = req.body;
+	const { name, price, categories, site, type } = req.body;
 
-	if (!name || !type || !sequence || !scheduleData || !site) {
+	if (!name || !price || !categories.length || !site || !type) {
 		sendResponse(
 			res,
 			false,
@@ -18,10 +19,10 @@ const addCategoryValidation = async (
 			'Please enter all mandatory fields',
 			{
 				name,
-				type,
-				sequence,
-				scheduleData,
+				price,
+				categories,
 				site,
+				type,
 			}
 		);
 		return;
@@ -34,21 +35,21 @@ const addCategoryValidation = async (
 		return;
 	}
 
-	const isCategoryExist = await Category.findOne({ name, site });
-	if (isCategoryExist) {
+	const isProductExist = await Product.findOne({ name, site });
+	if (isProductExist) {
 		sendResponse(
 			res,
 			false,
 			CODE.CONFLICT,
-			'Category name already exist ',
+			'Product name already exist ',
 			name
 		);
 		return;
 	}
 
-	res.locals.action = 'ADD-CATEGORY';
+	res.locals.action = 'ADD-PRODUCT';
 
 	next();
 };
 
-export default addCategoryValidation;
+export default addProductValidation;

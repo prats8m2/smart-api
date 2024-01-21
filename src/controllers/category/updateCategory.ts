@@ -8,7 +8,8 @@ import sendResponse from '../../utility/response';
 
 const updateCategory = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { id, name, description, type, sequence, scheduleData } = req.body;
+	const { id, name, description, type, sequence, scheduleData, products } =
+		req.body;
 	Logger.info(`Update category request`);
 
 	const category: Category = await Category.findOne(id);
@@ -23,6 +24,7 @@ const updateCategory = async (req: Request, res: Response) => {
 	category.type = type;
 	category.description = description;
 	category.sequence = sequence;
+	category.products = products;
 
 	const result = await category.save();
 	sendResponse(res, true, CODE.SUCCESS, `Category updated Successful`, result);

@@ -18,6 +18,7 @@ import { Room } from './room.entity';
 import { User } from './user.entity';
 import { Wifi } from './wifi.entity';
 import { Category } from './category.entity';
+import { Product } from './product.entity';
 // Table: Site
 @Entity()
 export class Site extends BaseEntity {
@@ -56,6 +57,10 @@ export class Site extends BaseEntity {
 	// @OneToMany(() => Menu, (menu) => menu.site)
 	// @JoinTable()
 	// menus: Menu[];
+
+	@OneToMany(() => Product, (product) => product.site)
+	@JoinTable()
+	products: Product[];
 
 	@VersionColumn({ select: false })
 	version: number;

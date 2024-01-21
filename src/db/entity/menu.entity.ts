@@ -32,17 +32,17 @@ export class Menu {
 	})
 	status!: number;
 
-	@ManyToOne(() => Site, (site) => site.menus)
-	@JoinTable()
-	site: Site;
+	// @ManyToOne(() => Site, (site) => site.menus)
+	// @JoinTable()
+	// site: Site;
 
-	@ManyToOne(() => Theme, (theme) => theme.menus)
-	@JoinTable()
-	theme: Theme;
+	// @ManyToOne(() => Theme, (theme) => theme.menus)
+	// @JoinTable()
+	// theme: Theme;
 
-	@ManyToMany(() => Category, (category) => category.menus)
-	@JoinTable()
-	categories: Category[];
+	// @ManyToMany(() => Category, (category) => category.menus)
+	// @JoinTable()
+	// categories: Category[];
 
 	@VersionColumn({ select: false })
 	version: number;

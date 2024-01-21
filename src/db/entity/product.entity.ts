@@ -1,18 +1,21 @@
 import {
+	BaseEntity,
 	Column,
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
 	JoinTable,
+	ManyToMany,
 	ManyToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
 } from 'typeorm';
-import { User } from './user.entity';
+import { Site } from './site.entity';
+import { Category } from './category.entity';
 // Table: User
 @Entity()
-export class Product {
+export class Product extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
 	id: string;
 
@@ -25,8 +28,11 @@ export class Product {
 	@Column()
 	price!: string;
 
-	@Column()
+	@Column({ nullable: true })
 	image!: string;
+
+	@Column()
+	type: number;
 
 	@Column({
 		type: 'enum',
@@ -35,9 +41,26 @@ export class Product {
 	})
 	status!: number;
 
-	@ManyToOne(() => User, (user) => user.products)
+	@ManyToOne(() => Site, (site) => site.products)
 	@JoinTable()
-	user: User;
+	site: Site;
+
+	@ManyToMany(() => Category, (category) => category.products)
+	categories: Category[];
+
+	@Column({
+		type: 'enum',
+		enum: [0, 1],
+		default: 0,
+	})
+	isNew!: number;
+
+	@Column({
+		type: 'enum',
+		enum: [0, 1],
+		default: 0,
+	})
+	isSpecial!: number;
 
 	@VersionColumn({ select: false })
 	version: number;

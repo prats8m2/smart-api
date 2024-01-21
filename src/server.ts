@@ -13,6 +13,7 @@ import roomRoutes from './routes/room.routes';
 import tableRoutes from './routes/table.routes';
 import deviceRoutes from './routes/device.routes';
 import categoryRoutes from './routes/category.routes';
+import productRoutes from './routes/product.routes';
 
 import Database from './db';
 
@@ -50,6 +51,7 @@ class Server {
 		this.app.use('/api/v1/device', deviceRoutes);
 		this.app.use('/api/v1/category', categoryRoutes);
 		this.app.use('/api/v1/table', tableRoutes);
+		this.app.use('/api/v1/product', productRoutes);
 	}
 
 	//database
