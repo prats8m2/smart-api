@@ -16,7 +16,7 @@ const updateCategory = async (req: Request, res: Response) => {
 	//create schedule
 	let schedule: Schedule = await Schedule.findOne(category?.schedule?.id);
 	const newSchedule = CREATE_SCHEDULE(schedule, scheduleData);
-	const scheduleResult = await newSchedule.save();
+	await newSchedule.save();
 
 	//create an account
 	category.name = name;
