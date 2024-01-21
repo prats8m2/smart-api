@@ -34,7 +34,7 @@ router.get(
 );
 
 router.get(
-	'/list/:accountId/:page/:limit',
+	'/list/:site/:page/:limit',
 	AuthMiddleware,
 	listCategoriesValidation,
 	PermissionMiddleware,
