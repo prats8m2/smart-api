@@ -22,7 +22,7 @@ export class Product extends BaseEntity {
 	@Column({ nullable: true })
 	name!: string;
 
-	@Column()
+	@Column({ nullable: true })
 	description!: string;
 
 	@Column()
