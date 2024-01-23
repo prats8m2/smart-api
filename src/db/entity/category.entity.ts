@@ -42,8 +42,12 @@ export class Category extends BaseEntity {
 	@JoinColumn()
 	schedule: Schedule;
 
-	@ManyToMany(() => Product, (product) => product.categories)
-	@JoinTable()
+	@ManyToMany(() => Product, (product) => product.categories, { cascade: true })
+	@JoinTable({
+		name: 'product_category',
+		joinColumn: { name: 'category_id', referencedColumnName: 'id' },
+		inverseJoinColumn: { name: 'product_id', referencedColumnName: 'id' },
+	})
 	products: Product[];
 
 	@Column({
@@ -54,7 +58,7 @@ export class Category extends BaseEntity {
 	status?: number;
 
 	@VersionColumn({ select: false })
-	version?: number;
+	version: number;
 
 	@CreateDateColumn({ nullable: true })
 	createdOn?: Date;
