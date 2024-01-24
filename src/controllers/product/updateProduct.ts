@@ -16,6 +16,7 @@ const updateProduct = async (req: Request, res: Response) => {
 		categories,
 		site,
 		type,
+		status
 	} = req.body;
 	Logger.info(`Update product request`);
 
