@@ -1,6 +1,7 @@
 const ALL_PERMISSION = [
 	{
 		category: 'ACCOUNT',
+		categoryId: 1,
 		permissions: [
 			'ADD-ACCOUNT',
 			'UPDATE-ACCOUNT',
@@ -11,6 +12,7 @@ const ALL_PERMISSION = [
 	},
 	{
 		category: 'SITE',
+		categoryId: 2,
 		permissions: [
 			'ADD-SITE',
 			'UPDATE-SITE',
@@ -21,6 +23,7 @@ const ALL_PERMISSION = [
 	},
 	{
 		category: 'ROLE',
+		categoryId: 3,
 		permissions: [
 			'ADD-ROLE',
 			'UPDATE-ROLE',
@@ -32,6 +35,7 @@ const ALL_PERMISSION = [
 	},
 	{
 		category: 'STAFF',
+		categoryId: 4,
 		permissions: [
 			'ADD-STAFF',
 			'UPDATE-STAFF',
@@ -42,6 +46,7 @@ const ALL_PERMISSION = [
 	},
 	{
 		category: 'DEVICE',
+		categoryId: 5,
 		permissions: [
 			'ADD-DEVICE',
 			'UPDATE-DEVICE',
@@ -52,6 +57,7 @@ const ALL_PERMISSION = [
 	},
 	{
 		category: 'MENU',
+		categoryId: 6,
 		permissions: [
 			'ADD-MENU',
 			'UPDATE-MENU',
@@ -62,6 +68,7 @@ const ALL_PERMISSION = [
 	},
 	{
 		category: 'ROOM',
+		categoryId: 7,
 		permissions: [
 			'ADD-ROOM',
 			'UPDATE-ROOM',
@@ -72,6 +79,7 @@ const ALL_PERMISSION = [
 	},
 	{
 		category: 'TABLE',
+		categoryId: 8,
 		permissions: [
 			'ADD-TABLE',
 			'UPDATE-TABLE',
@@ -82,6 +90,7 @@ const ALL_PERMISSION = [
 	},
 	{
 		category: 'PRODUCT',
+		categoryId: 9,
 		permissions: [
 			'ADD-PRODUCT',
 			'UPDATE-PRODUCT',
@@ -92,6 +101,7 @@ const ALL_PERMISSION = [
 	},
 	{
 		category: 'CATEGORY',
+		categoryId: 10,
 		permissions: [
 			'ADD-CATEGORY',
 			'UPDATE-CATEGORY',
@@ -102,6 +112,7 @@ const ALL_PERMISSION = [
 	},
 	{
 		category: 'ORDER',
+		categoryId: 11,
 		permissions: [
 			'ADD-ORDER',
 			'UPDATE-ORDER',

@@ -21,10 +21,12 @@ const onboardDB = async (
 	for (let index = 0; index < allPermissions.length; index++) {
 		const permissionObj = allPermissions[index];
 		const category = permissionObj.category;
+		const categoryId = permissionObj.categoryId;
 		for (let index = 0; index < permissionObj.permissions.length; index++) {
 			const permissionItem = permissionObj.permissions[index];
 			const permission: Permission = new Permission();
 			permission.name = permissionItem;
+			permission.categoryId = categoryId;
 			permission.category = category;
 			await permission.save();
 		}
