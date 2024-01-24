@@ -30,6 +30,7 @@ const updateProduct = async (req: Request, res: Response) => {
 	product.categories = categories;
 	product.isNew = isNew;
 	product.isSpecial = isSpecial;
+	product.status = status;
 
 	const result = await product.save();
 	sendResponse(res, true, CODE.SUCCESS, `Product updated Successful`, result);
