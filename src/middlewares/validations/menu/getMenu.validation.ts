@@ -20,7 +20,7 @@ const getMenuValidation = async (
 		return;
 	}
 
-	res.locals.action = 'VIEW-PRODUCT';
+	res.locals.action = 'VIEW-MENU';
 
 	next();
 };

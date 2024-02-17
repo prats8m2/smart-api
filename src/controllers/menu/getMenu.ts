@@ -1,20 +1,45 @@
 import { Request, Response } from 'express';
 import { CODE } from '../../../config/config';
-import { Product } from '../../db/entity/product.entity';
+import { Menu } from '../../db/entity/menu.entity';
 import Logger from '../../utility/logger/logger';
 import sendResponse from '../../utility/response';
 
-const getProduct = async (req: Request, res: Response) => {
+const getMenu = async (req: Request, res: Response) => {
 	//fetch data from body
 	const { id } = req.params;
-	Logger.info(`Get Product request`);
+	Logger.info(`Get Menu request`);
 
-	//get a product
-	const product = await Product.findOne(id, {
-		relations: ['site', 'site.account', 'categories'],
+	//get a menu
+	const menu = await Menu.findOne({
+		where: { id },
+		relations: [
+			'site',
+			'menuItems',
+			'schedule',
+			'menuItems.product',
+			'menuItems.category',
+		],
 	});
+	console.log('menu:', menu);
 
-	sendResponse(res, true, CODE.SUCCESS, `Product Data`, product);
+	// Extracting product and category IDs from the menuItems
+	const menuItems = menu.menuItems.map((item) => ({
+		productId: item.product.id,
+		categoryId: item.category.id,
+	}));
+
+	// Constructing a new object with required fields
+	const menuWithItems = {
+		id: menu.id,
+		name: menu.name,
+		type: menu.type,
+		description: menu.description,
+		schedule: menu.schedule,
+		site: menu.site,
+		menuItems: menuItems,
+	};
+
+	sendResponse(res, true, CODE.SUCCESS, `Menu Data`, menuWithItems);
 };
 
-export default getProduct;
+export default getMenu;
