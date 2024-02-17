@@ -7,6 +7,7 @@ import listProductsValidation from '../middlewares/validations/product/listProdu
 import updateProductValidation from '../middlewares/validations/product/updateProduct.validation';
 import ProductController from '../controllers/product/product.controller';
 import getProductValidation from '../middlewares/validations/product/getProduct.validation';
+import arrangeProductValidation from '../middlewares/validations/product/arrangeProduct.validation';
 
 const router = Router();
 
@@ -47,6 +48,14 @@ router.delete(
 	deleteProductValidation,
 	PermissionMiddleware,
 	productController.delete
+);
+
+router.patch(
+	'/arrange',
+	AuthMiddleware,
+	arrangeProductValidation,
+	PermissionMiddleware,
+	productController.arrange
 );
 
 export default router;

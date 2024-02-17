@@ -1,7 +1,13 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import {
+	BaseEntity,
+	Column,
+	Entity,
+	PrimaryColumn,
+	PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
-export class Product_Category {
+export class Product_Category extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
 	id: number;
 

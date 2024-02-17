@@ -4,6 +4,7 @@ import deleteProduct from './deleteProduct';
 import getProduct from './getProduct';
 import listProducts from './listProducts';
 import updateProduct from './updateProduct';
+import arrangeProduct from './arrangeProduct';
 
 class ProductController {
 	public add = async (req: Request, res: Response) => {
@@ -24,6 +25,10 @@ class ProductController {
 
 	public delete = async (req: Request, res: Response) => {
 		deleteProduct(req, res);
+	};
+
+	public arrange = async (req: Request, res: Response) => {
+		arrangeProduct(req, res);
 	};
 }
 
