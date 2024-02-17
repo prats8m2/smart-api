@@ -1,29 +1,35 @@
 import {
-  Entity,
-  Column,
-  ManyToMany,
-  JoinTable,
-  VersionColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-} from "typeorm";
-import { Category } from "./category.entity";
-import { Site } from "./site.entity";
-import { Theme } from "./theme.entity";
+	BaseEntity,
+	Column,
+	CreateDateColumn,
+	DeleteDateColumn,
+	Entity,
+	JoinColumn,
+	JoinTable,
+	ManyToOne,
+	OneToMany,
+	OneToOne,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+	VersionColumn,
+} from 'typeorm';
+import { MenuItem } from './menu_items.entity';
+import { Site } from './site.entity';
+import { Schedule } from './schedule.entity';
 // Table: User
 @Entity()
-export class Menu {
+export class Menu extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
 	id: string;
 
 	@Column({ nullable: true })
 	name!: string;
 
-	@Column('simple-json', { nullable: false, default: {} })
-	schedule!: any;
+	@Column({ nullable: true })
+	description: string;
+
+	@Column()
+	type: number;
 
 	@Column({
 		type: 'enum',
@@ -32,17 +38,16 @@ export class Menu {
 	})
 	status!: number;
 
-	// @ManyToOne(() => Site, (site) => site.menus)
-	// @JoinTable()
-	// site: Site;
+	@ManyToOne(() => Site, (site) => site.products)
+	@JoinTable()
+	site: Site;
 
-	// @ManyToOne(() => Theme, (theme) => theme.menus)
-	// @JoinTable()
-	// theme: Theme;
+	@OneToMany(() => MenuItem, (menuItems) => menuItems.menu)
+	menuItems: MenuItem[];
 
-	// @ManyToMany(() => Category, (category) => category.menus)
-	// @JoinTable()
-	// categories: Category[];
+	@OneToOne(() => Schedule)
+	@JoinColumn()
+	schedule: Schedule;
 
 	@VersionColumn({ select: false })
 	version: number;

@@ -17,6 +17,8 @@ import CustomLogger from '../utility/logger/typeORMLogger';
 import { Table } from './entity/table.entity';
 import { Product } from './entity/product.entity';
 import { Product_Category } from './entity/product_category';
+import { MenuItem } from './entity/menu_items.entity';
+import { Menu } from './entity/menu.entity';
 
 class Database {
 	public connect = () => {
@@ -42,6 +44,8 @@ class Database {
 				Table,
 				Product,
 				Product_Category,
+				Menu,
+				MenuItem,
 			],
 			subscribers: [],
 			logging: DB_CONFIG.logging === 'true',

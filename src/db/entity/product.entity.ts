@@ -7,12 +7,14 @@ import {
 	JoinTable,
 	ManyToMany,
 	ManyToOne,
+	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
 } from 'typeorm';
 import { Site } from './site.entity';
 import { Category } from './category.entity';
+import { MenuItem } from './menu_items.entity';
 // Table: User
 @Entity()
 export class Product extends BaseEntity {
@@ -44,6 +46,9 @@ export class Product extends BaseEntity {
 	@ManyToOne(() => Site, (site) => site.products)
 	@JoinTable()
 	site: Site;
+
+	@OneToMany(() => MenuItem, (menuItems) => menuItems.product)
+	menuItems: MenuItem[];
 
 	@ManyToMany(() => Category, (category) => category.products)
 	categories: Category[];

@@ -8,6 +8,7 @@ import {
 	JoinTable,
 	ManyToMany,
 	ManyToOne,
+	OneToMany,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
@@ -16,6 +17,7 @@ import {
 import { Schedule } from './schedule.entity';
 import { Site } from './site.entity';
 import { Product } from './product.entity';
+import { MenuItem } from './menu_items.entity';
 // Table: Category
 @Entity()
 export class Category extends BaseEntity {
@@ -49,6 +51,9 @@ export class Category extends BaseEntity {
 		inverseJoinColumn: { name: 'product_id', referencedColumnName: 'id' },
 	})
 	products: Product[];
+
+	@OneToMany(() => MenuItem, (menuItems) => menuItems.category)
+	menuItems: MenuItem[];
 
 	@Column({
 		type: 'enum',
