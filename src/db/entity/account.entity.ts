@@ -11,7 +11,6 @@ import {
 } from 'typeorm';
 import { Site } from './site.entity';
 import { User } from './user.entity';
-import { Category } from './category.entity';
 // Table: Account
 @Entity()
 export class Account extends BaseEntity {
