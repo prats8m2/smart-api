@@ -7,6 +7,7 @@ import deleteCategoryValidation from '../middlewares/validations/category/delete
 import getCategoryValidation from '../middlewares/validations/category/getCategory.validation';
 import listCategoriesValidation from '../middlewares/validations/category/listCategories.validation';
 import updateCategoryValidation from '../middlewares/validations/category/updateCategory.validation';
+import arrangeCategoryValidation from '../middlewares/validations/category/arrangeCategory.validation';
 
 const router = Router();
 
@@ -47,6 +48,14 @@ router.delete(
 	deleteCategoryValidation,
 	PermissionMiddleware,
 	categoryController.delete
+);
+
+router.patch(
+	'/arrange',
+	AuthMiddleware,
+	arrangeCategoryValidation,
+	PermissionMiddleware,
+	categoryController.arrange
 );
 
 export default router;

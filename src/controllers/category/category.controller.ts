@@ -4,6 +4,7 @@ import deleteCategory from './deleteCategory';
 import getCategory from './getCategory';
 import listCategories from './listCategories';
 import updateCategory from './updateCategory';
+import arrangeCategory from './arrangeCategory';
 
 class CategoryController {
 	public add = async (req: Request, res: Response) => {
@@ -24,6 +25,10 @@ class CategoryController {
 
 	public delete = async (req: Request, res: Response) => {
 		deleteCategory(req, res);
+	};
+
+	public arrange = async (req: Request, res: Response) => {
+		arrangeCategory(req, res);
 	};
 }
 
