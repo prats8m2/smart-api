@@ -20,6 +20,9 @@ export class Permission extends BaseEntity {
 	@Column({ nullable: true })
 	category: string;
 
+	@Column({ nullable: true })
+	categoryId: number;
+
 	@VersionColumn({ select: false })
 	version?: number;
 
