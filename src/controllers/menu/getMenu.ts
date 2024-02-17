@@ -20,7 +20,6 @@ const getMenu = async (req: Request, res: Response) => {
 			'menuItems.category',
 		],
 	});
-	console.log('menu:', menu);
 
 	// Extracting product and category IDs from the menuItems
 	const menuItems = menu.menuItems.map((item) => ({

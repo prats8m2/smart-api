@@ -5,7 +5,7 @@ const listMenusValidation = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	res.locals.action = 'LIST-PRODUCT';
+	res.locals.action = 'LIST-MENU';
 
 	next();
 };
