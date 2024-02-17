@@ -14,7 +14,7 @@ const updateCategory = async (req: Request, res: Response) => {
 
 	const category: Category = await Category.findOne(id);
 
-	//create schedule
+	//update schedule
 	let schedule: Schedule = await Schedule.findOne(category?.schedule?.id);
 	const newSchedule = CREATE_SCHEDULE(schedule, scheduleData);
 	await newSchedule.save();

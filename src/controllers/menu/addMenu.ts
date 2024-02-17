@@ -36,12 +36,10 @@ const addProduct = async (req: Request, res: Response) => {
 		newMenuItem.product = menuItem.product;
 		newMenuItem.category = menuItem.category;
 
-		return await MenuItem.save(newMenuItem);
+		await MenuItem.save(newMenuItem);
 	});
 
-	sendResponse(res, true, CODE.SUCCESS, `Menu added Successful`, {
-		menu: menuResult,
-	});
+	sendResponse(res, true, CODE.SUCCESS, `Menu added Successful`, menuResult);
 };
 
 export default addProduct;

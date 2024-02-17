@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import { CODE, TYPE } from '../../../../config/config';
-import { Category } from '../../../db/entity/category.entity';
 import sendResponse from '../../../utility/response';
 import { Not } from 'typeorm';
 import { Menu } from '../../../db/entity/menu.entity';
@@ -10,24 +9,26 @@ const updateMenuValidation = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const { id, name, price, categories, site, type } = req.body;
+	const { id, name, type, menuItemsData, scheduleData, site } = req.body;
 
-	if (!id || !name || !price || !categories.length || !site || !type) {
+	if (!id || !name || !type || !menuItemsData || !scheduleData || !site) {
 		sendResponse(
 			res,
 			false,
 			CODE.BAD_REQUEST,
 			'Please enter all mandatory fields',
 			{
+				id,
 				name,
-				price,
-				categories,
-				site,
 				type,
+				menuItemsData,
+				scheduleData,
+				site,
 			}
 		);
 		return;
 	}
+
 	if (type !== TYPE.AMENITIES && type !== TYPE.FOOD) {
 		sendResponse(res, false, CODE.BAD_REQUEST, 'Invalid type', {
 			type,
@@ -41,7 +42,7 @@ const updateMenuValidation = async (
 		return;
 	}
 
-	res.locals.action = 'UPDATE-PRODUCT';
+	res.locals.action = 'UPDATE-MENU';
 
 	next();
 };
