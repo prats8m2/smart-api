@@ -7,11 +7,11 @@ import Logger from '../../utility/logger/logger';
 import CREATE_SCHEDULE from '../../utility/parseSchedule';
 import sendResponse from '../../utility/response';
 
-const addProduct = async (req: Request, res: Response) => {
+const addMenu = async (req: Request, res: Response) => {
 	//fetch data from body
 	const { name, description, type, scheduleData, site, menuItemsData } =
 		req.body;
-	const { account } = res.locals;
+	const { loggedInId } = res.locals;
 	Logger.info(`Add menu request`);
 
 	//create schedule
@@ -26,6 +26,7 @@ const addProduct = async (req: Request, res: Response) => {
 	menu.description = description;
 	menu.site = site;
 	menu.schedule = scheduleResult;
+	menu.createdBy = loggedInId;
 
 	const menuResult = await menu.save();
 
@@ -42,4 +43,4 @@ const addProduct = async (req: Request, res: Response) => {
 	sendResponse(res, true, CODE.SUCCESS, `Menu added Successful`, menuResult);
 };
 
-export default addProduct;
+export default addMenu;

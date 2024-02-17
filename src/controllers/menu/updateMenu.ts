@@ -12,7 +12,7 @@ const updateMenu = async (req: Request, res: Response) => {
 	//fetch data from body
 	const { id, name, description, type, scheduleData, site, menuItemsData } =
 		req.body;
-	const { account } = res.locals;
+	const { loggedInId } = res.locals;
 	Logger.info(`Update Menu request`);
 	const menu: Menu = await Menu.findOne(id);
 
@@ -26,6 +26,7 @@ const updateMenu = async (req: Request, res: Response) => {
 	menu.type = type;
 	menu.description = description;
 	menu.site = site;
+	menu.updatedBy = loggedInId;
 
 	const menuResult = await menu.save();
 
