@@ -23,7 +23,7 @@ const listCategories = async (req: Request, res: Response) => {
 		where: {
 			site,
 		},
-		relations: ['site'],
+		relations: ['products'],
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Category List Data`, {
