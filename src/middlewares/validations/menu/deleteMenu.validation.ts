@@ -20,7 +20,7 @@ const deleteMenuValidation = async (
 		return;
 	}
 
-	res.locals.action = 'DELETE-PRODUCT';
+	res.locals.action = 'DELETE-MENU';
 
 	next();
 };
