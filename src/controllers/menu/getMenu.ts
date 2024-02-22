@@ -14,6 +14,7 @@ const getMenu = async (req: Request, res: Response) => {
 		where: { id },
 		relations: [
 			'site',
+			'site.account',
 			'menuItems',
 			'schedule',
 			'menuItems.product',
