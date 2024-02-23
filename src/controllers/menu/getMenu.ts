@@ -39,6 +39,7 @@ const getMenu = async (req: Request, res: Response) => {
 		schedule: menu.schedule,
 		site: menu.site,
 		menuItems: menuItems,
+		status: menu.status,
 	};
 
 	sendResponse(res, true, CODE.SUCCESS, `Menu Data`, menuWithItems);
