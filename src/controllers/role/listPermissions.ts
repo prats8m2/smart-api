@@ -20,7 +20,6 @@ const listPermissions = async (req: Request, res: Response) => {
 		relations: ['role', 'role.permissions'],
 		where: [{ id: loggedInId }],
 	});
-	console.log('userData:', userData);
 	const result = parsePermissionData(userData?.role?.permissions);
 	sendResponse(res, true, CODE.SUCCESS, `Permission List Data`, {
 		permissions: result,
