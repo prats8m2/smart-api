@@ -19,6 +19,8 @@ import { Product } from './entity/product.entity';
 import { Product_Category } from './entity/product_category';
 import { MenuItem } from './entity/menu_items.entity';
 import { Menu } from './entity/menu.entity';
+import { Order } from './entity/order.entity';
+import { Payment } from './entity/payment.entity';
 
 class Database {
 	public connect = () => {
@@ -46,6 +48,8 @@ class Database {
 				Product_Category,
 				Menu,
 				MenuItem,
+				Order,
+				Payment,
 			],
 			subscribers: [],
 			logging: DB_CONFIG.logging === 'true',

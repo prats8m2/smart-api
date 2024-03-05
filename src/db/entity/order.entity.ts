@@ -6,6 +6,7 @@ import {
 	Entity,
 	JoinColumn,
 	JoinTable,
+	ManyToMany,
 	ManyToOne,
 	OneToMany,
 	OneToOne,
@@ -16,46 +17,57 @@ import {
 import { Device } from './device.entity';
 import { Site } from './site.entity';
 import { Wifi } from './wifi.entity';
-import { Order } from './order.entity';
-// Table: Room
+import { Product } from './product.entity';
+import { Room } from './room.entity';
+import { Table } from './table.entity';
+import { Payment } from './payment.entity';
+// Table: Order
 @Entity()
-export class Room extends BaseEntity {
+export class Order extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
 	id: string;
 
-	@Column()
-	name: string;
-
-	@Column({ default: null })
-	floor?: string;
-
+	//1: Table, 2: Room, 3:Online, 4:Offline
 	@Column({
 		type: 'enum',
-		enum: [0, 1],
-		default: 0,
+		enum: [1, 2, 3, 4],
+		default: 4,
 	})
-	occupied!: number;
+	type: string;
+
+	//1: Created, 2:In Progress,3:Picked-UP, 4:Delivered, 5:Cancelled
+	@Column({
+		type: 'enum',
+		enum: [1, 2, 3, 4],
+		default: 1,
+	})
+	status: string;
 
 	@ManyToOne(() => Site, (site) => site.rooms)
 	@JoinTable()
 	site: Site;
 
-	@OneToMany(() => Wifi, (wifi) => wifi.room)
-	wifi: Wifi[];
+	@Column()
+	total: number;
 
-	@OneToMany(() => Order, (order) => order.room)
-	orders: Order[];
+	@ManyToOne(() => Room, (room) => room.orders)
+	@JoinTable()
+	room: Room;
 
-	@OneToOne(() => Device)
+	@ManyToOne(() => Table, (table) => table.orders)
+	@JoinTable()
+	table: Table;
+
+	@OneToOne(() => Payment)
 	@JoinColumn()
-	device: Device;
+	payment: Payment;
 
-	@Column({
-		type: 'enum',
-		enum: [0, 1],
-		default: 1,
-	})
-	status!: number;
+	@ManyToMany(() => Product, (product) => product.orders)
+	@JoinTable()
+	products: Product[];
+
+	@Column()
+	deliveryAddress: string;
 
 	@VersionColumn({ select: false })
 	version: number;

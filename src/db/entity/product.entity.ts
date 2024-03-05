@@ -15,6 +15,7 @@ import {
 import { Site } from './site.entity';
 import { Category } from './category.entity';
 import { MenuItem } from './menu_items.entity';
+import { Order } from './order.entity';
 // Table: User
 @Entity()
 export class Product extends BaseEntity {
@@ -52,6 +53,9 @@ export class Product extends BaseEntity {
 
 	@ManyToMany(() => Category, (category) => category.products)
 	categories: Category[];
+
+	@ManyToMany(() => Order, (order) => order.products)
+	orders: Order[];
 
 	@Column({
 		type: 'enum',

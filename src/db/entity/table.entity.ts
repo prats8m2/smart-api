@@ -16,6 +16,7 @@ import {
 import { Device } from './device.entity';
 import { Site } from './site.entity';
 import { Wifi } from './wifi.entity';
+import { Order } from './order.entity';
 // Table: Table
 @Entity()
 export class Table extends BaseEntity {
@@ -39,6 +40,9 @@ export class Table extends BaseEntity {
 	@OneToOne(() => Device)
 	@JoinColumn()
 	device: Device;
+
+	@OneToMany(() => Order, (order) => order.room)
+	orders: Order[];
 
 	@Column({
 		type: 'enum',

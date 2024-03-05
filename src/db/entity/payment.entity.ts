@@ -4,58 +4,56 @@ import {
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
-	JoinColumn,
 	JoinTable,
 	ManyToOne,
-	OneToMany,
-	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
 } from 'typeorm';
-import { Device } from './device.entity';
 import { Site } from './site.entity';
-import { Wifi } from './wifi.entity';
-import { Order } from './order.entity';
-// Table: Room
+// Table: Payment
 @Entity()
-export class Room extends BaseEntity {
+export class Payment extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
 	id: string;
 
-	@Column()
-	name: string;
-
-	@Column({ default: null })
-	floor?: string;
-
+	//1: Online, 2: Offline
 	@Column({
 		type: 'enum',
-		enum: [0, 1],
-		default: 0,
+		enum: [1, 2],
+		default: 1,
 	})
-	occupied!: number;
+	type: string;
+
+	//1: Created, 2:In Progress,3:Picked-UP, 4:Delivered, 5:Cancelled
+	@Column({
+		type: 'enum',
+		enum: [1, 2, 3, 4],
+		default: 1,
+	})
+	status: string;
 
 	@ManyToOne(() => Site, (site) => site.rooms)
 	@JoinTable()
 	site: Site;
 
-	@OneToMany(() => Wifi, (wifi) => wifi.room)
-	wifi: Wifi[];
+	@Column()
+	total: number;
 
-	@OneToMany(() => Order, (order) => order.room)
-	orders: Order[];
+	@Column()
+	serviceCharge: number;
 
-	@OneToOne(() => Device)
-	@JoinColumn()
-	device: Device;
+	@Column({ default: 0 })
+	cgst: number;
 
-	@Column({
-		type: 'enum',
-		enum: [0, 1],
-		default: 1,
-	})
-	status!: number;
+	@Column({ default: 0 })
+	sgst: number;
+
+	@Column({ default: 0 })
+	discount: number;
+
+	@Column({ default: 0 })
+	deliveryCharge: number;
 
 	@VersionColumn({ select: false })
 	version: number;
