@@ -14,6 +14,7 @@ const getMenu = async (req: Request, res: Response) => {
 		where: { id },
 		relations: [
 			'site',
+			'site.account',
 			'menuItems',
 			'schedule',
 			'menuItems.product',
@@ -23,8 +24,10 @@ const getMenu = async (req: Request, res: Response) => {
 
 	// Extracting product and category IDs from the menuItems
 	const menuItems = menu.menuItems.map((item) => ({
-		productId: item.product.id,
-		categoryId: item.category.id,
+		product: item.product.id,
+		category: item.category.id,
+		productName: item.product.name,
+		categoryName: item.category.name,
 	}));
 
 	// Constructing a new object with required fields
@@ -36,6 +39,7 @@ const getMenu = async (req: Request, res: Response) => {
 		schedule: menu.schedule,
 		site: menu.site,
 		menuItems: menuItems,
+		status: menu.status,
 	};
 
 	sendResponse(res, true, CODE.SUCCESS, `Menu Data`, menuWithItems);

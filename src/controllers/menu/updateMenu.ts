@@ -10,8 +10,16 @@ import { MenuItem } from '../../db/entity/menu_items.entity';
 
 const updateMenu = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { id, name, description, type, scheduleData, site, menuItemsData } =
-		req.body;
+	const {
+		id,
+		name,
+		description,
+		type,
+		scheduleData,
+		site,
+		menuItemsData,
+		status,
+	} = req.body;
 	const { loggedInId } = res.locals;
 	Logger.info(`Update Menu request`);
 	const menu: Menu = await Menu.findOne(id);
@@ -27,6 +35,7 @@ const updateMenu = async (req: Request, res: Response) => {
 	menu.description = description;
 	menu.site = site;
 	menu.updatedBy = loggedInId;
+	menu.status = status;
 
 	const menuResult = await menu.save();
 
