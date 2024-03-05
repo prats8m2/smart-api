@@ -107,3 +107,19 @@ export const TYPE = {
 	AMENITIES: 2,
 };
 
+export const ORDER_TYPE = {
+	TABLE: 1,
+	ROOM: 2,
+	ONLINE: 3,
+	OFFLINE: 4,
+};
+
+export const ORDER_STATUS = {
+	CREATED: 1,
+	PROGRESS: 2,
+	DELIVERED: 3,
+	CANCELED: 4,
+};
+
+
+

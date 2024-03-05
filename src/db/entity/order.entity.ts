@@ -66,9 +66,6 @@ export class Order extends BaseEntity {
 	@JoinTable()
 	products: Product[];
 
-	@Column()
-	deliveryAddress: string;
-
 	@VersionColumn({ select: false })
 	version: number;
 
