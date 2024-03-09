@@ -20,7 +20,7 @@ import { Order } from './order.entity';
 @Entity()
 export class Product extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
-	id: string;
+	id: number;
 
 	@Column({ nullable: true })
 	name!: string;
@@ -28,8 +28,8 @@ export class Product extends BaseEntity {
 	@Column({ nullable: true })
 	description!: string;
 
-	@Column()
-	price!: string;
+	@Column({ nullable: true })
+	price!: number;
 
 	@Column({ nullable: true })
 	image!: string;

@@ -37,10 +37,10 @@ export class Payment extends BaseEntity {
 	@JoinTable()
 	site: Site;
 
-	@Column()
+	@Column({ default: 0 })
 	total: number;
 
-	@Column()
+	@Column({ default: 0 })
 	serviceCharge: number;
 
 	@Column({ default: 0 })

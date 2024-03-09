@@ -121,5 +121,10 @@ export const ORDER_STATUS = {
 	CANCELED: 4,
 };
 
+export const PAYMENT_TYPE: any = {
+	ONLINE: 1,
+	OFFLINE: 2,
+};
+
 
 

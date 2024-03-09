@@ -25,7 +25,7 @@ import { Payment } from './payment.entity';
 @Entity()
 export class Order extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
-	id: string;
+	id: number;
 
 	//1: Table, 2: Room, 3:Online, 4:Offline
 	@Column({
@@ -46,9 +46,6 @@ export class Order extends BaseEntity {
 	@ManyToOne(() => Site, (site) => site.rooms)
 	@JoinTable()
 	site: Site;
-
-	@Column()
-	total: number;
 
 	@ManyToOne(() => Room, (room) => room.orders)
 	@JoinTable()
