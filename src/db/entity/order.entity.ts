@@ -62,8 +62,12 @@ export class Order extends BaseEntity {
 	@JoinColumn()
 	payment: Payment;
 
-	@ManyToMany(() => Product, (product) => product.orders)
-	@JoinTable()
+	@ManyToMany(() => Product, (product) => product.orders, { cascade: true })
+	@JoinTable({
+		name: 'order_product',
+		joinColumn: { name: 'order_id', referencedColumnName: 'id' },
+		inverseJoinColumn: { name: 'product_id', referencedColumnName: 'id' },
+	})
 	products: Product[];
 
 	@VersionColumn({ select: false })

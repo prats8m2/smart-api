@@ -21,6 +21,7 @@ import { MenuItem } from './entity/menu_items.entity';
 import { Menu } from './entity/menu.entity';
 import { Order } from './entity/order.entity';
 import { Payment } from './entity/payment.entity';
+import { Order_Product } from './entity/order_product';
 
 class Database {
 	public connect = () => {
@@ -49,6 +50,7 @@ class Database {
 				Menu,
 				MenuItem,
 				Order,
+				Order_Product,
 				Payment,
 			],
 			subscribers: [],
