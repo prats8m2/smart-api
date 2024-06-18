@@ -2,19 +2,19 @@ import * as dotenv from "dotenv";
 import * as path from "path";
 dotenv.config({ path: path.resolve(__dirname, `../.env`) });
 
-const { type, host, port, database, username, password, logging } = process.env;
+const { type, host, port, database, dbuser, password, logging } = process.env;
 
 export const SERVER_PORT = 3000;
 export const DB_CONFIG = {
-  type,
-  host,
-  port,
-  database,
-  username,
-  password,
-  logging,
-  sync: process.env.DB_SYNC,
-  clear: process.env.DB_CLEAR,
+	type,
+	host,
+	port,
+	database,
+	dbuser,
+	password,
+	logging,
+	sync: process.env.DB_SYNC,
+	clear: process.env.DB_CLEAR,
 };
 
 export const DEFAULT_SUPER_ADMIN_CREDS = {

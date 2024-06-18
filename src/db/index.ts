@@ -31,7 +31,7 @@ class Database {
 			host: DB_CONFIG.host,
 			port: parseInt(DB_CONFIG.port, 10),
 			database: DB_CONFIG.database,
-			username: DB_CONFIG.username,
+			username: DB_CONFIG.dbuser,
 			password: DB_CONFIG.password,
 			entities: [
 				User,
