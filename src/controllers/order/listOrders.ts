@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { CODE, MAX_ROW } from '../../../config/config';
-import { Category } from '../../db/entity/category.entity';
 import Logger from '../../utility/logger/logger';
 import sendResponse from '../../utility/response';
-const listCategories = async (req: Request, res: Response) => {
+import { Order } from '../../db/entity/order.entity';
+const listOrders = async (req: Request, res: Response) => {
 	//fetch data from body
 	const {
 		limit = MAX_ROW,
@@ -14,22 +14,22 @@ const listCategories = async (req: Request, res: Response) => {
 		page?: number;
 		site?: string;
 	};
-	Logger.info(`List category request`);
+	Logger.info(`List order request`);
 
 	//create a user
-	const [categories, count] = await Category.findAndCount({
+	const [orders, count] = await Order.findAndCount({
 		take: limit,
 		skip: (page - 1) * limit,
 		where: {
 			site,
 		},
-		relations: ['products'],
+		relations: ['room','table'],
 	});
 
-	sendResponse(res, true, CODE.SUCCESS, `Category List Data`, {
+	sendResponse(res, true, CODE.SUCCESS, `Orders List Data`, {
 		count,
-		categories,
+		orders,
 	});
 };
 
-export default listCategories;
+export default listOrders;

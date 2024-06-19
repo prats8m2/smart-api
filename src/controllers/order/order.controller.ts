@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import addOrder from './addOrder';
 import deleteOrder from './deleteOrder';
 import getOrder from './getOrder';
-import listCategories from './listOrders';
 import updateOrder from './updateOrder';
+import listOrders from './listOrders';
 
 class OrderController {
 	public add = async (req: Request, res: Response) => {
@@ -19,7 +19,7 @@ class OrderController {
 	};
 
 	public list = async (req: Request, res: Response) => {
-		listCategories(req, res);
+		listOrders(req, res);
 	};
 
 	public delete = async (req: Request, res: Response) => {

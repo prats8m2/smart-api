@@ -5,7 +5,7 @@ import PermissionMiddleware from '../middlewares/authorization/permission.middle
 import addOrderValidation from '../middlewares/validations/order/addOrder.validation';
 import deleteOrderValidation from '../middlewares/validations/order/deleteOrder.validation';
 import getOrderValidation from '../middlewares/validations/order/getOrder.validation';
-import listCategoriesValidation from '../middlewares/validations/order/listOrders.validation';
+import listOrdersValidation from '../middlewares/validations/order/listOrders.validation';
 import updateOrderValidation from '../middlewares/validations/order/updateOrder.validation';
 
 const router = Router();
@@ -36,7 +36,7 @@ router.get(
 router.get(
 	'/list/:site/:page/:limit',
 	AuthMiddleware,
-	listCategoriesValidation,
+	listOrdersValidation,
 	PermissionMiddleware,
 	orderController.list
 );
