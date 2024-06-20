@@ -4,6 +4,7 @@ import deleteOrder from './deleteOrder';
 import getOrder from './getOrder';
 import updateOrder from './updateOrder';
 import listOrders from './listOrders';
+import updateOrderStatus from './updateOrderStatus';
 
 class OrderController {
 	public add = async (req: Request, res: Response) => {
@@ -12,6 +13,10 @@ class OrderController {
 
 	public update = async (req: Request, res: Response) => {
 		updateOrder(req, res);
+	};
+
+	public updateStatus = async (req: Request, res: Response) => {
+		updateOrderStatus(req, res);
 	};
 
 	public get = async (req: Request, res: Response) => {

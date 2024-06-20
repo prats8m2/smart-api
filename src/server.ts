@@ -86,7 +86,6 @@ class Server {
 	private socketConfig() {
 		this.io.on('connection', (socket) => {
 			console.log('New client connected');
-			this.io.emit('orderCreated', { a: 'abc' });
 			socket.on('disconnect', () => {
 				console.log('Client disconnected');
 			});

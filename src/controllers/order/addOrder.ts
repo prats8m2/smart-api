@@ -1,15 +1,13 @@
 import { Request, Response } from 'express';
 import { CODE, PAYMENT_TYPE } from '../../../config/config';
+import serverInstance from '../../app';
 import { Order } from '../../db/entity/order.entity';
 import { Order_Product } from '../../db/entity/order_product';
 import { Payment } from '../../db/entity/payment.entity';
 import Logger from '../../utility/logger/logger';
 import { getTotalPrice } from '../../utility/order/getTotalPrice';
 import sendResponse from '../../utility/response';
-import { Server as SocketIOServer } from 'socket.io';
-import serverInstance from '../../app';
 
-import { io } from '../../server'; // Import the io instance from the server file
 
 
 const addOrder = async (req: Request, res: Response) => {

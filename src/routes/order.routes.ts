@@ -7,6 +7,7 @@ import deleteOrderValidation from '../middlewares/validations/order/deleteOrder.
 import getOrderValidation from '../middlewares/validations/order/getOrder.validation';
 import listOrdersValidation from '../middlewares/validations/order/listOrders.validation';
 import updateOrderValidation from '../middlewares/validations/order/updateOrder.validation';
+import updateOrderStatusValidation from '../middlewares/validations/order/updateOrderStatus.validation';
 const router = Router();
 const orderController = new OrderController();
 router.post(
@@ -22,6 +23,14 @@ router.put(
 	updateOrderValidation,
 	PermissionMiddleware,
 	orderController.update
+);
+
+router.put(
+	'/update/status',
+	AuthMiddleware,
+	updateOrderStatusValidation,
+	PermissionMiddleware,
+	orderController.updateStatus
 );
 router.get(
 	'/get/:id',
