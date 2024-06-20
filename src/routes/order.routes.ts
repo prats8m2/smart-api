@@ -7,9 +7,7 @@ import deleteOrderValidation from '../middlewares/validations/order/deleteOrder.
 import getOrderValidation from '../middlewares/validations/order/getOrder.validation';
 import listOrdersValidation from '../middlewares/validations/order/listOrders.validation';
 import updateOrderValidation from '../middlewares/validations/order/updateOrder.validation';
-
 const router = Router();
-
 const orderController = new OrderController();
 router.post(
 	'/add',

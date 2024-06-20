@@ -11,7 +11,6 @@ const listSites = async (req: Request, res: Response) => {
 		page?: number;
 	};
 	const { account, loggedInId, loggedInRole } = res.locals;
-	console.log('loggedInRole:', loggedInRole);
 	Logger.info(`List site request`);
 
 	let sites: Site[];

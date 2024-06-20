@@ -1,8 +1,11 @@
 // Library imports
-import express from "express";
-import bodyParser from "body-parser";
+import express from 'express';
+import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
+import { createServer, Server as HttpServer } from 'http';
+import { Server as SocketIOServer } from 'socket.io';
+
 // File imports
 import userRoutes from './routes/user.routes';
 import authRoutes from './routes/auth.routes';
@@ -20,15 +23,31 @@ import orderRoutes from './routes/order.routes';
 import Database from './db';
 
 class Server {
-	private app;
+	private app: express.Application;
+	private httpServer: HttpServer;
+	public io: SocketIOServer;
 
 	constructor() {
 		this.app = express();
+		this.httpServer = createServer(this.app);
+		this.io = new SocketIOServer(this.httpServer, {
+			cors: {
+				origin: 'http://localhost:4201', // Adjust this to your Angular app's URL
+				methods: ['GET', 'POST'],
+				allowedHeaders: ['my-custom-header'],
+				credentials: true, // Optional. You might need this if you're sending cookies or other credentials
+			},
+		});
+
 		this.config();
 		this.routerConfig();
 		this.databaseConfig();
+		this.socketConfig(); // Added socket configuration
 	}
 
+	public getIo(): SocketIOServer {
+		return this.io;
+	}
 	// Configuration
 	private config() {
 		this.app.use(morgan('dev'));
@@ -36,7 +55,6 @@ class Server {
 		this.app.use(bodyParser.json({ limit: '1mb' })); // 100kb default
 		this.app.use(
 			cors({
-				// disable CORS
 				origin: '*',
 			})
 		);
@@ -58,15 +76,26 @@ class Server {
 		this.app.use('/api/v1/order', orderRoutes);
 	}
 
-	//database
+	// Database
 	private databaseConfig() {
 		const db = new Database();
 		db.connect();
 	}
 
+	// Socket configuration
+	private socketConfig() {
+		this.io.on('connection', (socket) => {
+			console.log('New client connected');
+			this.io.emit('orderCreated', { a: 'abc' });
+			socket.on('disconnect', () => {
+				console.log('Client disconnected');
+			});
+		});
+	}
+
 	public start = (port: number) => {
 		return new Promise((resolve, reject) => {
-			this.app
+			this.httpServer
 				.listen(port, () => {
 					resolve(port);
 				})
@@ -74,5 +103,4 @@ class Server {
 		});
 	};
 }
-
 export default Server;

@@ -6,11 +6,17 @@ import { Payment } from '../../db/entity/payment.entity';
 import Logger from '../../utility/logger/logger';
 import { getTotalPrice } from '../../utility/order/getTotalPrice';
 import sendResponse from '../../utility/response';
+import { Server as SocketIOServer } from 'socket.io';
+import serverInstance from '../../app';
+
+import { io } from '../../server'; // Import the io instance from the server file
+
 
 const addOrder = async (req: Request, res: Response) => {
 	//fetch data from body
 	const { type, table, site, room, products } = req.body;
 	Logger.info(`Add order request`);
+	const io = serverInstance.getIo(); // Get the io instance from the server
 
 	//fetch product prices
 	const totalPrice = await getTotalPrice(products);
@@ -39,7 +45,8 @@ const addOrder = async (req: Request, res: Response) => {
 		orderProduct.quantity = product.quantity;
 		await orderProduct.save();
 	});
+	io.emit('orderCreated', order);
 	sendResponse(res, true, CODE.SUCCESS, `Order added Successful`, orderResult);
-};
+};;;
 
 export default addOrder;

@@ -57,6 +57,7 @@
     "random": "^3.0.6",
     "reflect-metadata": "^0.1.13",
     "snowflake-sdk": "^1.6.8",
+    "socket.io": "^4.7.5",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.3.0",
     "typeorm": "^0.2.45",
