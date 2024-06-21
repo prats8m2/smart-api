@@ -24,7 +24,7 @@ const listDevices = async (req: Request, res: Response) => {
 			site: siteId,
 			status: 1,
 		},
-		relations: ['site', 'room'],
+		relations: ['site', 'room', 'table'],
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Device List Data`, { count, devices });
