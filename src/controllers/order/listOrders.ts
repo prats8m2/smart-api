@@ -23,7 +23,7 @@ const listOrders = async (req: Request, res: Response) => {
 		where: {
 			site,
 		},
-		relations: ['room','table'],
+		relations: ['room', 'table', 'payment'],
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Orders List Data`, {
