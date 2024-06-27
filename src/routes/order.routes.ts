@@ -41,7 +41,7 @@ router.get(
 );
 
 router.get(
-	'/list/:site/:page/:limit',
+	'/list/:site/:type/:page/:limit',
 	AuthMiddleware,
 	listOrdersValidation,
 	PermissionMiddleware,

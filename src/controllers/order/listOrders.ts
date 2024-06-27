@@ -9,10 +9,12 @@ const listOrders = async (req: Request, res: Response) => {
 		limit = MAX_ROW,
 		page = 1,
 		site,
+		type,
 	} = req.params as {
 		limit?: number;
 		page?: number;
 		site?: string;
+		type?: string;
 	};
 	Logger.info(`List order request`);
 
@@ -22,6 +24,7 @@ const listOrders = async (req: Request, res: Response) => {
 		skip: (page - 1) * limit,
 		where: {
 			site,
+			categoryType: type,
 		},
 		relations: ['room', 'table', 'payment'],
 	});
