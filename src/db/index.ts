@@ -23,6 +23,7 @@ import { Order } from './entity/order.entity';
 import { Payment } from './entity/payment.entity';
 import { Events } from './entity/event.entity';
 import { Order_Product } from './entity/order_product';
+import { Feedback } from './entity/feedback.entity';
 
 class Database {
 	public connect = () => {
@@ -53,7 +54,8 @@ class Database {
 				Order,
 				Order_Product,
 				Payment,
-				Events
+				Events,
+				Feedback
 			],
 			subscribers: [],
 			logging: DB_CONFIG.logging === 'true',

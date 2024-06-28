@@ -20,6 +20,7 @@ import productRoutes from './routes/product.routes';
 import menuRoutes from './routes/menu.routes';
 import orderRoutes from './routes/order.routes';
 import eventRoutes from './routes/event.routes';
+import feedbackRoutes from './routes/feedback.routes';
 
 import Database from './db';
 
@@ -76,6 +77,7 @@ class Server {
 		this.app.use('/api/v1/menu', menuRoutes);
 		this.app.use('/api/v1/order', orderRoutes);
 		this.app.use('/api/v1/event', eventRoutes);
+		this.app.use('/api/v1/feedback', feedbackRoutes);
 	}
 
 	// Database

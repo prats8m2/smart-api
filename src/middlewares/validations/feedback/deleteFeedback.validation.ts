@@ -3,7 +3,7 @@ import Joi from 'joi';
 import { CODE, EVENT_TYPE } from '../../../../config/config';
 import sendResponse from '../../../utility/response';
 
-const getEventValidation = async (
+const deleteFeedbackValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
@@ -25,9 +25,9 @@ const getEventValidation = async (
 		return false;
 	}
 
-	res.locals.action = 'VIEW-EVENT';
+	res.locals.action = 'DELETE-FEEDBACK';
 
 	next();
 };
 
-export default getEventValidation;
+export default deleteFeedbackValidation;

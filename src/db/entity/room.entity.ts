@@ -17,6 +17,7 @@ import { Device } from './device.entity';
 import { Site } from './site.entity';
 import { Wifi } from './wifi.entity';
 import { Order } from './order.entity';
+import { Feedback } from './feedback.entity';
 // Table: Room
 @Entity()
 export class Room extends BaseEntity {
@@ -45,6 +46,9 @@ export class Room extends BaseEntity {
 
 	@OneToMany(() => Order, (order) => order.room)
 	orders: Order[];
+
+	@OneToMany(() => Feedback, (feedback) => feedback.room)
+	feedbacks: Feedback[];
 
 	@OneToOne(() => Device)
 	@JoinColumn()

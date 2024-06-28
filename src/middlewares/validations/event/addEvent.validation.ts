@@ -32,6 +32,7 @@ const addEventValidation = async (
 			'Invalid Request',
 			error?.details
 		);
+		return false;
 	}
 
 	res.locals.action = 'ADD-EVENT';

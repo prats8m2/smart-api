@@ -1,15 +1,17 @@
 import { NextFunction, Request, Response } from 'express';
 import Joi from 'joi';
-import { CODE, EVENT_TYPE } from '../../../../config/config';
+import { CODE } from '../../../../config/config';
 import sendResponse from '../../../utility/response';
 
-const getEventValidation = async (
+const listFeedbackValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
 	const validationSchema = Joi.object({
-		id: Joi.number().required(),
+		siteId: Joi.number().required(),
+		page: Joi.number().required(),
+		limit: Joi.number().required(),
 	});
 
 	const { error } = validationSchema.validate(req.params);
@@ -25,9 +27,9 @@ const getEventValidation = async (
 		return false;
 	}
 
-	res.locals.action = 'VIEW-EVENT';
+	res.locals.action = 'LIST-FEEDBACK';
 
 	next();
 };
 
-export default getEventValidation;
+export default listFeedbackValidation;

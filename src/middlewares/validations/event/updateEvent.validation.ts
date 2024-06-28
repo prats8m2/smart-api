@@ -33,6 +33,7 @@ const updateEventValidation = async (
 			'Invalid Request',
 			error?.details
 		);
+		return false;
 	}
 
 	res.locals.action = 'UPDATE-EVENT';

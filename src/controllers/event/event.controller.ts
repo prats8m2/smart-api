@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import addEvent from './addEvent';
-import updateEvent from './UpdateEvent';
+import updateEvent from './updateEvent';
 import getEvent from './getEvent';
 import deleteEvent from './deleteEvent';
 import listEvents from './listEvents';

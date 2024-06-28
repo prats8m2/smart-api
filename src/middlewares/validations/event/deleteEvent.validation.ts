@@ -22,6 +22,7 @@ const deleteEventValidation = async (
 			'Invalid Request',
 			error?.details
 		);
+		return false;
 	}
 
 	res.locals.action = 'DELETE-EVENT';

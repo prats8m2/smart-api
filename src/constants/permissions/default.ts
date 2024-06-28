@@ -134,6 +134,11 @@ const ALL_PERMISSION = [
 			'VIEW-EVENT',
 		],
 	},
+	{
+		category: 'Feedback',
+		categoryId: 13,
+		permissions: ['ADD-FEEDBACK', 'DELETE-FEEDBACK', 'LIST-FEEDBACK'],
+	},
 ];
 
 export default ALL_PERMISSION;
