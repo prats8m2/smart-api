@@ -19,6 +19,7 @@ import categoryRoutes from './routes/category.routes';
 import productRoutes from './routes/product.routes';
 import menuRoutes from './routes/menu.routes';
 import orderRoutes from './routes/order.routes';
+import eventRoutes from './routes/event.routes';
 
 import Database from './db';
 
@@ -74,6 +75,7 @@ class Server {
 		this.app.use('/api/v1/product', productRoutes);
 		this.app.use('/api/v1/menu', menuRoutes);
 		this.app.use('/api/v1/order', orderRoutes);
+		this.app.use('/api/v1/event', eventRoutes);
 	}
 
 	// Database

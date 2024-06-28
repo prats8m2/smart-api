@@ -21,6 +21,7 @@ import { MenuItem } from './entity/menu_items.entity';
 import { Menu } from './entity/menu.entity';
 import { Order } from './entity/order.entity';
 import { Payment } from './entity/payment.entity';
+import { Events } from './entity/event.entity';
 import { Order_Product } from './entity/order_product';
 
 class Database {
@@ -52,6 +53,7 @@ class Database {
 				Order,
 				Order_Product,
 				Payment,
+				Events
 			],
 			subscribers: [],
 			logging: DB_CONFIG.logging === 'true',

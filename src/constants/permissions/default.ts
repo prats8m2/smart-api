@@ -123,6 +123,17 @@ const ALL_PERMISSION = [
 			'MARK-ORDER-COMPLETE',
 		],
 	},
+	{
+		category: 'EVENT',
+		categoryId: 12,
+		permissions: [
+			'ADD-EVENT',
+			'UPDATE-EVENT',
+			'DELETE-EVENT',
+			'LIST-EVENT',
+			'VIEW-EVENT',
+		],
+	},
 ];
 
 export default ALL_PERMISSION;

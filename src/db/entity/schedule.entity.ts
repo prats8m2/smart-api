@@ -21,6 +21,12 @@ export class Schedule extends BaseEntity {
 	endDate: string;
 
 	@Column({ nullable: true })
+	startTime: string;
+
+	@Column({ nullable: true })
+	endTime: string;
+
+	@Column({ nullable: true })
 	sunday_startTime: string;
 
 	@Column({ nullable: true })

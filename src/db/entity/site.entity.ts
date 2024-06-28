@@ -19,6 +19,7 @@ import { User } from './user.entity';
 import { Wifi } from './wifi.entity';
 import { Category } from './category.entity';
 import { Product } from './product.entity';
+import { Events } from './event.entity';
 // Table: Site
 @Entity()
 export class Site extends BaseEntity {
@@ -53,6 +54,9 @@ export class Site extends BaseEntity {
 
 	@OneToMany(() => Category, (category) => category.site)
 	categories: Category[];
+
+	@OneToMany(() => Events, (event) => event.site)
+	events: Events[];
 
 	// @OneToMany(() => Menu, (menu) => menu.site)
 	// @JoinTable()

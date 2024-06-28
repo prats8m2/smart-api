@@ -127,4 +127,12 @@ export const PAYMENT_TYPE: any = {
 };
 
 
+export const EVENT_TYPE: any = {
+	IN_HOUSE: 1,
+	OUTSIDE: 2,
+};
+
+
+
+
 
