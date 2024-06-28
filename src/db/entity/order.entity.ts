@@ -8,19 +8,16 @@ import {
 	JoinTable,
 	ManyToMany,
 	ManyToOne,
-	OneToMany,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
 } from 'typeorm';
-import { Device } from './device.entity';
-import { Site } from './site.entity';
-import { Wifi } from './wifi.entity';
+import { Payment } from './payment.entity';
 import { Product } from './product.entity';
 import { Room } from './room.entity';
+import { Site } from './site.entity';
 import { Table } from './table.entity';
-import { Payment } from './payment.entity';
 // Table: Order
 @Entity()
 export class Order extends BaseEntity {
@@ -42,6 +39,14 @@ export class Order extends BaseEntity {
 		default: 1,
 	})
 	status: string;
+
+	//1: Food, 2: Amenities
+	@Column({
+		type: 'enum',
+		enum: [1, 2],
+		default: 1,
+	})
+	categoryType: string;
 
 	@ManyToOne(() => Site, (site) => site.rooms)
 	@JoinTable()

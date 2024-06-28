@@ -8,11 +8,9 @@ import Logger from '../../utility/logger/logger';
 import { getTotalPrice } from '../../utility/order/getTotalPrice';
 import sendResponse from '../../utility/response';
 
-
-
 const addOrder = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { type, table, site, room, products } = req.body;
+	const { type, table, site, room, products, categoryType } = req.body;
 	Logger.info(`Add order request`);
 	const io = serverInstance.getIo(); // Get the io instance from the server
 
@@ -32,6 +30,7 @@ const addOrder = async (req: Request, res: Response) => {
 	order.site = site;
 	order.room = room;
 	order.table = table;
+	order.categoryType = categoryType;
 	order.payment = paymentResult;
 
 	//create order_product
@@ -45,6 +44,6 @@ const addOrder = async (req: Request, res: Response) => {
 	});
 	io.emit('orderCreated', order);
 	sendResponse(res, true, CODE.SUCCESS, `Order added Successful`, orderResult);
-};;;
+};
 
 export default addOrder;
