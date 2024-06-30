@@ -5,6 +5,7 @@ import getOrder from './getOrder';
 import updateOrder from './updateOrder';
 import listOrders from './listOrders';
 import updateOrderStatus from './updateOrderStatus';
+import assignOrder from './assignOrder';
 
 class OrderController {
 	public add = async (req: Request, res: Response) => {
@@ -30,6 +31,13 @@ class OrderController {
 	public delete = async (req: Request, res: Response) => {
 		deleteOrder(req, res);
 	};
+
+	public assignOrder = async (req: Request, res: Response) => {
+		assignOrder(req, res);
+	};
+
 }
+
+
 
 export default OrderController;

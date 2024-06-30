@@ -26,7 +26,7 @@ const listOrders = async (req: Request, res: Response) => {
 			site,
 			categoryType: type,
 		},
-		relations: ['room', 'table', 'payment'],
+		relations: ['room', 'table', 'payment', 'user'],
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Orders List Data`, {

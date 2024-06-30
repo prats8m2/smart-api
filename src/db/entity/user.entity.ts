@@ -7,6 +7,7 @@ import {
 	JoinColumn,
 	ManyToMany,
 	ManyToOne,
+	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
@@ -14,6 +15,7 @@ import {
 import { Account } from './account.entity';
 import { Role } from './role.entity';
 import { Site } from './site.entity';
+import { Order } from './order.entity';
 // Table: User
 @Entity()
 export class User extends BaseEntity {
@@ -62,6 +64,9 @@ export class User extends BaseEntity {
 
 	@ManyToMany(() => Site, (site) => site.users)
 	sites: Site[];
+
+	@OneToMany(() => Order, (order) => order.user)
+	orders: Order[];
 
 	@Column({
 		type: 'enum',

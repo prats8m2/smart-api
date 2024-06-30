@@ -8,6 +8,7 @@ import getOrderValidation from '../middlewares/validations/order/getOrder.valida
 import listOrdersValidation from '../middlewares/validations/order/listOrders.validation';
 import updateOrderValidation from '../middlewares/validations/order/updateOrder.validation';
 import updateOrderStatusValidation from '../middlewares/validations/order/updateOrderStatus.validation';
+import assignOrderValidation from '../middlewares/validations/order/assignOrder.validation';
 const router = Router();
 const orderController = new OrderController();
 router.post(
@@ -54,6 +55,14 @@ router.delete(
 	deleteOrderValidation,
 	PermissionMiddleware,
 	orderController.delete
+);
+
+router.patch(
+	'/assign',
+	AuthMiddleware,
+	assignOrderValidation,
+	PermissionMiddleware,
+	orderController.assignOrder
 );
 
 export default router;
