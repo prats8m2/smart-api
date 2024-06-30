@@ -18,6 +18,7 @@ import { Product } from './product.entity';
 import { Room } from './room.entity';
 import { Site } from './site.entity';
 import { Table } from './table.entity';
+import { User } from './user.entity';
 // Table: Order
 @Entity()
 export class Order extends BaseEntity {
@@ -71,6 +72,10 @@ export class Order extends BaseEntity {
 		inverseJoinColumn: { name: 'product_id', referencedColumnName: 'id' },
 	})
 	products: Product[];
+
+	@ManyToOne(() => User, (user) => user.orders)
+	@JoinTable()
+	user: User;
 
 	@VersionColumn({ select: false })
 	version: number;
