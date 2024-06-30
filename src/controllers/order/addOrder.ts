@@ -24,7 +24,7 @@ const addOrder = async (req: Request, res: Response) => {
 	payment.total = totalPrice;
 	const paymentResult = await payment.save();
 
-	//create an account
+	//create an order
 	let order: Order = new Order();
 	order.type = type;
 	order.site = site;

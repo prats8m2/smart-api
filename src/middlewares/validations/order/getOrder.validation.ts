@@ -1,28 +1,33 @@
 import { Request, Response, NextFunction } from 'express';
 import sendResponse from '../../../utility/response';
 import { CODE } from '../../../../config/config';
+import Joi from 'joi';
 
-const getMenuValidation = async (
+const getOrderValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
-	const { id } = req.params;
+	const validationSchema = Joi.object({
+		id: Joi.number().required(),
+	});
 
-	if (!id) {
+	const { error } = validationSchema.validate(req.params);
+
+	if (error) {
 		sendResponse(
 			res,
 			false,
 			CODE.BAD_REQUEST,
-			'Please enter all mandatory fields',
-			{ id }
+			'Invalid Request',
+			error?.details
 		);
-		return;
+		return false;
 	}
 
-	res.locals.action = 'VIEW-MENU';
+	res.locals.action = 'VIEW-ORDER';
 
 	next();
 };
 
-export default getMenuValidation;
+export default getOrderValidation;

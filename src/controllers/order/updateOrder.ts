@@ -1,33 +1,61 @@
 import { Request, Response } from 'express';
-import { CODE } from '../../../config/config';
-import { Category } from '../../db/entity/category.entity';
-import { Schedule } from '../../db/entity/schedule.entity';
+import { CODE, PAYMENT_TYPE } from '../../../config/config';
+import serverInstance from '../../app';
+import { Order } from '../../db/entity/order.entity';
+import { Order_Product } from '../../db/entity/order_product';
+import { Payment } from '../../db/entity/payment.entity';
 import Logger from '../../utility/logger/logger';
-import CREATE_SCHEDULE from '../../utility/parseSchedule';
+import { getTotalPrice } from '../../utility/order/getTotalPrice';
 import sendResponse from '../../utility/response';
 
-const updateCategory = async (req: Request, res: Response) => {
+const updateOrder = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { id, name, description, type, sequence, scheduleData, products } =
-		req.body;
-	Logger.info(`Update category request`);
+	const { id, type, table, site, room, products, categoryType } = req.body;
+	Logger.info(`Add order request`);
+	const io = serverInstance.getIo(); // Get the io instance from the server
 
-	const category: Category = await Category.findOne(id);
+	//fetch product prices
+	const totalPrice = await getTotalPrice(products);
 
-	//update schedule
-	let schedule: Schedule = await Schedule.findOne(category?.schedule?.id);
-	const newSchedule = CREATE_SCHEDULE(schedule, scheduleData);
-	await newSchedule.save();
+	// fetch order details
+	const order: Order = await Order.findOne(id, {
+		relations: ['room', 'table', 'payment', 'user'],
+	});
 
-	//create an account
-	category.name = name;
-	category.type = type;
-	category.description = description;
-	category.sequence = sequence;
-	category.products = products;
+	//fetch payment
+	let payment = await Payment.findOne(order?.payment?.id);
+	// payment.type = PAYMENT_TYPE.OFFLINE;
+	payment.site = site;
+	payment.total = totalPrice;
+	await payment.save();
 
-	const result = await category.save();
-	sendResponse(res, true, CODE.SUCCESS, `Category updated Successful`, result);
+	//update order
+	order.type = type;
+	order.site = site;
+	order.room = room;
+	order.table = table;
+	order.categoryType = categoryType;
+
+	const orderResult = await order.save();
+
+	//delete all previous products of order
+	await Order_Product.delete({ order_id: id });
+
+	//create order_product
+	products.map(async (product: any) => {
+		const orderProduct = new Order_Product();
+		orderProduct.order_id = id;
+		orderProduct.product_id = product.id;
+		orderProduct.quantity = product.quantity;
+		await orderProduct.save();
+	});
+	sendResponse(
+		res,
+		true,
+		CODE.SUCCESS,
+		`Category updated Successful`,
+		orderResult
+	);
 };
 
-export default updateCategory;
+export default updateOrder;

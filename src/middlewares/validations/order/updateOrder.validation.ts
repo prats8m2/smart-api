@@ -1,50 +1,39 @@
 import { NextFunction, Request, Response } from 'express';
-import { CODE, TYPE } from '../../../../config/config';
+import Joi from 'joi';
+import { CODE, ORDER_TYPE } from '../../../../config/config';
+import { productSchema } from '../../../interface/schema/productSchema';
 import sendResponse from '../../../utility/response';
-import { Not } from 'typeorm';
-import { Menu } from '../../../db/entity/menu.entity';
 
-const updateMenuValidation = async (
+const updateOrderValidation = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
-	const { id, name, type, menuItemsData, scheduleData, site } = req.body;
+	const validationSchema = Joi.object({
+		id: Joi.number().required(),
+		type: Joi.number().valid(...Object.values(ORDER_TYPE)),
+		table: Joi.number(),
+		room: Joi.number(),
+		products: Joi.array().items(productSchema).required(),
+		site: Joi.number().required(),
+	});
 
-	if (!id || !name || !type || !menuItemsData || !scheduleData || !site) {
+	const { error } = validationSchema.validate(req.body);
+
+	if (error) {
 		sendResponse(
 			res,
 			false,
 			CODE.BAD_REQUEST,
-			'Please enter all mandatory fields',
-			{
-				id,
-				name,
-				type,
-				menuItemsData,
-				scheduleData,
-				site,
-			}
+			'Invalid Request',
+			error?.details
 		);
-		return;
+		return false;
 	}
 
-	if (type !== TYPE.AMENITIES && type !== TYPE.FOOD) {
-		sendResponse(res, false, CODE.BAD_REQUEST, 'Invalid type', {
-			type,
-		});
-		return;
-	}
-
-	const isMenuExist = await Menu.findOne({ name, site, id: Not(id) });
-	if (isMenuExist) {
-		sendResponse(res, false, CODE.CONFLICT, 'Menu name already exist ', name);
-		return;
-	}
-
-	res.locals.action = 'UPDATE-MENU';
+	res.locals.action = 'UPDATE-ORDER';
 
 	next();
 };
 
-export default updateMenuValidation;
+export default updateOrderValidation;

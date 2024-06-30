@@ -1,20 +1,20 @@
 import { Request, Response } from 'express';
-import sendResponse from '../../utility/response';
-import Logger from '../../utility/logger/logger';
 import { CODE } from '../../../config/config';
-import { Category } from '../../db/entity/category.entity';
+import { Order } from '../../db/entity/order.entity';
+import Logger from '../../utility/logger/logger';
+import sendResponse from '../../utility/response';
 
-const getCategory = async (req: Request, res: Response) => {
+const getOrder = async (req: Request, res: Response) => {
 	//fetch data from body
 	const { id } = req.params;
-	Logger.info(`Get Category request`);
+	Logger.info(`Get Prder request`);
 
 	//create a user
-	const category = await Category.findOne(id, {
-		relations: ['site', 'site.account', 'schedule', 'products'],
+	const order = await Order.findOne(id, {
+		relations: ['room', 'table', 'payment', 'user'],
 	});
 
-	sendResponse(res, true, CODE.SUCCESS, `Category Data`, category);
+	sendResponse(res, true, CODE.SUCCESS, `Order Data`, order);
 };
 
-export default getCategory;
+export default getOrder;
