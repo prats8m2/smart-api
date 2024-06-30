@@ -9,14 +9,10 @@ const getEvent = async (req: Request, res: Response) => {
 	const { id } = req.params;
 	Logger.info(`Event Get request`);
 
-	const eventDetails: Events = await Events.findOne(id,{relations:['schedule']});
-	sendResponse(
-		res,
-		true,
-		CODE.SUCCESS,
-		`Event Data`,
-		eventDetails
-	);
+	const eventDetails: Events = await Events.findOne(id, {
+		relations: ['site', 'site.account', 'schedule'],
+	});
+	sendResponse(res, true, CODE.SUCCESS, `Event Data`, eventDetails);
 };
 
 export default getEvent;
