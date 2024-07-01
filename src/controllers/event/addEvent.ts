@@ -13,10 +13,10 @@ const addEvent = async (req: Request, res: Response) => {
 		inHouse,
 		location,
 		googleLocation,
-		enntryFee,
+		entryFee,
 		site,
 		startDate,
-		endData,
+		endDate,
 		startTime,
 		endTime,
 	} = req.body;
@@ -26,7 +26,7 @@ const addEvent = async (req: Request, res: Response) => {
 	//create schedule
 	let newSchedule: Schedule = new Schedule();
 	newSchedule.startDate = startDate;
-	newSchedule.endDate = endData;
+	newSchedule.endDate = endDate;
 	newSchedule.startTime = startTime;
 	newSchedule.endTime = endTime;
 	const scheduleResult = await newSchedule.save();
@@ -35,7 +35,7 @@ const addEvent = async (req: Request, res: Response) => {
 	let eventObj: Events = new Events();
 	eventObj.name = name;
 	eventObj.description = description;
-	eventObj.enntryFee = enntryFee;
+	eventObj.entryFee = entryFee;
 	eventObj.inHouse = inHouse;
 	eventObj.location = location;
 	eventObj.googleLocation = googleLocation;

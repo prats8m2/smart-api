@@ -41,7 +41,7 @@ export class Events extends BaseEntity {
 	googleLocation: string;
 
 	@Column({ nullable: true })
-	enntryFee: number;
+	entryFee: number;
 
 	@ManyToOne(() => Site, (site) => site.events)
 	@JoinTable()

@@ -23,7 +23,9 @@ const updateEvent = async (req: Request, res: Response) => {
 	const { loggedInId } = res.locals;
 	Logger.info(`event Update request`);
 
-	const eventDetails: Events = await Events.findOne(id, {relations:['schedule']});
+	const eventDetails: Events = await Events.findOne(id, {
+		relations: ['schedule'],
+	});
 	//create schedule
 	let schedule: Schedule = await Schedule.findOne(eventDetails?.schedule?.id);
 	schedule.startDate = startDate;
@@ -35,7 +37,7 @@ const updateEvent = async (req: Request, res: Response) => {
 	//update an event
 	eventDetails.name = name;
 	eventDetails.description = description;
-	eventDetails.enntryFee = enntryFee;
+	eventDetails.entryFee = enntryFee;
 	eventDetails.inHouse = inHouse;
 	eventDetails.location = location;
 	eventDetails.googleLocation = googleLocation;
@@ -44,7 +46,13 @@ const updateEvent = async (req: Request, res: Response) => {
 
 	const eventResult = await eventDetails.save();
 
-	sendResponse(res, true, CODE.SUCCESS, `Event updated Successful`, eventResult);
+	sendResponse(
+		res,
+		true,
+		CODE.SUCCESS,
+		`Event updated Successful`,
+		eventResult
+	);
 };
 
 export default updateEvent;
