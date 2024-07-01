@@ -19,5 +19,6 @@ export const CLEAR_DB = `Truncate Table
       "feedback",
       "schedule",
       "payment",
+      "session",
       "site",
       "account" `;

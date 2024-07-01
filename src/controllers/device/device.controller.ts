@@ -5,6 +5,7 @@ import getDevice from './getDevice';
 import listDevices from './listDevices';
 import updateDevice from './updateDevice';
 import listAvailableDevices from './listAvailableDevices';
+import createDeviceToken from './createDeviceToken';
 
 class DeviceController {
 	public add = async (req: Request, res: Response) => {
@@ -29,6 +30,10 @@ class DeviceController {
 
 	public listAvailableDevices = async (req: Request, res: Response) => {
 		listAvailableDevices(req, res);
+	};
+
+	public createDeviceToken = async (req: Request, res: Response) => {
+		createDeviceToken(req, res);
 	};
 }
 

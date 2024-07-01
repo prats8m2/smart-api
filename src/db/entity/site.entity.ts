@@ -20,6 +20,7 @@ import { Wifi } from './wifi.entity';
 import { Category } from './category.entity';
 import { Product } from './product.entity';
 import { Events } from './event.entity';
+import { Session } from './session.entity';
 // Table: Site
 @Entity()
 export class Site extends BaseEntity {
@@ -51,6 +52,9 @@ export class Site extends BaseEntity {
 
 	@OneToMany(() => Device, (device) => device.site)
 	devices: Device[];
+
+	@OneToMany(() => Session, (session) => session.site)
+	sessions: Session[];
 
 	@OneToMany(() => Category, (category) => category.site)
 	categories: Category[];

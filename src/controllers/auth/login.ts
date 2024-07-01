@@ -53,6 +53,6 @@ const login = async (req: Request, res: Response) => {
 
 	// Respond with a success message and the user data along with the token.
 	sendResponse(res, true, CODE.SUCCESS, `Login Successful`, { user, token });
-};;;;;;;;
+};
 
 export default login;

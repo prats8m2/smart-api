@@ -57,4 +57,9 @@ router.get(
 	deviceController.listAvailableDevices
 );
 
+router.get(
+	'/generate/token/:id',
+	deviceController.createDeviceToken
+);
+
 export default router;

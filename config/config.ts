@@ -25,6 +25,9 @@ export const DEFAULT_SUPER_ADMIN_CREDS = {
   PASSWORD: process.env.SUPER_ADMIN_PASSWORD,
 };
 
+export const WEB_URL = 'http://localhost:4201';
+export const QR_URL = `${WEB_URL}/app`;
+
 export const VALIDATION = {
 	email:
 		"^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\\.?[a-zA-Z0-9])*\\.[a-zA-Z](-?[a-zA-Z0-9])+$",
