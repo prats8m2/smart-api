@@ -7,6 +7,7 @@ import listMenusValidation from '../middlewares/validations/menu/listMenus.valid
 import updateMenuValidation from '../middlewares/validations/menu/updateMenu.validation';
 import MenuController from '../controllers/menu/menu.controller';
 import getMenuValidation from '../middlewares/validations/menu/getMenu.validation';
+import AppAuthMiddleware from '../middlewares/authorization/appAuth.middleware';
 
 const router = Router();
 
@@ -47,6 +48,13 @@ router.delete(
 	deleteMenuValidation,
 	PermissionMiddleware,
 	menuController.delete
+);
+
+
+router.get(
+	'/app/',
+	AppAuthMiddleware,
+	menuController.appMenu
 );
 
 export default router;

@@ -4,6 +4,7 @@ import deleteMenu from './deleteMenu';
 import getMenu from './getMenu';
 import listMenus from './listMenus';
 import updateMenu from './updateMenu';
+import getAppMenu from './getAppMenu';
 
 class MenuController {
 	public add = async (req: Request, res: Response) => {
@@ -24,6 +25,10 @@ class MenuController {
 
 	public delete = async (req: Request, res: Response) => {
 		deleteMenu(req, res);
+	};
+
+	public appMenu = async (req: Request, res: Response) => {
+		getAppMenu(req, res);
 	};
 }
 

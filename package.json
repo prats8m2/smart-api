@@ -48,7 +48,7 @@
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.23",
     "md5": "^2.3.0",
-    "moment": "^2.29.1",
+    "moment": "^2.30.1",
     "morgan": "^1.10.0",
     "ncp": "^2.0.0",
     "nodemailer": "^6.7.3",
