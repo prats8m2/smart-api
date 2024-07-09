@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
-import sendResponse from '../../utility/response';
-import Logger from '../../utility/logger/logger';
+import { CODE, MAX_ROW } from '../../../config/config';
 import { User } from '../../db/entity/user.entity';
-import { CODE, MAX_ROW, ROLES } from '../../../config/config';
-import { Role } from '../../db/entity/role.entity';
+import Logger from '../../utility/logger/logger';
+import sendResponse from '../../utility/response';
 const listStaff = async (req: Request, res: Response) => {
 	//fetch data from body
 	const {
@@ -17,7 +16,8 @@ const listStaff = async (req: Request, res: Response) => {
 	};
 	Logger.info(`List staff request`);
 
-	//create a user
+
+	//list Staff
 	const [users, count] = await User.findAndCount({
 		take: limit,
 		skip: (page - 1) * limit,
