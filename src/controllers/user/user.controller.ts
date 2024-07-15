@@ -5,6 +5,7 @@ import getUser from './getUser'
 import listUsers from './listUsers';
 import deleteUser from './deleteUser';
 import listAccounts from './listAccounts';
+import listUsersToAssign from './listUsersToAssign';
 
 class UserController {
 	public add = async (req: Request, res: Response) => {
@@ -29,6 +30,10 @@ class UserController {
 
 	public listAccounts = async (req: Request, res: Response) => {
 		listAccounts(req, res);
+	};
+
+	public listUsersToAssign = async (req: Request, res: Response) => {
+		listUsersToAssign(req, res);
 	};
 }
 

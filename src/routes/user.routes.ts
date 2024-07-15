@@ -8,6 +8,7 @@ import getUserValidation from '../middlewares/validations/user/getUser.validatio
 import listUsersValidation from '../middlewares/validations/user/listUsers.validation';
 import deleteUserValidation from '../middlewares/validations/user/deleteUser.validation';
 import listAccountValidation from '../middlewares/validations/user/listAccount.validation';
+import listUsersToAssign from "../middlewares/validations/user/listUsersToAssign.validation";
 
 const router = Router();
 
@@ -56,6 +57,14 @@ router.get(
 	listAccountValidation,
 	PermissionMiddleware,
 	userController.listAccounts
+);
+
+router.get(
+	'/assign/list/:siteId/:page/:limit',
+	AuthMiddleware,
+	listUsersToAssign,
+	PermissionMiddleware,
+	userController.listUsersToAssign
 );
 
 export default router;
