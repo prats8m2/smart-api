@@ -25,10 +25,10 @@ export class Order extends BaseEntity {
 	@PrimaryGeneratedColumn('increment')
 	id: number;
 
-	//1: Table, 2: Room, 3:Online, 4:Offline
+	//1: Table, 2: Room, 3:Online, 4:Offline, 5: SOS, 6: Room Service, 7: Room Cleaning
 	@Column({
 		type: 'enum',
-		enum: [1, 2, 3, 4],
+		enum: [1, 2, 3, 4, 5, 6, 7],
 		default: 4,
 	})
 	type: string;
@@ -48,6 +48,11 @@ export class Order extends BaseEntity {
 		default: 1,
 	})
 	categoryType: string;
+
+	@Column({
+		nullable: true,
+	})
+	description: string;
 
 	@ManyToOne(() => Site, (site) => site.rooms)
 	@JoinTable()
