@@ -21,7 +21,7 @@ const updateSiteSettings = async (req: Request, res: Response) => {
 	site.settings[key] = value;
 
 	// Save the updated site
-	const result = await site.save();
+	const result = await site.settings.save();
 
 	// Send a response indicating the success of the site update
 	sendResponse(res, true, CODE.SUCCESS, `Site updated Successful`, result);
