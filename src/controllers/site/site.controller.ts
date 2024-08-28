@@ -4,6 +4,7 @@ import updateSite from './updateSite';
 import getSite from './getSite';
 import listSites from './listSites';
 import deleteSite from './deleteSite';
+import updateSiteSettings from './updateSiteSettings';
 
 class SiteController {
 	public add = async (req: Request, res: Response) => {
@@ -24,6 +25,10 @@ class SiteController {
 
 	public delete = async (req: Request, res: Response) => {
 		deleteSite(req, res);
+	};
+
+	public updateSiteSettings = async (req: Request, res: Response) => {
+		updateSiteSettings(req, res);
 	};
 }
 

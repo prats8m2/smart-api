@@ -5,6 +5,7 @@ import { CODE } from '../../../config/config';
 import { Site } from '../../db/entity/site.entity';
 import { Wifi } from '../../db/entity/wifi.entity';
 import ENCRYPT from '../../utility/encrypt';
+import { Site_Settings } from '../../db/entity/site_settings.entity';
 
 const addSite = async (req: Request, res: Response) => {
 	//fetch data from body
@@ -25,6 +26,9 @@ const addSite = async (req: Request, res: Response) => {
 		}
 	}
 
+	//create a new site settings
+	let settings: Site_Settings = new Site_Settings();
+	const settingsResult = await settings.save();
 	//create an account
 	let site: Site = new Site();
 	site.name = name;
@@ -32,6 +36,7 @@ const addSite = async (req: Request, res: Response) => {
 	site.address = address;
 	site.account = account;
 	site.wifi = allWifi;
+	site.settings = settingsResult;
 
 	const result = await site.save();
 	sendResponse(res, true, CODE.SUCCESS, `Site added Successful`, result);

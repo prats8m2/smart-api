@@ -4,10 +4,12 @@ import {
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	JoinColumn,
 	JoinTable,
 	ManyToMany,
 	ManyToOne,
 	OneToMany,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 	VersionColumn,
@@ -21,6 +23,7 @@ import { Category } from './category.entity';
 import { Product } from './product.entity';
 import { Events } from './event.entity';
 import { Session } from './session.entity';
+import { Site_Settings } from './site_settings.entity';
 // Table: Site
 @Entity()
 export class Site extends BaseEntity {
@@ -39,6 +42,10 @@ export class Site extends BaseEntity {
 	@ManyToOne(() => Account, (account) => account.sites)
 	@JoinTable()
 	account: Account;
+
+	@OneToOne(() => Site_Settings)
+	@JoinColumn()
+	settings: Site_Settings;
 
 	@ManyToMany(() => User, (user) => user.sites)
 	@JoinTable()

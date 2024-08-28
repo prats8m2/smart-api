@@ -110,11 +110,19 @@ export const TYPE = {
 	AMENITIES: 2,
 };
 
+export const ORDER_CATEGORY = {
+	FOOD: 1,
+	AMENITIES: 2,
+};
+
 export const ORDER_TYPE = {
 	TABLE: 1,
 	ROOM: 2,
 	ONLINE: 3,
 	OFFLINE: 4,
+	SOS: 5,
+	ROOM_SERVICE: 6,
+	ROOM_CLEANING: 7,
 };
 
 export const ORDER_STATUS = {
