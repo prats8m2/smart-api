@@ -11,6 +11,7 @@ const getAppMenu = async (req: Request, res: Response) => {
 	Logger.info(`Get App Menu request`);
 	// Create a Set to track checked categories
 	const checkedCategories = new Set();
+	const allowedCategories = new Set();
 
 	//get a menu
 	const menus = await Menu.find({
@@ -19,9 +20,7 @@ const getAppMenu = async (req: Request, res: Response) => {
 	});
 
 	// Extracting product and category IDs from the menuItems
-	const currentMenu = menus.find((menu) =>
-		checkCurrentSchedule(menu.schedule)
-	);
+	const currentMenu = menus.find((menu) => checkCurrentSchedule(menu.schedule));
 
 	//select only first menu qualifying criteria
 	const menu = currentMenu;
@@ -38,14 +37,15 @@ const getAppMenu = async (req: Request, res: Response) => {
 
 	// Filter menuItems based on category schedule
 	const filteredMenuItems = menuItems.menuItems.filter((item) => {
-		const categoryId = item.category.id;
+		const categoryId = item?.category?.id;
 
 		// If the category has not been checked, check its schedule and add it to the Set
 		if (!checkedCategories.has(categoryId)) {
-			const isCategoryCurrent = checkCurrentSchedule(item.category.schedule);
+			const isCategoryCurrent = checkCurrentSchedule(item?.category?.schedule);
 
 			// If the category is current, add it to the Set and return true
 			if (isCategoryCurrent) {
+				allowedCategories.add(categoryId);
 				checkedCategories.add(categoryId);
 				return true;
 			}
@@ -53,23 +53,42 @@ const getAppMenu = async (req: Request, res: Response) => {
 			// If the category is not current, add it to the Set and return false
 			checkedCategories.add(categoryId);
 			return false;
+		} else {
+			if (allowedCategories.has(categoryId)) {
+				return true;
+			} else {
+				return false;
+			}
 		}
-
-		// If the category has already been checked, assume it was not current
-		return false;
 	});
 
-	// Group products by category
+	// Group products by category, storing categories as an array
 	const categorizedProducts = filteredMenuItems.reduce(
 		(acc: any, item: any) => {
 			const categoryName = item.category.name;
-			if (!acc[categoryName]) {
-				acc[categoryName] = [];
+			const categoryId = item.category.id;
+
+			// Find the existing category in the accumulator array
+			let category = acc.find((c: any) => c.category.id === categoryId);
+
+			// If the category doesn't exist in the accumulator, create a new entry
+			if (!category) {
+				category = {
+					category: {
+						id: categoryId,
+						name: categoryName,
+					},
+					products: [],
+				};
+				acc.push(category);
 			}
-			acc[categoryName].push(item.product);
+
+			// Push the product into the category's products array
+			category.products.push(item.product);
+
 			return acc;
 		},
-		{}
+		[]
 	);
 
 	sendResponse(res, true, CODE.SUCCESS, `Menu App Data`, categorizedProducts);
