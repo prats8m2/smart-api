@@ -33,6 +33,7 @@ const addOrderValidation = async (
 			}),
 		site: Joi.number().required(),
 		description: Joi.string().min(2).max(500),
+		categoryType: Joi.number(),
 	});
 
 	const { error } = validationSchema.validate(req.body);

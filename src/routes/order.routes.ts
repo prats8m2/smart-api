@@ -15,7 +15,7 @@ router.post(
 	'/add',
 	AuthMiddleware,
 	addOrderValidation,
-	PermissionMiddleware,
+	// PermissionMiddleware,
 	orderController.add
 );
 router.put(

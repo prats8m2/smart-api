@@ -71,6 +71,14 @@ export class Product extends BaseEntity {
 	})
 	isSpecial!: number;
 
+	//1: Veg, 2: Non-Veg, 3: Egg
+	@Column({
+		type: 'enum',
+		enum: [1, 2, 3],
+		default: 1,
+	})
+	productType!: number;
+
 	@VersionColumn({ select: false })
 	version: number;
 
