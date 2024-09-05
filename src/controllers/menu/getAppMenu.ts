@@ -8,6 +8,7 @@ import { checkCurrentSchedule } from '../../helpers/menu/checkCurrentSchedule';
 const getAppMenu = async (req: Request, res: Response) => {
 	//fetch data from body
 	const { siteId } = res.locals;
+	const { type } = req.params;
 	Logger.info(`Get App Menu request`);
 	// Create a Set to track checked categories
 	const checkedCategories = new Set();
@@ -15,7 +16,7 @@ const getAppMenu = async (req: Request, res: Response) => {
 
 	//get a menu
 	const menus = await Menu.find({
-		where: { site: siteId },
+		where: { site: siteId, type: type },
 		relations: ['schedule'],
 	});
 

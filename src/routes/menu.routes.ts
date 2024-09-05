@@ -50,11 +50,6 @@ router.delete(
 	menuController.delete
 );
 
-
-router.get(
-	'/app/',
-	AppAuthMiddleware,
-	menuController.appMenu
-);
+router.get('/app/:type', AppAuthMiddleware, menuController.appMenu);
 
 export default router;
