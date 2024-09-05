@@ -10,10 +10,13 @@ const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
 		try {
 			// Verify the token's authenticity and decode its content.
 			const data: any = verify(token, JWT_SECRET_KEY);
-			const { role, id } = data; // Extract user role and ID from the decoded token.
+			const { role, id, roomId, tableId, siteId } = data; // Extract user role and ID from the decoded token.
 			let { account } = data; // Extract user's associated account from the token.
 			res.locals.loggedInId = id; // Store the user's ID in the response object.
 			res.locals.loggedInRole = role; // Store the user's role in the response object.
+			res.locals.room = roomId; // Store the user's role in the response object.
+			res.locals.table = tableId; // Store the user's role in the response object.
+			res.locals.site = siteId; // Store the user's role in the response object.
 
 			// If no account is provided in the token, attempt to extract it from request parameters.
 			if (!account) {
@@ -44,6 +47,6 @@ const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
 		// If there's no token provided, respond with an "Not Authorized" error.
 		sendResponse(res, false, CODE.UNAUTHORIZED, 'Not Authorized');
 	}
-};;
+};
 
 export default AuthMiddleware;

@@ -5,11 +5,10 @@ import sendResponse from '../../utility/response';
 import { Order } from '../../db/entity/order.entity';
 import { MoreThanOrEqual, LessThanOrEqual } from 'typeorm';
 
-const listOrders = async (req: Request, res: Response) => {
+const listAppOrders = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { site, type, room, table } = req.params as {
+	const { site, room, table } = res.locals as {
 		site?: string;
-		type?: string;
 		room?: number;
 		table?: number;
 	};
@@ -18,16 +17,13 @@ const listOrders = async (req: Request, res: Response) => {
 
 	//create a user
 	const whereClause: any = { site };
-	if (type !== null && type !== undefined) {
-		whereClause.categoryType = type;
-	}
 
 	const currentDate = new Date();
 
 	if (room !== null && room !== undefined) {
 		whereClause.room = { id: room };
 		// Orders after 12:00 PM today
-		whereClause.createdAt = MoreThanOrEqual(
+		whereClause.createdOn = MoreThanOrEqual(
 			new Date(currentDate.setHours(12, 0, 0, 0))
 		);
 	}
@@ -35,7 +31,7 @@ const listOrders = async (req: Request, res: Response) => {
 	if (table !== null && table !== undefined) {
 		whereClause.table = { id: table };
 		// Orders from the last hour
-		whereClause.createdAt = MoreThanOrEqual(
+		whereClause.createdOn = MoreThanOrEqual(
 			new Date(currentDate.getTime() - 60 * 60 * 1000)
 		);
 	}
@@ -43,7 +39,7 @@ const listOrders = async (req: Request, res: Response) => {
 	const [orders, count] = await Order.findAndCount({
 		where: whereClause,
 		relations: ['room', 'table', 'payment', 'user'],
-		order: { createdAt: 'DESC' }, // Most recent orders first
+		order: { createdOn: 'DESC' }, // Most recent orders first
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Orders List Data`, {
@@ -52,4 +48,4 @@ const listOrders = async (req: Request, res: Response) => {
 	});
 };
 
-export default listOrders;
+export default listAppOrders;

@@ -49,6 +49,8 @@ router.get(
 	orderController.list
 );
 
+router.get('/list/app', AuthMiddleware, orderController.listAppOrders);
+
 router.delete(
 	'/delete/:id',
 	AuthMiddleware,
