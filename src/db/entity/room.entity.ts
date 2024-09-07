@@ -6,6 +6,7 @@ import {
 	Entity,
 	JoinColumn,
 	JoinTable,
+	ManyToMany,
 	ManyToOne,
 	OneToMany,
 	OneToOne,
@@ -41,7 +42,7 @@ export class Room extends BaseEntity {
 	@JoinTable()
 	site: Site;
 
-	@OneToMany(() => Wifi, (wifi) => wifi.room)
+	@ManyToMany(() => Wifi, (wifi) => wifi.room)
 	wifi: Wifi[];
 
 	@OneToMany(() => Order, (order) => order.room)

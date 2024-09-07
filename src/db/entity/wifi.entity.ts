@@ -6,6 +6,7 @@ import {
 	Entity,
 	JoinColumn,
 	JoinTable,
+	ManyToMany,
 	ManyToOne,
 	OneToOne,
 	PrimaryGeneratedColumn,
@@ -15,6 +16,7 @@ import {
 import { Device } from './device.entity';
 import { Site } from './site.entity';
 import { Room } from './room.entity';
+import { Table } from './table.entity';
 // Table: Wifi
 @Entity()
 export class Wifi extends BaseEntity {
@@ -31,9 +33,13 @@ export class Wifi extends BaseEntity {
 	@JoinTable()
 	site: Site;
 
-	@ManyToOne(() => Room, (room) => room.wifi)
+	@ManyToMany(() => Room, (room) => room.wifi)
 	@JoinTable()
 	room: Room;
+
+	@ManyToMany(() => Table, (table) => table.wifis)
+	@JoinTable()
+	tables: Table[];
 
 	@OneToOne(() => Device)
 	@JoinColumn()
