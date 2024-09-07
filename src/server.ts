@@ -34,7 +34,7 @@ class Server {
 		this.httpServer = createServer(this.app);
 		this.io = new SocketIOServer(this.httpServer, {
 			cors: {
-				origin: 'http://localhost:4201', // Adjust this to your Angular app's URL
+				origin: 'http://localhost:4200', // Adjust this to your Angular app's URL
 				methods: ['GET', 'POST'],
 				allowedHeaders: ['my-custom-header'],
 				credentials: true, // Optional. You might need this if you're sending cookies or other credentials

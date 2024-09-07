@@ -12,7 +12,7 @@ const getDevice = async (req: Request, res: Response) => {
 
 	//create a user
 	const device = await Device.findOne(id, {
-		relations: ['site', 'room'],
+		relations: ['site', 'room', 'site.account'],
 	});
 
 	Logger.http(GET_CURRENT_TIME());
