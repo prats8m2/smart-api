@@ -3,4 +3,4 @@ dist
 settings.json
 auditFile
 logs
-# .env
+.env

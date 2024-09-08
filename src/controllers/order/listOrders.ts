@@ -43,7 +43,7 @@ const listOrders = async (req: Request, res: Response) => {
 	const [orders, count] = await Order.findAndCount({
 		where: whereClause,
 		relations: ['room', 'table', 'payment', 'user'],
-		order: { createdAt: 'DESC' }, // Most recent orders first
+		order: { createdOn: 'DESC' }, // Most recent orders first
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Orders List Data`, {
