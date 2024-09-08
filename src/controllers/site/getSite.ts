@@ -12,7 +12,7 @@ const getSite = async (req: Request, res: Response) => {
 
 	//create a user
 	const site = await Site.findOne(id, {
-		relations: ['account', 'wifi', 'settings', 'events'],
+		relations: ['account', 'wifi', 'settings', 'events', 'events.schedule'],
 	});
 
 	let decryptedWifi: any;
