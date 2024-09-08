@@ -1,10 +1,10 @@
-import { Router } from "express";
-import FeedbackController from "../controllers/feedback/feedback.controller";
+import { Router } from 'express';
+import FeedbackController from '../controllers/feedback/feedback.controller';
 import AuthMiddleware from '../middlewares/authorization/auth.middleware';
 import PermissionMiddleware from '../middlewares/authorization/permission.middleware';
-import addFeedbackValidation from "../middlewares/validations/feedback/addFeedback.validation";
-import listFeedbackValidation from "../middlewares/validations/feedback/listFeedback.validation";
-import deleteFeedbackValidation from "../middlewares/validations/feedback/deleteFeedback.validation";
+import addFeedbackValidation from '../middlewares/validations/feedback/addFeedback.validation';
+import listFeedbackValidation from '../middlewares/validations/feedback/listFeedback.validation';
+import deleteFeedbackValidation from '../middlewares/validations/feedback/deleteFeedback.validation';
 
 const router = Router();
 
@@ -13,7 +13,7 @@ router.post(
 	'/add',
 	AuthMiddleware,
 	addFeedbackValidation,
-	PermissionMiddleware,
+	// PermissionMiddleware,
 	feedbackController.add
 );
 
@@ -24,7 +24,6 @@ router.post(
 // 	PermissionMiddleware,
 // 	eventController.update
 // );
-
 
 // router.get(
 // 	'/get/:id',
@@ -41,7 +40,6 @@ router.delete(
 	PermissionMiddleware,
 	feedbackController.delete
 );
-
 
 router.get(
 	'/list/:siteId/:page/:limit',
