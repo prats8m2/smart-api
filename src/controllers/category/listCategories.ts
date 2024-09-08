@@ -9,12 +9,12 @@ const listCategories = async (req: Request, res: Response) => {
 		limit = MAX_ROW,
 		page = 1,
 		site,
-		type
+		type,
 	} = req.params as {
 		limit?: number;
 		page?: number;
 		site?: string;
-		type?: number
+		type?: number;
 	};
 	Logger.info(`List category request`);
 
@@ -24,7 +24,7 @@ const listCategories = async (req: Request, res: Response) => {
 		skip: (page - 1) * limit,
 		where: {
 			site,
-			type
+			type,
 		},
 		relations: ['products'],
 	});
@@ -32,6 +32,7 @@ const listCategories = async (req: Request, res: Response) => {
 	sendResponse(res, true, CODE.SUCCESS, `Category List Data`, {
 		count,
 		categories,
+		type,
 	});
 };
 

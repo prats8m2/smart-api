@@ -30,15 +30,18 @@ export class Session extends BaseEntity {
 	@Column({ default: 0 })
 	isActive: number;
 
+	@Column({ nullable: true })
+	token: string;
+
 	@ManyToOne(() => Site, (site) => site.sessions)
 	@JoinTable()
 	site: Site;
 
-	@OneToOne(() => Room)
+	@ManyToOne(() => Room, (room) => room.sessions)
 	@JoinColumn()
 	room: Room;
 
-	@OneToOne(() => Table)
+	@ManyToOne(() => Table, (table) => table.sessions)
 	@JoinColumn()
 	table: Table;
 

@@ -14,6 +14,7 @@ const terminateUserSession = async (req: Request, res: Response) => {
 	//update isActive
 	if (session) {
 		session.isActive = SESSION_STATUS.IN_ACTIVE;
+		session.token = null;
 		await session.save();
 		sendResponse(
 			res,

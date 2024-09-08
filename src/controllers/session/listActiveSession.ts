@@ -35,6 +35,7 @@ const listActiveSessions = async (req: Request, res: Response) => {
 	sendResponse(res, true, CODE.SUCCESS, `Sessions List Data`, {
 		count,
 		sessions,
+		type,
 	});
 };
 
