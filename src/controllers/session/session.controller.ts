@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import listSessions from './listSession';
 import terminateUserSession from './terminateSession';
+import listActiveSessions from './listActiveSession';
 
 class SessionController {
 	public list = async (req: Request, res: Response) => {
-		listSessions(req, res);
+		listActiveSessions(req, res);
 	};
 
 	public terminate = async (req: Request, res: Response) => {

@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { CODE, MAX_ROW } from '../../../config/config';
+import { CODE, MAX_ROW, SESSION_STATUS } from '../../../config/config';
 import Logger from '../../utility/logger/logger';
 import sendResponse from '../../utility/response';
 import { Session } from '../../db/entity/session.entity';
-const listSessions = async (req: Request, res: Response) => {
+const listActiveSessions = async (req: Request, res: Response) => {
 	//fetch data from body
 	const {
 		limit = MAX_ROW,
@@ -27,6 +27,7 @@ const listSessions = async (req: Request, res: Response) => {
 		where: {
 			site,
 			type,
+			isActive: SESSION_STATUS.ACTIVE,
 		},
 		relations: ['room', 'table'],
 	});
@@ -37,4 +38,4 @@ const listSessions = async (req: Request, res: Response) => {
 	});
 };
 
-export default listSessions;
+export default listActiveSessions;
