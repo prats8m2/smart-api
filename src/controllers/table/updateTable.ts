@@ -7,7 +7,7 @@ import sendResponse from '../../utility/response';
 
 const updateTable = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { id, name, siteId, deviceId } = req.body;
+	const { id, name, siteId, deviceId, wifi } = req.body;
 	const { deviceOldTable } = res.locals;
 	let oldTable: Table;
 	let oldDevice: Device;
@@ -29,6 +29,7 @@ const updateTable = async (req: Request, res: Response) => {
 	table.name = name || table.name;
 	table.site = siteId;
 	table.device = deviceId || table.device;
+	table.wifis = wifi?.length ? wifi : [];
 	//update user
 	const result = await table.save();
 

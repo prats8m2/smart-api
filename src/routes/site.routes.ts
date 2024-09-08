@@ -30,7 +30,7 @@ router.get(
 	'/get/:id',
 	AuthMiddleware,
 	getSiteValidation,
-	PermissionMiddleware,
+	// PermissionMiddleware,
 	siteController.get
 );
 

@@ -6,6 +6,7 @@ import {
 	Entity,
 	JoinColumn,
 	JoinTable,
+	ManyToMany,
 	ManyToOne,
 	OneToMany,
 	OneToOne,
@@ -47,6 +48,9 @@ export class Table extends BaseEntity {
 
 	@OneToMany(() => Feedback, (feedback) => feedback.table)
 	feedbacks: Feedback[];
+
+	@ManyToMany(() => Wifi, (wifi) => wifi.tables)
+	wifis: Wifi[];
 
 	@Column({
 		type: 'enum',

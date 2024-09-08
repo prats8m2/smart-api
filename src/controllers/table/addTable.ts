@@ -9,7 +9,7 @@ import { Device } from '../../db/entity/device.entity';
 
 const addTable = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { name, siteId, deviceId } = req.body;
+	const { name, siteId, deviceId, wifi } = req.body;
 
 	Logger.info(`Add table request`);
 
@@ -25,6 +25,7 @@ const addTable = async (req: Request, res: Response) => {
 	table.name = name;
 	table.site = siteId;
 	table.device = deviceId;
+	table.wifis = wifi?.length ? wifi : [];
 
 	const newTable: Table = await table.save();
 
