@@ -1,5 +1,5 @@
-import * as dotenv from "dotenv";
-import * as path from "path";
+import * as dotenv from 'dotenv';
+import * as path from 'path';
 dotenv.config({ path: path.resolve(__dirname, `../.env`) });
 
 const { type, host, port, database, dbuser, password, logging } = process.env;
@@ -18,11 +18,11 @@ export const DB_CONFIG = {
 };
 
 export const DEFAULT_SUPER_ADMIN_CREDS = {
-  FIRST_NAME: process.env.SUPER_ADMIN_FIRST_NAME,
-  LAST_NAME: process.env.SUPER_ADMIN_LAST_NAME,
-  USER_NAME: process.env.SUPER_ADMIN_USER_NAME,
-  EMAIL: process.env.SUPER_ADMIN_EMAIL,
-  PASSWORD: process.env.SUPER_ADMIN_PASSWORD,
+	FIRST_NAME: process.env.SUPER_ADMIN_FIRST_NAME,
+	LAST_NAME: process.env.SUPER_ADMIN_LAST_NAME,
+	USER_NAME: process.env.SUPER_ADMIN_USER_NAME,
+	EMAIL: process.env.SUPER_ADMIN_EMAIL,
+	PASSWORD: process.env.SUPER_ADMIN_PASSWORD,
 };
 
 export const WEB_URL = 'http://localhost:4201';
@@ -137,13 +137,12 @@ export const PAYMENT_TYPE: any = {
 	OFFLINE: 2,
 };
 
-
 export const EVENT_TYPE: any = {
 	IN_HOUSE: 1,
 	OUTSIDE: 2,
 };
 
-
-
-
-
+export const SESSION_STATUS = {
+	IN_ACTIVE: 0,
+	ACTIVE: 1,
+};

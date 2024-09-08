@@ -135,9 +135,14 @@ const ALL_PERMISSION = [
 		],
 	},
 	{
-		category: 'Feedback',
+		category: 'FEEDBACK',
 		categoryId: 13,
 		permissions: ['ADD-FEEDBACK', 'DELETE-FEEDBACK', 'LIST-FEEDBACK'],
+	},
+	{
+		category: 'SESSION',
+		categoryId: 14,
+		permissions: ['LIST-SESSION', 'TERMINATE-SESSION'],
 	},
 ];
 

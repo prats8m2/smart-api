@@ -24,6 +24,12 @@ export class Session extends BaseEntity {
 	@Column()
 	sessionId: string;
 
+	@Column({ nullable: false })
+	type: number;
+
+	@Column({ default: 0 })
+	isActive: number;
+
 	@ManyToOne(() => Site, (site) => site.sessions)
 	@JoinTable()
 	site: Site;
