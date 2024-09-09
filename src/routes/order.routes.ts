@@ -9,6 +9,7 @@ import listOrdersValidation from '../middlewares/validations/order/listOrders.va
 import updateOrderValidation from '../middlewares/validations/order/updateOrder.validation';
 import updateOrderStatusValidation from '../middlewares/validations/order/updateOrderStatus.validation';
 import assignOrderValidation from '../middlewares/validations/order/assignOrder.validation';
+import UserSessionMiddleware from '../middlewares/authorization/userSession.middleware';
 const router = Router();
 const orderController = new OrderController();
 router.post(
@@ -49,7 +50,12 @@ router.get(
 	orderController.list
 );
 
-router.get('/list/app', AuthMiddleware, orderController.listAppOrders);
+router.get(
+	'/list/app',
+	AuthMiddleware,
+	UserSessionMiddleware,
+	orderController.listAppOrders
+);
 
 router.delete(
 	'/delete/:id',

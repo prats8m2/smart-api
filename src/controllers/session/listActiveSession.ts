@@ -18,8 +18,6 @@ const listActiveSessions = async (req: Request, res: Response) => {
 	};
 	Logger.info(`List session request`);
 
-	console.log(limit, page, site, type);
-
 	//get list of all sessions
 	const [sessions, count] = await Session.findAndCount({
 		take: limit,

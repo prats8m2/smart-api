@@ -10,12 +10,13 @@ const AppAuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
 		try {
 			// Verify the token's authenticity and decode its content.
 			const data: any = verify(token, JWT_SECRET_KEY);
-			const { roomid, tableId, siteId } = data; // Extract user role and ID from the decoded token.
+			const { roomid, tableId, siteId, sessionId } = data; // Extract user role and ID from the decoded token.
+
 			res.locals.roomid = roomid; // Store the user's ID in the response object.
 			res.locals.tableId = tableId; // Store the user's role in the response object.
 			res.locals.siteId = siteId;
+			res.locals.sessionId = sessionId;
 
-			
 			next(); // Continue to the next middleware or route handler.
 		} catch (_e) {
 			const e: Error = _e;
@@ -38,6 +39,6 @@ const AppAuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
 		// If there's no token provided, respond with an "Not Authorized" error.
 		sendResponse(res, false, CODE.UNAUTHORIZED, 'Not Authorized');
 	}
-};;
+};
 
 export default AppAuthMiddleware;
