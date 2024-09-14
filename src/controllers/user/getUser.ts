@@ -14,6 +14,11 @@ const getUser = async (req: Request, res: Response) => {
 		relations: ['role', 'role.permissions'],
 	});
 
+	if (!user) {
+		sendResponse(res, true, CODE.NOT_FOUND, `No User found`);
+		return;
+	}
+
 	sendResponse(res, true, CODE.SUCCESS, `User Data`, user);
 };
 

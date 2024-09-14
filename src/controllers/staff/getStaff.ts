@@ -14,6 +14,11 @@ const getStaff = async (req: Request, res: Response) => {
 		relations: ['role', 'role.permissions', 'sites', 'account'],
 	});
 
+	if (!user) {
+		sendResponse(res, false, CODE.NOT_FOUND, `No staff found`);
+		return;
+	}
+
 	sendResponse(res, true, CODE.SUCCESS, `Staff Data`, user);
 };
 

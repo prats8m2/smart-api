@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import sendResponse from '../../utility/response';
 import Logger from '../../utility/logger/logger';
-import { CODE } from '../../../config/config';
+import { CODE, ROLES } from '../../../config/config';
 import { Site } from '../../db/entity/site.entity';
 import DECRYPT from '../../utility/decrypt';
 
@@ -9,6 +9,7 @@ const getSite = async (req: Request, res: Response) => {
 	//fetch data from body
 	const { id } = req.params;
 	Logger.info(`Get site request`);
+	const { account, loggedInRole } = res.locals;
 
 	//create a user
 	const site = await Site.findOne(id, {
@@ -18,6 +19,13 @@ const getSite = async (req: Request, res: Response) => {
 	if (!site) {
 		sendResponse(res, false, CODE.NOT_FOUND, `No site found`);
 		return;
+	}
+
+	if (site && loggedInRole.name !== ROLES.SUPER_ADMIN) {
+		if (site?.account?.id != account?.id) {
+			sendResponse(res, false, CODE.FORBIDDEN, `Not authorized`);
+			return;
+		}
 	}
 
 	let decryptedWifi: any;
