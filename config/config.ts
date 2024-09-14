@@ -128,8 +128,9 @@ export const ORDER_TYPE = {
 export const ORDER_STATUS = {
 	CREATED: 1,
 	PROGRESS: 2,
-	DELIVERED: 3,
-	CANCELED: 4,
+	COMPLETED: 3,
+	DELIVERED: 4,
+	CANCELED: 5,
 };
 
 export const PAYMENT_TYPE: any = {

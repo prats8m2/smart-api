@@ -15,6 +15,11 @@ const getSite = async (req: Request, res: Response) => {
 		relations: ['account', 'wifi', 'settings', 'events', 'events.schedule'],
 	});
 
+	if (!site) {
+		sendResponse(res, false, CODE.NOT_FOUND, `No site found`);
+		return;
+	}
+
 	let decryptedWifi: any;
 	if (site && site.wifi && Array.isArray(site.wifi)) {
 		// Decrypt WiFi passwords

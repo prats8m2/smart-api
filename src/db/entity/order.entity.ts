@@ -36,10 +36,10 @@ export class Order extends BaseEntity {
 	//1: Created, 2:In Progress,3:Picked-UP, 4:Delivered, 5:Cancelled
 	@Column({
 		type: 'enum',
-		enum: [1, 2, 3, 4],
+		enum: [1, 2, 3, 4, 5],
 		default: 1,
 	})
-	status: string;
+	status: number;
 
 	//1: Food, 2: Amenities
 	@Column({

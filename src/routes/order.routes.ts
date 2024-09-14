@@ -10,12 +10,13 @@ import updateOrderValidation from '../middlewares/validations/order/updateOrder.
 import updateOrderStatusValidation from '../middlewares/validations/order/updateOrderStatus.validation';
 import assignOrderValidation from '../middlewares/validations/order/assignOrder.validation';
 import UserSessionMiddleware from '../middlewares/authorization/userSession.middleware';
+import cancelOrderValidation from '../middlewares/validations/order/cancelOrderValidation';
 const router = Router();
 const orderController = new OrderController();
 router.post(
 	'/add',
 	AuthMiddleware,
-	addOrderValidation,
+	// addOrderValidation,
 	// PermissionMiddleware,
 	orderController.add
 );
@@ -71,6 +72,14 @@ router.patch(
 	assignOrderValidation,
 	PermissionMiddleware,
 	orderController.assignOrder
+);
+
+router.patch(
+	'/cancel',
+	AuthMiddleware,
+	cancelOrderValidation,
+	PermissionMiddleware,
+	orderController.cancelOrder
 );
 
 export default router;
