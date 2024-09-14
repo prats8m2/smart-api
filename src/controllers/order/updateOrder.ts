@@ -49,6 +49,7 @@ const updateOrder = async (req: Request, res: Response) => {
 		orderProduct.quantity = product.quantity;
 		await orderProduct.save();
 	});
+	io.emit('updateOrder', orderResult);
 	sendResponse(
 		res,
 		true,
