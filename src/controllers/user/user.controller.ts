@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
 import addUser from './addUser';
 import updateUser from './updateUser';
-import getUser from './getUser'
+import getUser from './getUser';
 import listUsers from './listUsers';
 import deleteUser from './deleteUser';
 import listAccounts from './listAccounts';
 import listUsersToAssign from './listUsersToAssign';
+import getCountries from './getCountries';
+import getStates from './getStates';
 
 class UserController {
 	public add = async (req: Request, res: Response) => {
@@ -18,6 +20,14 @@ class UserController {
 
 	public get = async (req: Request, res: Response) => {
 		getUser(req, res);
+	};
+
+	public getCountries = async (req: Request, res: Response) => {
+		getCountries(req, res);
+	};
+
+	public getStates = async (req: Request, res: Response) => {
+		getStates(req, res);
 	};
 
 	public list = async (req: Request, res: Response) => {

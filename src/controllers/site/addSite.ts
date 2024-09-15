@@ -9,7 +9,7 @@ import { Site_Settings } from '../../db/entity/site_settings.entity';
 
 const addSite = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { name, type, address, wifiDetails } = req.body;
+	const { name, type, address, wifiDetails, country, state } = req.body;
 	const { account } = res.locals;
 	const allWifi: Wifi[] = [];
 	Logger.info(`Add site request`);
@@ -34,6 +34,8 @@ const addSite = async (req: Request, res: Response) => {
 	site.name = name;
 	site.type = type;
 	site.address = address;
+	site.country = country;
+	site.state = state;
 	site.account = account;
 	site.wifi = allWifi;
 	site.settings = settingsResult;
