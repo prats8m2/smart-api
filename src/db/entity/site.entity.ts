@@ -45,6 +45,9 @@ export class Site extends BaseEntity {
 	@Column({ nullable: true })
 	state!: string;
 
+	@Column({ nullable: true })
+	mapLocation!: string;
+
 	@ManyToOne(() => Account, (account) => account.sites)
 	@JoinTable()
 	account: Account;

@@ -19,6 +19,7 @@ const addUserValidation = async (
 		firstName: Joi.string().required(),
 		lastName: Joi.string().required(),
 		status: Joi.number().required(),
+		mobile: Joi.number(),
 	});
 
 	const { error } = validationSchema.validate(req.body);
@@ -31,6 +32,7 @@ const addUserValidation = async (
 			'Invalid Request',
 			error?.details[0]?.message
 		);
+		return;
 	}
 	const isEmailExist = await User.findOne({ email });
 	if (isEmailExist) {

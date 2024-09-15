@@ -8,7 +8,7 @@ import ENCRYPT from '../../utility/encrypt';
 
 const updateSite = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { id, name, address, wifiDetails } = req.body;
+	const { id, name, address, wifiDetails, mapLocation } = req.body;
 	const allWifi: Wifi[] = [];
 	Logger.info(`Update site request`);
 
@@ -35,6 +35,7 @@ const updateSite = async (req: Request, res: Response) => {
 	}
 	site.name = name ? name : site.name;
 	site.address = address ? address : site.address;
+	site.mapLocation = mapLocation ? mapLocation : site.mapLocation;
 	site.wifi = allWifi;
 
 	//update user

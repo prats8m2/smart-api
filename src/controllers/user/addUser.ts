@@ -17,6 +17,7 @@ const addUser = async (req: Request, res: Response) => {
 		firstName,
 		lastName,
 		status,
+		mobile,
 	} = req.body;
 	Logger.info(`Add user request`);
 
@@ -34,6 +35,7 @@ const addUser = async (req: Request, res: Response) => {
 	user.firstName = firstName;
 	user.lastName = lastName;
 	user.email = email;
+	user.mobile = mobile;
 	user.username = username;
 	user.password = MD5(password).toString();
 	user.account = newAccount;
