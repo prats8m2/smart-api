@@ -17,13 +17,13 @@ export class Site_Settings extends BaseEntity {
 	@Column({ default: 1 })
 	theme!: number;
 
-	@Column({ default: 10 })
+	@Column('float', { default: 10 })
 	serviceTax!: number;
 
-	@Column({ default: 2.5 })
+	@Column('float', { default: 2.5 })
 	sgst!: string;
 
-	@Column({ default: 2.5 })
+	@Column('float', { default: 2.5 })
 	cgst!: string;
 
 	@Column({ default: 1 })
