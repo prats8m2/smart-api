@@ -15,7 +15,7 @@ const createDeviceToken = async (req: Request, res: Response) => {
 
 	//fetch device
 	const device: Device = await Device.findOne(id, {
-		relations: ['room', 'table', 'site'],
+		relations: ['room', 'table', 'site', 'site.settings'],
 	});
 	if (!device) {
 		//no device found
@@ -32,6 +32,7 @@ const createDeviceToken = async (req: Request, res: Response) => {
 			tableId: device?.table?.id,
 			siteId: device?.site?.id,
 			isActive: SESSION_STATUS.ACTIVE,
+			settings: device?.site?.settings,
 		};
 
 		// Generate a JWT using the token object.

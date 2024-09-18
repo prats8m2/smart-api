@@ -21,7 +21,7 @@ const getSite = async (req: Request, res: Response) => {
 		return;
 	}
 
-	if (site && loggedInRole.name !== ROLES.SUPER_ADMIN) {
+	if (site && loggedInRole && loggedInRole.name !== ROLES.SUPER_ADMIN) {
 		if (site?.account?.id != account?.id) {
 			sendResponse(res, false, CODE.FORBIDDEN, `Not authorized`);
 			return;
