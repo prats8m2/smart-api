@@ -74,12 +74,4 @@ router.patch(
 	orderController.assignOrder
 );
 
-router.patch(
-	'/cancel',
-	AuthMiddleware,
-	cancelOrderValidation,
-	PermissionMiddleware,
-	orderController.cancelOrder
-);
-
 export default router;
