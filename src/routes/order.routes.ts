@@ -75,13 +75,13 @@ router.patch(
 	orderController.assignOrder
 );
 
-router.patch(
-	'/cancel',
-	AuthMiddleware,
-	cancelOrderValidation,
-	PermissionMiddleware,
-	orderController.cancelOrder
-);
+// router.patch(
+// 	'/cancel',
+// 	AuthMiddleware,
+// 	cancelOrderValidation,
+// 	PermissionMiddleware,
+// 	orderController.cancelOrder
+// );
 
 router.get(
 	'/list/attendant/',

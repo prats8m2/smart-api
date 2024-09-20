@@ -14,6 +14,11 @@ const updateOrderStatus = async (req: Request, res: Response) => {
 
 	const order: Order = await Order.findOne(id);
 
+	if (!order) {
+		sendResponse(res, false, CODE.NOT_FOUND, `Order not found`, order);
+		return false;
+	}
+
 	//update status
 	order.status = status;
 

@@ -7,7 +7,6 @@ import listOrders from './listOrders';
 import updateOrderStatus from './updateOrderStatus';
 import assignOrder from './assignOrder';
 import listAppOrders from './listAppOrders';
-import cancelOrder from './cancelOrder';
 import listOrdersAttendant from './listOrdersAttendant';
 
 class OrderController {
@@ -37,10 +36,6 @@ class OrderController {
 
 	public assignOrder = async (req: Request, res: Response) => {
 		assignOrder(req, res);
-	};
-
-	public cancelOrder = async (req: Request, res: Response) => {
-		cancelOrder(req, res);
 	};
 
 	public listAppOrders = async (req: Request, res: Response) => {
