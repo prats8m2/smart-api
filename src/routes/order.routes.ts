@@ -11,6 +11,7 @@ import updateOrderStatusValidation from '../middlewares/validations/order/update
 import assignOrderValidation from '../middlewares/validations/order/assignOrder.validation';
 import UserSessionMiddleware from '../middlewares/authorization/userSession.middleware';
 import cancelOrderValidation from '../middlewares/validations/order/cancelOrderValidation';
+import listOrdersAttendantValidation from '../middlewares/validations/order/listOrdersAttendant.validation';
 const router = Router();
 const orderController = new OrderController();
 router.post(
@@ -80,6 +81,14 @@ router.patch(
 	cancelOrderValidation,
 	PermissionMiddleware,
 	orderController.cancelOrder
+);
+
+router.get(
+	'/list/attendant/',
+	AuthMiddleware,
+	listOrdersAttendantValidation,
+	PermissionMiddleware,
+	orderController.listOrdersAttendant
 );
 
 export default router;

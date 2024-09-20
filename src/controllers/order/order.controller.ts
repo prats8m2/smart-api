@@ -8,6 +8,7 @@ import updateOrderStatus from './updateOrderStatus';
 import assignOrder from './assignOrder';
 import listAppOrders from './listAppOrders';
 import cancelOrder from './cancelOrder';
+import listOrdersAttendant from './listOrdersAttendant';
 
 class OrderController {
 	public add = async (req: Request, res: Response) => {
@@ -44,6 +45,10 @@ class OrderController {
 
 	public listAppOrders = async (req: Request, res: Response) => {
 		listAppOrders(req, res);
+	};
+
+	public listOrdersAttendant = async (req: Request, res: Response) => {
+		listOrdersAttendant(req, res);
 	};
 }
 
