@@ -1,6 +1,6 @@
 import { Product } from '../../db/entity/product.entity';
 
-export const getTotalPrice = async (products: any[]) => {
+export const getTotalPrice = async (products: any[], siteSettings: any) => {
 	const productsDetails: Product[] = await Product.findByIds(products);
 
 	const mappedProducts: any[] = [];
@@ -11,8 +11,31 @@ export const getTotalPrice = async (products: any[]) => {
 			mappedProducts.push({ ...product, quantity: detail.quantity });
 		}
 	});
-	return mappedProducts.reduce(
-		(total, { price, quantity }) => total + price * quantity,
-		0
+
+	let totalAmountOfProduct = 0;
+	mappedProducts.map((product) => {
+		totalAmountOfProduct += product.quantity * product.price;
+	});
+	let sgstAmount: any = Number(
+		((totalAmountOfProduct * siteSettings.sgst) / 100).toFixed(2)
 	);
+	let cgstAmount: any = Number(
+		((totalAmountOfProduct * siteSettings.cgst) / 100).toFixed(2)
+	);
+
+	let serviceTaxAmount: any = Number(
+		((totalAmountOfProduct * siteSettings.serviceTax) / 100).toFixed(2)
+	);
+
+	let totalAmountWithTaxes: any = Number(
+		(totalAmountOfProduct + sgstAmount + cgstAmount + serviceTaxAmount).toFixed(
+			2
+		)
+	);
+	return {
+		sgstAmount,
+		cgstAmount,
+		serviceTaxAmount,
+		totalAmountWithTaxes,
+	};
 };

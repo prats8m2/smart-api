@@ -12,7 +12,7 @@ const getOrder = async (req: Request, res: Response) => {
 
 	// Find the order with the necessary relations
 	const order = await Order.findOne(id, {
-		relations: ['room', 'table', 'payment', 'user'],
+		relations: ['room', 'table', 'payment', 'user', 'site', 'site.settings'],
 	});
 
 	if (!order) {

@@ -23,7 +23,7 @@ export class Payment extends BaseEntity {
 		enum: [1, 2],
 		default: 1,
 	})
-	type: string;
+	type: number;
 
 	//1: Created, 2:In Progress,3:Picked-UP, 4:Delivered, 5:Cancelled
 	@Column({
@@ -31,28 +31,28 @@ export class Payment extends BaseEntity {
 		enum: [1, 2, 3, 4],
 		default: 1,
 	})
-	status: string;
+	status: number;
 
 	@ManyToOne(() => Site, (site) => site.rooms)
 	@JoinTable()
 	site: Site;
 
-	@Column({ default: 0 })
+	@Column({ type: 'decimal', default: 0 })
 	total: number;
 
-	@Column({ default: 0 })
+	@Column({ type: 'decimal', default: 0 })
 	serviceCharge: number;
 
-	@Column({ default: 0 })
+	@Column({ type: 'decimal', default: 0 })
 	cgst: number;
 
-	@Column({ default: 0 })
+	@Column({ type: 'decimal', default: 0 })
 	sgst: number;
 
-	@Column({ default: 0 })
+	@Column({ type: 'decimal', default: 0 })
 	discount: number;
 
-	@Column({ default: 0 })
+	@Column({ type: 'decimal', default: 0 })
 	deliveryCharge: number;
 
 	@VersionColumn({ select: false })

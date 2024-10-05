@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CODE, PAYMENT_TYPE } from '../../../config/config';
+import { CODE } from '../../../config/config';
 import serverInstance from '../../app';
 import { Order } from '../../db/entity/order.entity';
 import { Order_Product } from '../../db/entity/order_product';
@@ -7,6 +7,7 @@ import { Payment } from '../../db/entity/payment.entity';
 import Logger from '../../utility/logger/logger';
 import { getTotalPrice } from '../../utility/order/getTotalPrice';
 import sendResponse from '../../utility/response';
+import { Site } from '../../db/entity/site.entity';
 
 const updateOrder = async (req: Request, res: Response) => {
 	//fetch data from body
@@ -14,8 +15,14 @@ const updateOrder = async (req: Request, res: Response) => {
 	Logger.info(`Add order request`);
 	const io = serverInstance.getIo(); // Get the io instance from the server
 
+	//fetch site data
+	const siteData = await Site.findOne(site, {
+		relations: ['account', 'wifi', 'settings', 'events', 'events.schedule'],
+	});
+
 	//fetch product prices
-	const totalPrice = await getTotalPrice(products);
+	const { sgstAmount, cgstAmount, serviceTaxAmount, totalAmountWithTaxes } =
+		await getTotalPrice(products, siteData.settings);
 
 	// fetch order details
 	const order: Order = await Order.findOne(id, {
@@ -26,7 +33,11 @@ const updateOrder = async (req: Request, res: Response) => {
 	let payment = await Payment.findOne(order?.payment?.id);
 	// payment.type = PAYMENT_TYPE.OFFLINE;
 	payment.site = site;
-	payment.total = totalPrice;
+	payment.total = totalAmountWithTaxes;
+	payment.cgst = cgstAmount;
+	payment.sgst = sgstAmount;
+	payment.serviceCharge = serviceTaxAmount;
+	// payment.total = totalPrice;
 	await payment.save();
 
 	//update order
@@ -54,7 +65,7 @@ const updateOrder = async (req: Request, res: Response) => {
 		res,
 		true,
 		CODE.SUCCESS,
-		`Category updated Successful`,
+		`Order updated Successful`,
 		orderResult
 	);
 };

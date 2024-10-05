@@ -36,6 +36,7 @@ router.get(
 );
 
 router.get('/countries', AuthMiddleware, userController.getCountries);
+router.get('/currencies', AuthMiddleware, userController.getCurrencies);
 
 router.get('/states/:cCode', AuthMiddleware, userController.getStates);
 

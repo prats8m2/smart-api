@@ -8,6 +8,7 @@ import listAccounts from './listAccounts';
 import listUsersToAssign from './listUsersToAssign';
 import getCountries from './getCountries';
 import getStates from './getStates';
+import getCurrencies from './getCurrencies';
 
 class UserController {
 	public add = async (req: Request, res: Response) => {
@@ -24,6 +25,10 @@ class UserController {
 
 	public getCountries = async (req: Request, res: Response) => {
 		getCountries(req, res);
+	};
+
+	public getCurrencies = async (req: Request, res: Response) => {
+		getCurrencies(req, res);
 	};
 
 	public getStates = async (req: Request, res: Response) => {

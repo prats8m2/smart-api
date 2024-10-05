@@ -7,6 +7,7 @@ import { Payment } from '../../db/entity/payment.entity';
 import Logger from '../../utility/logger/logger';
 import { getTotalPrice } from '../../utility/order/getTotalPrice';
 import sendResponse from '../../utility/response';
+import { Site } from '../../db/entity/site.entity';
 
 const addOrder = async (req: Request, res: Response) => {
 	try {
@@ -17,15 +18,25 @@ const addOrder = async (req: Request, res: Response) => {
 		Logger.info(`Add order request`);
 		const io = serverInstance.getIo(); // Get the io instance from the server
 
+		//fetch site setings details
+
+		const siteData = await Site.findOne(site, {
+			relations: ['account', 'wifi', 'settings', 'events', 'events.schedule'],
+		});
+
 		if (categoryType) {
 			//fetch product prices
-			const totalPrice = await getTotalPrice(products);
+			const { sgstAmount, cgstAmount, serviceTaxAmount, totalAmountWithTaxes } =
+				await getTotalPrice(products, siteData.settings);
 
 			//create payment
 			let payment: Payment = new Payment();
 			payment.type = PAYMENT_TYPE.OFFLINE;
 			payment.site = site;
-			payment.total = totalPrice;
+			payment.total = totalAmountWithTaxes;
+			payment.cgst = cgstAmount;
+			payment.sgst = sgstAmount;
+			payment.serviceCharge = serviceTaxAmount;
 			paymentResult = await payment.save();
 		}
 
