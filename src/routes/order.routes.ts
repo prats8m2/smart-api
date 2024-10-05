@@ -2,16 +2,15 @@ import { Router } from 'express';
 import OrderController from '../controllers/order/order.controller';
 import AuthMiddleware from '../middlewares/authorization/auth.middleware';
 import PermissionMiddleware from '../middlewares/authorization/permission.middleware';
-import addOrderValidation from '../middlewares/validations/order/addOrder.validation';
+import UserSessionMiddleware from '../middlewares/authorization/userSession.middleware';
+import assignOrderValidation from '../middlewares/validations/order/assignOrder.validation';
 import deleteOrderValidation from '../middlewares/validations/order/deleteOrder.validation';
 import getOrderValidation from '../middlewares/validations/order/getOrder.validation';
 import listOrdersValidation from '../middlewares/validations/order/listOrders.validation';
+import listOrdersAttendantValidation from '../middlewares/validations/order/listOrdersAttendant.validation';
 import updateOrderValidation from '../middlewares/validations/order/updateOrder.validation';
 import updateOrderStatusValidation from '../middlewares/validations/order/updateOrderStatus.validation';
-import assignOrderValidation from '../middlewares/validations/order/assignOrder.validation';
-import UserSessionMiddleware from '../middlewares/authorization/userSession.middleware';
-import cancelOrderValidation from '../middlewares/validations/order/cancelOrderValidation';
-import listOrdersAttendantValidation from '../middlewares/validations/order/listOrdersAttendant.validation';
+
 const router = Router();
 const orderController = new OrderController();
 router.post(
@@ -45,7 +44,7 @@ router.get(
 );
 
 router.get(
-	'/list/:site/:type/:page/:limit',
+	'/list/:site/:categoryType/:orderType/:page/:limit',
 	AuthMiddleware,
 	listOrdersValidation,
 	PermissionMiddleware,

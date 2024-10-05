@@ -50,6 +50,7 @@ const updateOrder = async (req: Request, res: Response) => {
 	const orderResult = await order.save();
 
 	//delete all previous products of order
+
 	await Order_Product.delete({ order_id: id });
 
 	//create order_product

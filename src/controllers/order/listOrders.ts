@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
-import { CODE, MAX_ROW } from '../../../config/config';
+import { CODE } from '../../../config/config';
 import Logger from '../../utility/logger/logger';
 import sendResponse from '../../utility/response';
 import { Order } from '../../db/entity/order.entity';
-import { MoreThanOrEqual, LessThanOrEqual } from 'typeorm';
+import { MoreThanOrEqual } from 'typeorm';
 
 const listOrders = async (req: Request, res: Response) => {
 	//fetch data from body
-	const { site, type, room, table } = req.params as {
+	const { site, categoryType, room, table, orderType } = req.params as {
 		site?: string;
-		type?: string;
+		categoryType?: string;
+		orderType?: string;
 		room?: number;
 		table?: number;
 	};
@@ -18,8 +19,8 @@ const listOrders = async (req: Request, res: Response) => {
 
 	//create a user
 	const whereClause: any = { site };
-	if (type !== null && type !== undefined) {
-		whereClause.categoryType = type;
+	if (categoryType !== null && categoryType !== undefined) {
+		whereClause.categoryType = categoryType;
 	}
 
 	const currentDate = new Date();
@@ -40,10 +41,14 @@ const listOrders = async (req: Request, res: Response) => {
 		);
 	}
 
+	if (orderType !== '0') {
+		whereClause.type = orderType;
+	}
+
 	const [orders, count] = await Order.findAndCount({
 		where: whereClause,
 		relations: ['room', 'table', 'payment', 'user'],
-		order: { createdOn: 'DESC' }, // Most recent orders first
+		order: { createdOn: 'DESC' },
 	});
 
 	sendResponse(res, true, CODE.SUCCESS, `Orders List Data`, {
