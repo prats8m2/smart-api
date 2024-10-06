@@ -45,11 +45,18 @@ const listOrders = async (req: Request, res: Response) => {
 		whereClause.type = orderType;
 	}
 
-	const [orders, count] = await Order.findAndCount({
+	let [orders, count] = await Order.findAndCount({
 		where: whereClause,
 		relations: ['room', 'table', 'payment', 'user'],
 		order: { createdOn: 'DESC' },
 	});
+
+	orders = orders.map((order: any) => ({
+		...order,
+		isNew: false,
+		isUpdated: false,
+		isDeleted: false,
+	}));
 
 	sendResponse(res, true, CODE.SUCCESS, `Orders List Data`, {
 		count,

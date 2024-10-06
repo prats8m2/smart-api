@@ -62,7 +62,13 @@ const addOrder = async (req: Request, res: Response) => {
 			});
 		}
 		//send notification for creating order
-		io.emit('orderCreated', order);
+		io.emit('orderCreated', {
+			...order,
+			isNew: true,
+			isUpdated: false,
+			isDeleted: false,
+			isCompleted: false,
+		});
 		sendResponse(
 			res,
 			true,
