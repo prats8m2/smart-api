@@ -62,7 +62,7 @@ const addOrder = async (req: Request, res: Response) => {
 			});
 		}
 		//send notification for creating order
-		io.emit('orderCreated', {
+		io.emit(`new_order_${site}_${categoryType}`, {
 			...order,
 			isNew: true,
 			isUpdated: false,

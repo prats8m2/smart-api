@@ -27,7 +27,7 @@ const listSites = async (req: Request, res: Response) => {
 			where: {
 				account,
 			},
-			relations: ['account'],
+			relations: ['account', 'settings'],
 		});
 	}
 	//Fetch sites for staff

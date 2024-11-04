@@ -61,7 +61,7 @@ const updateOrder = async (req: Request, res: Response) => {
 		orderProduct.quantity = product.quantity;
 		await orderProduct.save();
 	});
-	io.emit('updateOrder', orderResult);
+	io.emit(`update_order_${site}_${type}`, orderResult);
 	sendResponse(
 		res,
 		true,

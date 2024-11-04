@@ -12,7 +12,7 @@ const getProduct = async (req: Request, res: Response) => {
 
 	//get a product
 	const product = await Product.findOne(id, {
-		relations: ['site', 'site.account', 'categories'],
+		relations: ['site', 'site.account', 'site.settings', 'categories'],
 	});
 
 	if (!product) {

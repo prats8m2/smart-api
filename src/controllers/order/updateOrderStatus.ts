@@ -19,17 +19,15 @@ const updateOrderStatus = async (req: Request, res: Response) => {
 
 	if (!order) {
 		sendResponse(res, false, CODE.NOT_FOUND, `Order not found`, order);
-		return false;
-	}
+		return false;	}
 
 	//update status
 	order.status = status;
 
 	const orderResult = await order.save();
-	io.emit('updateOrderStatus', {
+	io.emit(`update_order_status_${order.site.id}_${order.categoryType}`, {
 		...orderResult,
 		status: order.status,
-		isNew: false,
 		isUpdated: true,
 		isDeleted: order.status === ORDER_STATUS.CANCELED,
 		isCompleted: order.status === ORDER_STATUS.COMPLETED,
